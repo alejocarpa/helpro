@@ -1,0 +1,135 @@
+@import '../../index.css';
+
+.categorys-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.categorys-elements{
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.categorys-block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-right: 80px;
+}
+
+.categorys-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3px;
+    color: #828282;
+    font-size: 18px;
+}
+
+.categorys-image{
+    border: 1px var(--color-borde) solid;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 10px 1px var(--color-borde-difuminado);
+    cursor: pointer;
+}
+
+.categorys-image:hover{
+    background-color: #F1F1F1;
+    transform: scale(1.1);
+}
+
+@media screen and (max-width: 1350px) {
+    .categorys-text{
+        font-size: 15px;
+    }
+    
+    .categorys-image{
+        padding: 20px;
+    }
+
+    .categorys-block{
+        margin-right: 80px;
+    }
+}
+
+@media screen and (max-width: 1210px) {
+    .categorys-text{
+        font-size: 14px;
+    }
+    
+    .categorys-image{
+        padding: 19px;
+    }
+
+    .categorys-block{
+        margin-right: 70px;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .categorys-text{
+        font-size: 14px;
+    }
+    
+    .categorys-image{
+        padding: 18px;
+    }
+
+    .categorys-block{
+        margin-right: 40px;
+    }
+}
+
+
+@media screen and (max-width: 930px) {
+    .categorys-elements{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .categorys-text{
+        font-size: 11px;
+    }
+    
+    .categorys-image{
+        padding: 17px;
+    }
+
+    .categorys-block{
+        margin-right: 20px;
+        margin-bottom: 20px;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .categorys-elements{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .categorys-text{
+        font-size: 25px;
+    }
+    
+    .categorys-image{
+        padding: 35px;
+    }
+
+    .categorys-block{
+        margin-bottom: 40px;
+    }
+}

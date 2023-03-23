@@ -1,0 +1,15 @@
+@import '../../index.css';
+
+.mostrar-calificacion-container{
+    width: 100%;
+}
+
+.mostrar-calificacion-elements{
+    width: 100%;
+    display: flex;
+}
+
+.mostrar-calificacion-estrella{
+    display: flex;
+    color: var(--color-principal);
+}

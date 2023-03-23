@@ -1,0 +1,21 @@
+
+.cargando-page-container{
+    /* border: 1px solid #f00; */
+	width : 100%;
+	height : 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cargando-page-elements{
+    width : 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.cargando-page-loading{
+    font-size: 10px;
+    display: flex;
+    transform: scale(5);
+}

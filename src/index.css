@@ -1,0 +1,13 @@
+:root{
+    --color-principal: #7041E4;
+    --color-secundario: #E1DCEE;
+    --tipografia-principal: system-ui;
+    --color-borde: #C9C9C9;
+    --color-borde-difuminado: #BCBCBC;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}

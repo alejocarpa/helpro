@@ -1,0 +1,86 @@
+.submenu-container{
+    background-color: #FFFFFF;
+    padding: 0;
+    margin: 0;
+    width: 10%;
+    height: 20%;
+    display: flex;
+    position: fixed;
+    top: 95px;
+    right: 50px;
+    z-index: 1;
+    color: #7A7A7A;
+    animation-duration: 0.4s;
+    box-shadow: 10px 10px 15px black;
+}
+
+.submenu-elements{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.submenu-seccion{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.submenu-icono{
+    float: left;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.submenu-nombre{
+    float: left;
+    margin-right: 20px;
+    letter-spacing: 1px;
+    
+}
+
+@media screen and (max-width: 1670px) {
+    .submenu-container{
+        width: 12%;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .submenu-container{
+        width: 14%;
+    }
+}
+
+@media screen and (max-width: 1230px) {
+    .submenu-container{
+        width: 16%;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .submenu-container{
+        width: 18%;
+    }
+}
+
+@media screen and (max-width: 970px) {
+    .submenu-container{
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 870px) {
+    .submenu-seccion{
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 670px) {
+    .submenu-seccion{
+        font-size: 8px;
+    }
+}

@@ -1,0 +1,29 @@
+.helpro-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.helpro-carousel{
+    width: 100%;
+    z-index: 0;
+}
+
+.helpro-categorys{
+    width: 100%;
+}
+
+.helpro-productos-x-categoria{
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.helpro-titulo-seccion{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}

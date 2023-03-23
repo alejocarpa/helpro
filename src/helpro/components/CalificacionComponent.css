@@ -1,0 +1,15 @@
+.calificacion-container{
+    /* border: 1px solid #f00; */
+    width: 100%;
+}
+
+.calificacion-elements{
+    width: 100%;
+    display: flex;
+}
+
+.calificacion-estrella{
+    padding-left: 2px;
+    font-size: 25px;
+    display: flex;
+}

@@ -1,0 +1,63 @@
+import { useSelector } from 'react-redux';
+import { BarraBusqueda, LogoNavbarHelpro, MenuUser, SubMenuUser } from './';
+import './NavbarHelpro.css';
+
+export const NavbarHelpro = () => {
+
+    const { elementClicked } = useSelector(state => state.helpro);
+
+    let divSubmenu = document.getElementById('navbar-submenu-user');
+
+    const desplegarSubmenu = () => {
+
+        !divSubmenu ? divSubmenu = document.getElementById('navbar-submenu-user') : ""
+
+        if (divSubmenu) {
+            
+            divSubmenu.style.display === 'none' ? divSubmenu.style.display = 'block' : divSubmenu.style.display = 'none'
+
+        }
+    }
+
+    if (divSubmenu) {
+
+        const click = elementClicked;
+
+        if (
+                divSubmenu.style.display === "block" 
+                && 
+                click.substr(0,100) !== divSubmenu.outerHTML.substr(0,100)
+                &&
+                click.substr(0,100) !== "<div class=\"menu-user-name\">Alejandro</div>"
+                &&
+                click.substr(0,50) !== "<path d=\"M248 8C111 8 0 119 0 256s111 248 248 248 "
+                &&
+                click.substr(0,50) !== "<svg stroke=\"currentColor\" fill=\"currentColor\" str"
+                &&
+                click.substr(0,50) !== "<path fill-rule=\"evenodd\" d=\"M1.646 4.646a.5.5 0 0"
+            ) {
+            divSubmenu.style.display = "none";
+        }
+    }
+    
+    return (
+        <>
+            <div className="navbar-container">
+                <div className="navbar-elements">
+                    <div className="navbar-logo">
+                        <LogoNavbarHelpro />
+                    </div>
+
+                    <div className="navbar-barra-busqueda">
+                        <BarraBusqueda />
+                    </div>
+
+                    <div className="navbar-usuario">
+                        <MenuUser desplegarSubmenu={desplegarSubmenu} />
+                    </div>
+                </div>
+            </div>
+            <div id="navbar-submenu-user" style={{ display: 'none' }}><SubMenuUser /></div>
+        </>
+    )
+}
