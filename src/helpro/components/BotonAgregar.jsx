@@ -2,10 +2,16 @@ import './BotonAgregar.css';
 import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 import { MensajeAyudaBotonAgregar } from './MensajeAyudaBotonAgregar';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const BotonAgregar = () => {
 
+    const navigate = useNavigate();
     const [displayMensaje, setDisplayMensaje] = useState('none');
+
+    const cargarNuevoProducto = () => {
+        navigate(`nuevo`);
+    }
 
     return (
         <>
@@ -15,12 +21,11 @@ export const BotonAgregar = () => {
                         className="boton-agregar-circulo"
                         onMouseEnter={() => {
                             setDisplayMensaje('block');
-                            setEntroBloque(true);
                         }}
                         onMouseLeave={() => {
                             setDisplayMensaje('none');
-                            setEntroBloque(false);
                         }}
+                        onClick={ cargarNuevoProducto }
                     >
                         <div className="boton-agregar-circulo-contenido">
                             <AiOutlineAppstoreAdd />

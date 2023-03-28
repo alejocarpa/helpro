@@ -1,0 +1,43 @@
+@import '../../index.css';
+
+.nuevo-producto-container{
+    /* border: 1px solid #f00; */
+    width: 100%;
+    height: 100vh;
+    background: url("images/fondo.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.3);
+}
+
+.nuevo-producto-elements{
+    /* border: 1px solid #00f; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.nuevo-producto-bloque{
+    width: 50%;
+    height: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.nuevo-producto-formulario{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+@media screen and (max-height: 800px) {
+    .nuevo-producto-bloque{
+        height: 60%;
+    }
+}

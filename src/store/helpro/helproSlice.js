@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const helproSlice = createSlice({
     name: 'helpro',
     initialState: {
-        elementClicked: ''
+        elementClicked: '',
     },
     reducers: {
         clickingElement: ( state, action ) => {

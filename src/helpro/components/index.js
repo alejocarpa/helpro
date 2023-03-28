@@ -15,3 +15,5 @@ export * from './DetalleItem';
 export * from './BarraProgreso';
 export * from './BotonAgregar';
 export * from './MensajeAyudaBotonAgregar';
+export * from './FormularioNuevo1';
+export * from './FormularioNuevo2';

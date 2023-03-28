@@ -1,0 +1,24 @@
+@import '../../index.css';
+
+.boton-siguiente-container{
+    width: 100%;
+    height: 100%;
+}
+
+.boton-siguiente-elements{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-principal);
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.boton-siguiente-elements:hover{
+    opacity: 0.9;
+}

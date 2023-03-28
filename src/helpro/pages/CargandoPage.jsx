@@ -5,9 +5,20 @@ import { getItemsByName } from '../../helpers';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
+
 export const CargandoPage = () => {
 
+    // const { pathname } = useLocation();
+    // useRoute( pathname );
+
+    // const { rutasVisitadas } = useSelector(state => state.helpro);
+    // const navigate = useNavigate();
     const navigate = useNavigate();
+
+    window.onpopstate = function(e) {
+        navigate(`/home`);
+    };
+
     const { nombreItem } = useParams();
     const data = getItemsByName( nombreItem );
 

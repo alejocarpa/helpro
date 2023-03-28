@@ -5,6 +5,9 @@ import { getItemsByCategory } from "../../helpers";
 
 export const HomePage = () => {
 
+    // const { pathname } = useLocation();
+    // useRoute( pathname );
+
     const dataAplicaciones = getItemsByCategory( 'Aplicacion' );
     const dataServicios = getItemsByCategory( 'Servicio' );
     const dataLocalesComerciales = getItemsByCategory( 'Local comercial' );

@@ -6,6 +6,9 @@ import './ItemPage.css';
 
 export const ItemPage = () => {
 
+    // const { pathname } = useLocation();
+    // useRoute( pathname );
+
     window.scroll(0, 0);
 
     const { idItem } = useParams();
