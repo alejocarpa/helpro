@@ -17,3 +17,4 @@ export * from './BotonAgregar';
 export * from './MensajeAyudaBotonAgregar';
 export * from './FormularioNuevo1';
 export * from './FormularioNuevo2';
+export * from './BarraEtapas';

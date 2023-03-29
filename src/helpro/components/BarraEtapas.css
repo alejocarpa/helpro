@@ -1,0 +1,87 @@
+@import '../../index.css';
+
+:root{
+    --color-estilo-borde: var(--color-secundario);
+}
+
+.barra-etapas-container{
+    width: 100%;
+    height: 100%;
+}
+
+.barra-etapas-elements{
+    /* border: 1px solid #0ff; */
+    /* background-color: #FCFCFC; */
+    /* opacity: 0.5; */
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.barra-etapas-imagen-superior{
+    /* border: 1px solid #0ff; */
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.barra-etapas-superior-imagen{
+    width: 60px;
+    height: 60px;
+    border: 5px solid var(--color-estilo-borde);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.barra-etapas-superior-linea{
+    border: 3px solid var(--color-estilo-borde);
+    width: 100%;
+}
+
+.barra-etapas-superior-texto{
+    color: var(--color-estilo-borde);
+    font-size: 25px;
+    font-weight: 700;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.barra-etapas-imagen-inferior{
+    /* border: 1px solid #0ff; */
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.barra-etapas-inferior-imagen{
+    width: 60px;
+    height: 60px;
+    border: 5px solid var(--color-estilo-borde);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.barra-etapas-inferior-linea{
+    border: 3px solid var(--color-estilo-borde);
+    width: 100%;
+}
+
+.barra-etapas-inferior-texto{
+    color: var(--color-estilo-borde);
+    font-size: 25px;
+    font-weight: 700;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

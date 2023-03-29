@@ -1,3 +1,5 @@
+@import '../../index.css';
+
 .formulario-nuevo2-container{
     /* border: 1px solid #f00; */
     width: 98%;
@@ -7,8 +9,121 @@
 .formulario-nuevo2-elements{
     width: 100%;
     height: 100%;
-    background-color: #FFFFFF;
+    background-color: var(--color-secundario);
     border: 1px solid var(--color-borde);
     border-radius: 15px;
     box-shadow: 0px 0px 10px 1px var(--color-borde-difuminado);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-nuevo2-bloque{
+    /* border: 1px solid #f00; */
+    width: 95%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-nuevo2-file{
+    border: 3px dashed var(--color-principal);
+    width: 100%;
+}
+
+.formulario-nuevo2-file:hover{
+    border: 5px dashed var(--color-principal);
+    cursor: pointer;
+}
+
+.formulario-nuevo2-contenedor-imagenes{
+    /* border: 1px solid #f00; */
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-nuevo2-imagen-bloque{
+    /* border: 1px solid #f00; */
+    width: 20%;
+}
+
+.formulario-nuevo2-foto{
+    border: 1px var(--color-principal) solid;
+    border-radius: 6px;
+    position: relative;
+    width: 100%;
+    height: 20vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-principal);
+    font-size: 6vw;
+}
+
+.formulario-nuevo2-foto:hover{
+    transform: scale(1.04);
+}
+
+.formulario-nuevo2-boton-cerrar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.formulario-nuevo2-boton-cerrar-circulo{
+    border: 1px solid #C93636;
+    border-radius: 50%;
+    background-color: #C93636;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.formulario-nuevo2-boton-cerrar-circulo:hover{
+    transform: scale(1.08);
+}
+
+.formulario-nuevo2-imagen-separador{
+    width: 4%;
+}
+
+.formulario-nuevo2-contenedor-boton{
+    /* border: 1px solid #f00; */
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-nuevo2-contenedor-boton-subir{
+    width: 25%;
+}
+
+.formulario-nuevo2-contenedor-botones{
+    /* border: 1px solid #f00; */
+    width: 100%;
+    margin-top: 20px;
+}
+
+.formulario-nuevo2-contenedor-boton-atras{
+    float: left;
+}
+
+.formulario-nuevo2-contenedor-boton-siguiente{
+    float: right;
 }

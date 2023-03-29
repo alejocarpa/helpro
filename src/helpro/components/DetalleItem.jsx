@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ListGroup } from 'react-bootstrap';
 import './DetalleItem.css';
 import { MostrarCalificacion } from './MostrarCalificacion';
@@ -37,6 +37,11 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
     }
 
     let ubicacionComent = true;
+
+    useEffect(() => {
+        setImagenAmpliada(item1.ImagenURL);
+    }, [item1.ImagenURL])
+    
 
     return (
         <>

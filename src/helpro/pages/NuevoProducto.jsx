@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FormularioNuevo1, FormularioNuevo2 } from '../components';
+import { BarraEtapas, FormularioNuevo1, FormularioNuevo2 } from '../components';
 import { HelproLayout } from '../layout/HelproLayout';
 import './NuevoProducto.css';
 
@@ -14,11 +14,21 @@ export const NuevoProducto = () => {
     const [formularioActivo2, setFormularioActivo2] = useState(false);
     const [clickBotonAtras, setClickBotonAtras] = useState(false);
 
+    const [completoFormulario1, setCompletoFormulario1] = useState(false);
+
     return (
         <>
             <HelproLayout>
                 <div className="nuevo-producto-container">
                     <div className="nuevo-producto-elements">
+                        <div className="nuevo-producto-guia">
+                            <BarraEtapas
+                                activarFomulario1 = { setFormularioActivo1 } 
+                                activarFormulario2={ setFormularioActivo2 }
+                                clickBotonAtras = { setClickBotonAtras }
+                                completoFormulario1 = { completoFormulario1 }
+                            />
+                        </div>
                         <div className="nuevo-producto-bloque">
                             <div 
                                 style={{ display: formularioActivo1 ? 'flex' : 'none' }}
@@ -28,6 +38,7 @@ export const NuevoProducto = () => {
                                     activarFomulario1 = { setFormularioActivo1 } 
                                     activarFormulario2={ setFormularioActivo2 } 
                                     clickBotonAtras = { setClickBotonAtras }
+                                    completoFormulario1 = { setCompletoFormulario1 }
                                 />
                             </div>
 

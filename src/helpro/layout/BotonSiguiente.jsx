@@ -1,5 +1,5 @@
 import './BotonSiguiente.css';
-import { MdNavigateNext } from "react-icons/md";
+import { MdOutlineArrowForwardIos } from "react-icons/md";
 
 export const BotonSiguiente = () => {
     return (
@@ -9,7 +9,7 @@ export const BotonSiguiente = () => {
                     Siguiente
                 </div>
                 <div className="boton-siguiente-icono">
-                    <MdNavigateNext />
+                    <MdOutlineArrowForwardIos />
                 </div>
             </div>
         </div>

@@ -1,0 +1,29 @@
+@import '../../index.css';
+
+.boton-subir-container{
+    width: 100%;
+    height: 100%;
+}
+
+.boton-subir-elements{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-principal);
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.boton-subir-elements:hover{
+    opacity: 0.9;
+}
+
+.boton-subir-icono{
+    margin-left: 10px;
+    font-size: 1.3vw;
+}

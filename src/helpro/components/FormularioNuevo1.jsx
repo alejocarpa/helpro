@@ -3,12 +3,13 @@ import { FloatingLabel, Form } from 'react-bootstrap';
 import { BotonSiguiente } from '../layout';
 import './FormularioNuevo1.css';
 
-export const FormularioNuevo1 = ({ activarFomulario1, activarFormulario2, clickBotonAtras }) => {
+export const FormularioNuevo1 = ({ activarFomulario1, activarFormulario2, clickBotonAtras, completoFormulario1 }) => {
 
     const formularioActivo = () => {
         activarFomulario1(false);
         activarFormulario2(true);
         clickBotonAtras(false);
+        completoFormulario1(true);
     }
 
     return (
@@ -39,6 +40,13 @@ export const FormularioNuevo1 = ({ activarFomulario1, activarFormulario2, clickB
                                 className="mb-3"
                             >
                                 <Form.Control type="text" placeholder="name@example.com" size="lg" list="browsers" />
+                            </FloatingLabel>
+
+                            <FloatingLabel
+                                label="Marca"
+                                className="mb-3"
+                            >
+                                <Form.Control type="text" placeholder="name@example.com" size="lg" />
                             </FloatingLabel>
                         </Form>
                         <datalist id="browsers">
