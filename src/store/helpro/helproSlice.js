@@ -5,6 +5,7 @@ export const helproSlice = createSlice({
     initialState: {
         elementClicked: '',
         urlArray: [],
+        fotosNuevas: [ {}, {}, {}, {}]
     },
     reducers: {
         clickingElement: ( state, action ) => {

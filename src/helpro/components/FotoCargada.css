@@ -1,0 +1,87 @@
+
+.formulario-nuevo2-contenedor-imagenes{
+    /* border: 1px solid #f00; */
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.formulario-nuevo2-imagen-bloque{
+    /* border: 1px solid #f00; */
+    width: 100%;
+}
+
+.formulario-nuevo2-foto{
+    border: 2px var(--color-principal) solid;
+    border-radius: 6px;
+    position: relative;
+    width: 100%;
+    height: 20vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-principal);
+    font-size: 6vw;
+}
+
+.formulario-nuevo2-foto:hover{
+    transform: scale(1.04);
+}
+
+.formulario-nuevo2-foto-input{
+    /* border: 1px solid #f00; */
+    width: 100%;
+    height: 100%;
+    font-size: 10px;
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 1;
+}
+
+.formulario-nuevo2-foto-previsualizacion{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: all 0.3s linear;
+    z-index: 0;
+}
+
+.formulario-nuevo2-boton-cerrar{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.formulario-nuevo2-boton-cerrar-circulo{
+    border: 1px solid #C93636;
+    border-radius: 50%;
+    background-color: #C93636;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+    cursor: pointer;
+    font-size: 30px;
+    z-index: 1;
+}
+
+.formulario-nuevo2-boton-cerrar-circulo:hover{
+    transform: scale(1.08);
+}
