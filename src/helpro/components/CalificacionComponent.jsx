@@ -10,30 +10,94 @@ export const CalificacionComponent = () => {
     const [cuatroEstrella, setCuatroEstrella] = useState(false);
     const [cincoEstrella, setCincoEstrella] = useState(false);
 
+    const [presionoClick, setPresionoClick] = useState(false);
+
+    const [calificoUnaEstrella, setCalificoUnaEstrella] = useState(false);
+    const [calificoDosEstrella, setCalificoDosEstrella] = useState(false);
+    const [calificoTresEstrella, setCalificoTresEstrella] = useState(false);
+    const [calificoCuatroEstrella, setCalificoCuatroEstrella] = useState(false);
+    const [calificoCincoEstrella, setCalificoCincoEstrella] = useState(false);
+
+    const activarUnaEstrella = () => {
+        setPresionoClick(true);
+        setCalificoUnaEstrella(true);
+        setCalificoDosEstrella(false);
+        setCalificoTresEstrella(false);
+        setCalificoCuatroEstrella(false);
+        setCalificoCincoEstrella(false);
+    }
+
+    const activarDosEstrella = () => {
+        setPresionoClick(true);
+        setCalificoUnaEstrella(true);
+        setCalificoDosEstrella(true);
+        setCalificoTresEstrella(false);
+        setCalificoCuatroEstrella(false);
+        setCalificoCincoEstrella(false);
+    }
+
+    const activarTresEstrella = () => {
+        setPresionoClick(true);
+        setCalificoUnaEstrella(true);
+        setCalificoDosEstrella(true);
+        setCalificoTresEstrella(true);
+        setCalificoCuatroEstrella(false);
+        setCalificoCincoEstrella(false);
+    }
+
+    const activarCuatroEstrella = () => {
+        setPresionoClick(true);
+        setCalificoUnaEstrella(true);
+        setCalificoDosEstrella(true);
+        setCalificoTresEstrella(true);
+        setCalificoCuatroEstrella(true);
+        setCalificoCincoEstrella(false);
+    }
+
+    const activarCincoEstrella = () => {
+        setPresionoClick(true);
+        setCalificoUnaEstrella(true);
+        setCalificoDosEstrella(true);
+        setCalificoTresEstrella(true);
+        setCalificoCuatroEstrella(true);
+        setCalificoCincoEstrella(true);
+    }
+
+    const animacion = "animate__animated animate__jackInTheBox";
+
     return (
         <>
             <div className="calificacion-container">
                 <div
                     className="calificacion-elements"
                 >
-                    <div className="calificacion-estrella"
+                    <div className={ `calificacion-estrella ${animacion}` }
                         onMouseEnter={() => {
                             setUnaEstrella(true);
                         }}
                         onMouseLeave={() => {
                             setUnaEstrella(false);
                         }}
+                        onClick={ activarUnaEstrella }
                     >
                         {
-                            unaEstrella
-                                ?
-                                <BsStarFill />
-                                :
-                                <BsStar />
+                            presionoClick
+                            ?
+                                calificoUnaEstrella
+                                    ?
+                                    <BsStarFill />
+                                    :
+                                    <BsStar />
+                            :
+                                unaEstrella
+                                    ?
+                                    <BsStarFill />
+                                    :
+                                    <BsStar />
                         }
                     </div>
 
-                    <div className="calificacion-estrella"
+                    <div className={ `calificacion-estrella ${animacion}` }
                         onMouseEnter={() => {
                             setUnaEstrella(true);
                             setDosEstrella(true);
@@ -42,17 +106,26 @@ export const CalificacionComponent = () => {
                             setUnaEstrella(false);
                             setDosEstrella(false);
                         }}
+                        onClick={ activarDosEstrella }
                     >
                         {
-                            dosEstrella
-                                ?
-                                <BsStarFill />
-                                :
-                                <BsStar />
+                            presionoClick
+                            ?
+                                calificoDosEstrella
+                                    ?
+                                    <BsStarFill />
+                                    :
+                                    <BsStar />
+                            :
+                                dosEstrella
+                                    ?
+                                    <BsStarFill />
+                                    :
+                                    <BsStar />
                         }
                     </div>
 
-                    <div className="calificacion-estrella"
+                    <div className={ `calificacion-estrella ${animacion}` }
                         onMouseEnter={() => {
                             setUnaEstrella(true);
                             setDosEstrella(true);
@@ -63,17 +136,26 @@ export const CalificacionComponent = () => {
                             setDosEstrella(false);
                             setTresEstrella(false);
                         }}
+                        onClick={ activarTresEstrella }
                     >
                         {
-                            tresEstrella
-                                ?
-                                <BsStarFill />
-                                :
-                                <BsStar />
+                            presionoClick
+                            ?
+                                calificoTresEstrella
+                                    ?
+                                    <BsStarFill />
+                                    :
+                                    <BsStar />
+                            :
+                                tresEstrella
+                                    ?
+                                    <BsStarFill />
+                                    :
+                                    <BsStar />
                         }
                     </div>
 
-                    <div className="calificacion-estrella"
+                    <div className={ `calificacion-estrella ${animacion}` }
                         onMouseEnter={() => {
                             setUnaEstrella(true);
                             setDosEstrella(true);
@@ -86,17 +168,26 @@ export const CalificacionComponent = () => {
                             setTresEstrella(false);
                             setCuatroEstrella(false);
                         }}
+                        onClick={ activarCuatroEstrella }
                     >
                         {
-                            cuatroEstrella
-                                ?
-                                <BsStarFill />
-                                :
-                                <BsStar />
+                            presionoClick
+                            ?
+                                calificoCuatroEstrella
+                                    ?
+                                    <BsStarFill />
+                                    :
+                                    <BsStar />
+                            :
+                                cuatroEstrella
+                                    ?
+                                    <BsStarFill />
+                                    :
+                                    <BsStar />
                         }
                     </div>
 
-                    <div className="calificacion-estrella"
+                    <div className={ `calificacion-estrella ${animacion}` }
                         onMouseEnter={() => {
                             setUnaEstrella(true);
                             setDosEstrella(true);
@@ -111,13 +202,22 @@ export const CalificacionComponent = () => {
                             setCuatroEstrella(false);
                             setCincoEstrella(false);
                         }}
+                        onClick={ activarCincoEstrella }
                     >
                         {
-                            cincoEstrella
-                                ?
-                                <BsStarFill />
-                                :
-                                <BsStar />
+                            presionoClick
+                            ?
+                                calificoCincoEstrella
+                                    ?
+                                    <BsStarFill />
+                                    :
+                                    <BsStar />
+                            :
+                                cincoEstrella
+                                    ?
+                                    <BsStarFill />
+                                    :
+                                    <BsStar />
                         }
                     </div>
 

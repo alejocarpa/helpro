@@ -4,7 +4,7 @@ import { FotoCargada } from './FotoCargada';
 import { useSelector } from 'react-redux';
 import { useEffect, useRef, useState } from 'react';
 
-export const FormularioNuevo2 = ({ activarFomulario1, activarFormulario2, clickBotonAtras }) => {
+export const FormularioNuevo2 = ({ activarFomulario1, activarFormulario2, activarFormulario3, clickBotonAtras, completoFormulario2 }) => {
 
     const botonAtras = () => {
         activarFomulario1(true);
@@ -12,17 +12,16 @@ export const FormularioNuevo2 = ({ activarFomulario1, activarFormulario2, clickB
         clickBotonAtras(true);
     }
 
+    const botonSiguiente = () => {
+        activarFormulario2(false);
+        activarFormulario3(true);
+        clickBotonAtras(false);
+        completoFormulario2(true);
+    }
+
     const { fotosNuevas } = useSelector( state => state.helpro );
     const fileInputRef = useRef();
     const [imagenesCargadas, setImagenesCargadas] = useState([]);
-
-    /*const onFileInputChange = ({ target }) => {
-        if( target.files === 0 ) return;
-        const archivos = target.files;
-        const primerArchivo = archivos[0];
-        const objectURL = URL.createObjectURL(primerArchivo);
-        setImagenesCargadas([ objectURL, ...imagenesCargadas ])
-    }*/
 
     const onFileInputChange = ({ target }) => {
         if( target.files === 0 ) return;
@@ -60,7 +59,7 @@ export const FormularioNuevo2 = ({ activarFomulario1, activarFormulario2, clickB
                         <div className="formulario-nuevo2-contenedor-boton-atras" onClick={ botonAtras }>
                             <BotonAtras />
                         </div>
-                        <div className="formulario-nuevo2-contenedor-boton-siguiente">
+                        <div className="formulario-nuevo2-contenedor-boton-siguiente" onClick={ botonSiguiente }>
                             <BotonSiguiente />
                         </div>
                     </div>

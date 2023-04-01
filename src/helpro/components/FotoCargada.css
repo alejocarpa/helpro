@@ -26,6 +26,7 @@
     align-items: center;
     color: var(--color-principal);
     font-size: 6vw;
+    animation-duration: 2.5s;
 }
 
 .formulario-nuevo2-foto:hover{

@@ -24,7 +24,7 @@ export const FotoCargada = ({ fotosNuevas = [], onFileInputChange, imagenesCarga
                 fotosNuevas.map((foto, index) => (
                     <div className="formulario-nuevo2-contenedor-imagenes" key={ index }>
                         <div className="formulario-nuevo2-imagen-bloque">
-                            <div className="formulario-nuevo2-foto">
+                            <div className="formulario-nuevo2-foto animate__animated animate__jackInTheBox">
                                 <input 
                                     className="formulario-nuevo2-foto-input" 
                                     type="file"

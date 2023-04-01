@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BarraEtapas, FormularioNuevo1, FormularioNuevo2 } from '../components';
+import { BarraEtapas, FormularioNuevo1, FormularioNuevo2, FormularioNuevo3 } from '../components';
 import { HelproLayout } from '../layout/HelproLayout';
 import './NuevoProducto.css';
 
@@ -12,9 +12,11 @@ export const NuevoProducto = () => {
 
     const [formularioActivo1, setFormularioActivo1] = useState(true);
     const [formularioActivo2, setFormularioActivo2] = useState(false);
+    const [formularioActivo3, setFormularioActivo3] = useState(false);
     const [clickBotonAtras, setClickBotonAtras] = useState(false);
 
     const [completoFormulario1, setCompletoFormulario1] = useState(false);
+    const [completoFormulario2, setCompletoFormulario2] = useState(false);
 
     return (
         <>
@@ -25,8 +27,10 @@ export const NuevoProducto = () => {
                             <BarraEtapas
                                 activarFomulario1 = { setFormularioActivo1 } 
                                 activarFormulario2={ setFormularioActivo2 }
+                                activarFormulario3={ setFormularioActivo3 }
                                 clickBotonAtras = { setClickBotonAtras }
                                 completoFormulario1 = { completoFormulario1 }
+                                completoFormulario2 = { completoFormulario2 }
                             />
                         </div>
                         <div className="nuevo-producto-bloque">
@@ -36,7 +40,7 @@ export const NuevoProducto = () => {
                             >
                                 <FormularioNuevo1 
                                     activarFomulario1 = { setFormularioActivo1 } 
-                                    activarFormulario2={ setFormularioActivo2 } 
+                                    activarFormulario2={ setFormularioActivo2 }
                                     clickBotonAtras = { setClickBotonAtras }
                                     completoFormulario1 = { setCompletoFormulario1 }
                                 />
@@ -49,6 +53,19 @@ export const NuevoProducto = () => {
                                 <FormularioNuevo2 
                                     activarFomulario1 = { setFormularioActivo1 } 
                                     activarFormulario2={ setFormularioActivo2 }
+                                    activarFormulario3={ setFormularioActivo3 }
+                                    clickBotonAtras = { setClickBotonAtras }
+                                    completoFormulario2 = { setCompletoFormulario2 }
+                                />
+                            </div>
+
+                            <div 
+                                style={{ display: formularioActivo3 ? 'flex' : 'none' }}
+                                className={ formularioActivo3 ? ( clickBotonAtras ? claseEntradaIzquierda : claseEntradaDerecha ) : claseSalidaIzquierda }
+                            >
+                                <FormularioNuevo3 
+                                    activarFormulario2={ setFormularioActivo2 }
+                                    activarFormulario3={ setFormularioActivo3 }
                                     clickBotonAtras = { setClickBotonAtras }
                                 />
                             </div>

@@ -1,12 +1,22 @@
 import './BarraEtapas.css';
 
-export const BarraEtapas = ({ activarFomulario1, activarFormulario2, clickBotonAtras, completoFormulario1 }) => {
+export const BarraEtapas = ({ activarFomulario1, activarFormulario2, activarFormulario3, clickBotonAtras, completoFormulario1, completoFormulario2 }) => {
 
     const formularioActivo1 = () => {
         activarFomulario1(true);
         activarFormulario2(false);
+        activarFormulario3(false);
         clickBotonAtras(true);
     }
+
+    const formularioActivo2 = () => {
+        activarFomulario1(false);
+        activarFormulario2(true);
+        activarFormulario3(false);
+        clickBotonAtras(true);
+    }
+
+    const funcionVacia = () => {}
 
     return (
         <div className="barra-etapas-container">
@@ -19,7 +29,7 @@ export const BarraEtapas = ({ activarFomulario1, activarFormulario2, clickBotonA
                             backgroundColor: completoFormulario1 ? '#E1DCEE' : 'transparent',
                             cursor: completoFormulario1 ? 'pointer' : 'auto'
                         }}
-                        onClick = { formularioActivo1 }
+                        onClick = { completoFormulario1 ? formularioActivo1 : funcionVacia }
                     >
                         <img 
                             src='/images/etapa-datos.png' 
@@ -45,7 +55,12 @@ export const BarraEtapas = ({ activarFomulario1, activarFormulario2, clickBotonA
                     </div>
                     <div 
                         className="barra-etapas-inferior-imagen" 
-                        style={{ backgroundColor: 'transparent' }}>
+                        style={{ 
+                            backgroundColor: completoFormulario2 ? '#E1DCEE' : 'transparent',
+                            cursor: completoFormulario2 ? 'pointer' : 'auto'
+                        }}
+                        onClick = { completoFormulario2 ? formularioActivo2 : funcionVacia }
+                    >
                         <img 
                             src='/images/etapa-fotos.png' 
                             alt="element-category"

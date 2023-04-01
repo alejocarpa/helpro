@@ -5,7 +5,7 @@ import './FormularioNuevo1.css';
 
 export const FormularioNuevo1 = ({ activarFomulario1, activarFormulario2, clickBotonAtras, completoFormulario1 }) => {
 
-    const formularioActivo = () => {
+    const botonSiguiente = () => {
         activarFomulario1(false);
         activarFormulario2(true);
         clickBotonAtras(false);
@@ -20,12 +20,12 @@ export const FormularioNuevo1 = ({ activarFomulario1, activarFormulario2, clickB
                         <Form style={{ width: '80%' }}>
                             <FloatingLabel
                                 label="Nombre del producto"
-                                className="mb-3"
+                                className="mb-4 formulario-nuevo1-input"
                             >
                                 <Form.Control type="text" placeholder="name@example.com" size="lg" />
                             </FloatingLabel>
 
-                            <FloatingLabel controlId="floatingSelect" label="Categoria" className="mb-3">
+                            <FloatingLabel controlId="floatingSelect" label="Categoria" className="mb-4 formulario-nuevo1-input">
                                 <Form.Select aria-label="Floating label select example">
                                     <option>Elige una categoria</option>
                                     <option value="1">Producto</option>
@@ -37,14 +37,14 @@ export const FormularioNuevo1 = ({ activarFomulario1, activarFormulario2, clickB
 
                             <FloatingLabel
                                 label="Tipo"
-                                className="mb-3"
+                                className="mb-4 formulario-nuevo1-input"
                             >
                                 <Form.Control type="text" placeholder="name@example.com" size="lg" list="browsers" />
                             </FloatingLabel>
 
                             <FloatingLabel
                                 label="Marca"
-                                className="mb-3"
+                                className="mb-4 formulario-nuevo1-input"
                             >
                                 <Form.Control type="text" placeholder="name@example.com" size="lg" />
                             </FloatingLabel>
@@ -58,7 +58,7 @@ export const FormularioNuevo1 = ({ activarFomulario1, activarFormulario2, clickB
                     </div>
 
                     <div className="formulario-nuevo1-botones">
-                        <div className="formulario-nuevo1-boton-siguiente" onClick={ formularioActivo }>
+                        <div className="formulario-nuevo1-boton-siguiente" onClick={ botonSiguiente }>
                             <BotonSiguiente />
                         </div>
                     </div>
