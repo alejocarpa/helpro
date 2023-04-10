@@ -10,6 +10,8 @@ export const NuevoProducto = () => {
 
     const claseEntradaIzquierda = 'nuevo-producto-formulario animate__animated animate__backInLeft';
 
+    const [totalImagenes, setTotalImagenes] = useState([]);
+
     const [formularioActivo1, setFormularioActivo1] = useState(true);
     const [formularioActivo2, setFormularioActivo2] = useState(false);
     const [formularioActivo3, setFormularioActivo3] = useState(false);
@@ -56,6 +58,8 @@ export const NuevoProducto = () => {
                                     activarFormulario3={ setFormularioActivo3 }
                                     clickBotonAtras = { setClickBotonAtras }
                                     completoFormulario2 = { setCompletoFormulario2 }
+                                    totalImagenes = { totalImagenes }
+                                    setTotalImagenes = { setTotalImagenes }
                                 />
                             </div>
 

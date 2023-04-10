@@ -1,10 +1,13 @@
 import './FormularioNuevo2.css';
 import { BotonAtras, BotonSiguiente, BotonSubir } from '../layout';
 import { FotoCargada } from './FotoCargada';
-import { useSelector } from 'react-redux';
-import { useEffect, useRef, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRef, useState } from 'react';
+import { agregandoFotosNuevas } from '../../store/helpro/helproSlice';
 
-export const FormularioNuevo2 = ({ activarFomulario1, activarFormulario2, activarFormulario3, clickBotonAtras, completoFormulario2 }) => {
+export const FormularioNuevo2 = ({ activarFomulario1, activarFormulario2, activarFormulario3, clickBotonAtras, completoFormulario2, totalImagenes, setTotalImagenes }) => {
+
+    const dispatch = useDispatch();
 
     const botonAtras = () => {
         activarFomulario1(true);
@@ -27,6 +30,11 @@ export const FormularioNuevo2 = ({ activarFomulario1, activarFormulario2, activa
         if( target.files === 0 ) return;
         const archivos = target.files;
         setImagenesCargadas( archivos );
+
+        for (let i = 0 ; i < archivos.length; i++) {
+            dispatch( agregandoFotosNuevas( { fotoURL: URL.createObjectURL(archivos[i]), posicion: i + totalImagenes.length } ) );
+        }
+        
     }
     
     return (
@@ -46,6 +54,8 @@ export const FormularioNuevo2 = ({ activarFomulario1, activarFormulario2, activa
                             fotosNuevas={ fotosNuevas }
                             onFileInputChange = { onFileInputChange }
                             imagenesCargadas = { imagenesCargadas }
+                            totalImagenes = { totalImagenes }
+                            setTotalImagenes = { setTotalImagenes }
                         />
                     </div>
                     <div className="formulario-nuevo2-contenedor-boton">

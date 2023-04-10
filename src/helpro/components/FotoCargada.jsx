@@ -1,15 +1,18 @@
 import { BsCloudUploadFill } from "react-icons/bs";
 import { MdDeleteForever } from "react-icons/md";
 import './FotoCargada.css';
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { eliminandoFotosNuevas } from "../../store/helpro/helproSlice";
 
-export const FotoCargada = ({ fotosNuevas = [], onFileInputChange, imagenesCargadas = [] }) => {
+export const FotoCargada = ({ fotosNuevas = [], onFileInputChange, imagenesCargadas = [], totalImagenes, setTotalImagenes }) => {
 
-    const [totalImagenes, setTotalImagenes] = useState([]);
+    const dispatch = useDispatch();
 
     const eliminarFoto = ( posicion ) => {
         const nuevoArreglo = totalImagenes.filter( (foto, index) => index !== posicion);
         setTotalImagenes([ ...nuevoArreglo ]);
+        dispatch( eliminandoFotosNuevas( {posicion: posicion} ) );
     }
 
     useEffect(() => {

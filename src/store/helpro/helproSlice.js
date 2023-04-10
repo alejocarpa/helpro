@@ -5,7 +5,7 @@ export const helproSlice = createSlice({
     initialState: {
         elementClicked: '',
         urlArray: [],
-        fotosNuevas: [ {}, {}, {}, {}]
+        fotosNuevas: [ { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' } ]
     },
     reducers: {
         clickingElement: ( state, action ) => {
@@ -19,9 +19,18 @@ export const helproSlice = createSlice({
                 state.urlArray.push(action.payload);
             }
         },
+        agregandoFotosNuevas: ( state, action ) => {
+            state.fotosNuevas[action.payload.posicion] = { fotoURL:  action.payload.fotoURL }
+        },
+        eliminandoFotosNuevas: ( state, action ) => {
+            const nuevoArreglo = state.fotosNuevas.filter( (foto, index) => index !== action.payload.posicion);
+
+            state.fotosNuevas = nuevoArreglo;
+            state.fotosNuevas.push( {fotoURL: ''} );
+        },
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { clickingElement, almacenarUrl } = helproSlice.actions;
+export const { clickingElement, almacenarUrl, agregandoFotosNuevas, eliminandoFotosNuevas } = helproSlice.actions;
