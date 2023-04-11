@@ -1,8 +1,13 @@
 import './CalificacionComponent.css';
 import { BsStarFill, BsStar } from "react-icons/bs";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { agregandoNuevoProducto } from '../../store/helpro/helproSlice';
 
-export const CalificacionComponent = () => {
+export const CalificacionComponent = ({ formState }) => {
+
+    const dispatch = useDispatch();
+    const { nuevoProducto } = useSelector(state => state.helpro);
 
     const [unaEstrella, setUnaEstrella] = useState(false);
     const [dosEstrella, setDosEstrella] = useState(false);
@@ -25,6 +30,7 @@ export const CalificacionComponent = () => {
         setCalificoTresEstrella(false);
         setCalificoCuatroEstrella(false);
         setCalificoCincoEstrella(false);
+        dispatch( agregandoNuevoProducto( { ...formState, calificacion: 1 }) );
     }
 
     const activarDosEstrella = () => {
@@ -34,6 +40,7 @@ export const CalificacionComponent = () => {
         setCalificoTresEstrella(false);
         setCalificoCuatroEstrella(false);
         setCalificoCincoEstrella(false);
+        dispatch( agregandoNuevoProducto( { ...formState, calificacion: 2 }) );
     }
 
     const activarTresEstrella = () => {
@@ -43,6 +50,7 @@ export const CalificacionComponent = () => {
         setCalificoTresEstrella(true);
         setCalificoCuatroEstrella(false);
         setCalificoCincoEstrella(false);
+        dispatch( agregandoNuevoProducto( { ...formState, calificacion: 3 }) );
     }
 
     const activarCuatroEstrella = () => {
@@ -52,6 +60,7 @@ export const CalificacionComponent = () => {
         setCalificoTresEstrella(true);
         setCalificoCuatroEstrella(true);
         setCalificoCincoEstrella(false);
+        dispatch( agregandoNuevoProducto( { ...formState, calificacion: 4 }) );
     }
 
     const activarCincoEstrella = () => {
@@ -61,7 +70,53 @@ export const CalificacionComponent = () => {
         setCalificoTresEstrella(true);
         setCalificoCuatroEstrella(true);
         setCalificoCincoEstrella(true);
+        dispatch( agregandoNuevoProducto( { ...formState, calificacion: 5 }) );
     }
+
+    useEffect(() => {
+        setPresionoClick(true);
+        setUnaEstrella(false);
+        setDosEstrella(false);
+        setTresEstrella(false);
+        setCuatroEstrella(false);
+        setCincoEstrella(false);
+        
+        if( nuevoProducto.calificacion === 1 ){
+            setCalificoUnaEstrella(true);
+            setCalificoDosEstrella(false);
+            setCalificoTresEstrella(false);
+            setCalificoCuatroEstrella(false);
+            setCalificoCincoEstrella(false);
+        }
+        if( nuevoProducto.calificacion === 2 ){
+            setCalificoUnaEstrella(true);
+            setCalificoDosEstrella(true);
+            setCalificoTresEstrella(false);
+            setCalificoCuatroEstrella(false);
+            setCalificoCincoEstrella(false);
+        }
+        if( nuevoProducto.calificacion === 3 ){
+            setCalificoUnaEstrella(true);
+            setCalificoDosEstrella(true);
+            setCalificoTresEstrella(true);
+            setCalificoCuatroEstrella(false);
+            setCalificoCincoEstrella(false);
+        }
+        if( nuevoProducto.calificacion === 4 ){
+            setCalificoUnaEstrella(true);
+            setCalificoDosEstrella(true);
+            setCalificoTresEstrella(true);
+            setCalificoCuatroEstrella(true);
+            setCalificoCincoEstrella(false);
+        }
+        if( nuevoProducto.calificacion === 5 ){
+            setCalificoUnaEstrella(true);
+            setCalificoDosEstrella(true);
+            setCalificoTresEstrella(true);
+            setCalificoCuatroEstrella(true);
+            setCalificoCincoEstrella(true);
+        }
+    }, [nuevoProducto.calificacion])
 
     const animacion = "animate__animated animate__jackInTheBox";
 

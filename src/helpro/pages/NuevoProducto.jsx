@@ -1,9 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BarraEtapas, FormularioNuevo1, FormularioNuevo2, FormularioNuevo3 } from '../components';
 import { HelproLayout } from '../layout/HelproLayout';
 import './NuevoProducto.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from '../../hooks';
+import { agregandoNuevoProducto } from '../../store/helpro/helproSlice';
+
+const nuevoProducto = JSON.parse( localStorage.getItem('nuevoProducto') );
 
 export const NuevoProducto = () => {
+
+    const dispatch = useDispatch();
 
     const claseEntradaDerecha = 'nuevo-producto-formulario animate__animated animate__backInRight';
     const claseSalidaIzquierda = 'nuevo-producto-formulario animate__animated animate__backOutLeft';
@@ -19,6 +26,14 @@ export const NuevoProducto = () => {
 
     const [completoFormulario1, setCompletoFormulario1] = useState(false);
     const [completoFormulario2, setCompletoFormulario2] = useState(false);
+
+    //const { nuevoProducto } = useSelector(state => state.helpro);
+    const { nombre, categoria, tipo, marca, onInputChange, formState } = useForm(nuevoProducto);
+
+    useEffect(() => {
+        dispatch( agregandoNuevoProducto(formState) );
+    }, [formState])
+    
 
     return (
         <>
@@ -45,6 +60,11 @@ export const NuevoProducto = () => {
                                     activarFormulario2={ setFormularioActivo2 }
                                     clickBotonAtras = { setClickBotonAtras }
                                     completoFormulario1 = { setCompletoFormulario1 }
+                                    nombre={nombre}
+                                    categoria={categoria}
+                                    tipo={tipo}
+                                    marca={marca}
+                                    onInputChange={onInputChange}
                                 />
                             </div>
 
@@ -60,6 +80,7 @@ export const NuevoProducto = () => {
                                     completoFormulario2 = { setCompletoFormulario2 }
                                     totalImagenes = { totalImagenes }
                                     setTotalImagenes = { setTotalImagenes }
+                                    formState={ formState }
                                 />
                             </div>
 
@@ -71,6 +92,7 @@ export const NuevoProducto = () => {
                                     activarFormulario2={ setFormularioActivo2 }
                                     activarFormulario3={ setFormularioActivo3 }
                                     clickBotonAtras = { setClickBotonAtras }
+                                    formState={formState}
                                 />
                             </div>
                         </div>

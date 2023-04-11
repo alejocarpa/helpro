@@ -1,11 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const nuevoProducto = JSON.parse( localStorage.getItem('nuevoProducto') );
+
 export const helproSlice = createSlice({
     name: 'helpro',
     initialState: {
+        guardandoNuevoProducto: false,
         elementClicked: '',
         urlArray: [],
-        fotosNuevas: [ { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' } ]
+        fotosNuevas: [ { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' } ],
+        nuevoProducto
     },
     reducers: {
         clickingElement: ( state, action ) => {
@@ -28,9 +32,13 @@ export const helproSlice = createSlice({
             state.fotosNuevas = nuevoArreglo;
             state.fotosNuevas.push( {fotoURL: ''} );
         },
+        agregandoNuevoProducto: ( state, action ) => {
+            state.nuevoProducto = { ...action.payload, ImagenURL: state.fotosNuevas[0].fotoURL, calificacion: action.payload?.calificacion }
+            localStorage.setItem('nuevoProducto', JSON.stringify( state.nuevoProducto ) );
+        },
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { clickingElement, almacenarUrl, agregandoFotosNuevas, eliminandoFotosNuevas } = helproSlice.actions;
+export const { clickingElement, almacenarUrl, agregandoFotosNuevas, eliminandoFotosNuevas, agregandoNuevoProducto } = helproSlice.actions;

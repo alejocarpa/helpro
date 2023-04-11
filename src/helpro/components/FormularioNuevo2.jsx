@@ -3,9 +3,9 @@ import { BotonAtras, BotonSiguiente, BotonSubir } from '../layout';
 import { FotoCargada } from './FotoCargada';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRef, useState } from 'react';
-import { agregandoFotosNuevas } from '../../store/helpro/helproSlice';
+import { agregandoFotosNuevas, agregandoNuevoProducto } from '../../store/helpro/helproSlice';
 
-export const FormularioNuevo2 = ({ activarFomulario1, activarFormulario2, activarFormulario3, clickBotonAtras, completoFormulario2, totalImagenes, setTotalImagenes }) => {
+export const FormularioNuevo2 = ({ activarFomulario1, activarFormulario2, activarFormulario3, clickBotonAtras, completoFormulario2, totalImagenes, setTotalImagenes, formState }) => {
 
     const dispatch = useDispatch();
 
@@ -34,6 +34,7 @@ export const FormularioNuevo2 = ({ activarFomulario1, activarFormulario2, activa
         for (let i = 0 ; i < archivos.length; i++) {
             dispatch( agregandoFotosNuevas( { fotoURL: URL.createObjectURL(archivos[i]), posicion: i + totalImagenes.length } ) );
         }
+        dispatch( agregandoNuevoProducto(formState) );
         
     }
     

@@ -2,7 +2,7 @@ import { BotonAtras, BotonSiguiente } from '../layout';
 import { CalificacionComponent } from './';
 import './FormularioNuevo3.css';
 
-export const FormularioNuevo3 = ({ activarFormulario2, activarFormulario3, clickBotonAtras }) => {
+export const FormularioNuevo3 = ({ activarFormulario2, activarFormulario3, clickBotonAtras, formState }) => {
 
     const botonAtras = () => {
         activarFormulario2(true);
@@ -19,7 +19,7 @@ export const FormularioNuevo3 = ({ activarFormulario2, activarFormulario3, click
             <div className="formulario-nuevo3-elements">
                 <div className="formulario-nuevo3-bloque">
                     <div className="formulario-nuevo3-estrellas">
-                        <CalificacionComponent />
+                        <CalificacionComponent formState={formState} />
                     </div>
                     <div className="formulario-nuevo3-texto">
                         <div className="formulario-nuevo3-titulo">

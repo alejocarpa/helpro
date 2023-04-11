@@ -1,9 +1,19 @@
-import { useEffect } from 'react';
 import { FloatingLabel, Form } from 'react-bootstrap';
 import { BotonSiguiente } from '../layout';
 import './FormularioNuevo1.css';
 
-export const FormularioNuevo1 = ({ activarFomulario1, activarFormulario2, clickBotonAtras, completoFormulario1 }) => {
+export const FormularioNuevo1 = (
+    {
+        activarFomulario1,
+        activarFormulario2,
+        clickBotonAtras,
+        completoFormulario1,
+        nombre, 
+        categoria, 
+        tipo, 
+        marca, 
+        onInputChange
+    }) => {
 
     const botonSiguiente = () => {
         activarFomulario1(false);
@@ -22,11 +32,22 @@ export const FormularioNuevo1 = ({ activarFomulario1, activarFormulario2, clickB
                                 label="Nombre del producto"
                                 className="mb-4 formulario-nuevo1-input"
                             >
-                                <Form.Control type="text" placeholder="name@example.com" size="lg" />
+                                <Form.Control
+                                    type="text"
+                                    size="lg"
+                                    name="nombre"
+                                    value={nombre}
+                                    onChange={onInputChange}
+                                />
                             </FloatingLabel>
 
                             <FloatingLabel controlId="floatingSelect" label="Categoria" className="mb-4 formulario-nuevo1-input">
-                                <Form.Select aria-label="Floating label select example">
+                                <Form.Select
+                                    aria-label="Floating label select example"
+                                    name="categoria"
+                                    value={categoria}
+                                    onChange={onInputChange}
+                                >
                                     <option>Elige una categoria</option>
                                     <option value="1">Producto</option>
                                     <option value="2">Servicio</option>
@@ -39,14 +60,27 @@ export const FormularioNuevo1 = ({ activarFomulario1, activarFormulario2, clickB
                                 label="Tipo"
                                 className="mb-4 formulario-nuevo1-input"
                             >
-                                <Form.Control type="text" placeholder="name@example.com" size="lg" list="browsers" />
+                                <Form.Control
+                                    type="text"
+                                    size="lg"
+                                    list="browsers"
+                                    name="tipo"
+                                    value={tipo}
+                                    onChange={onInputChange}
+                                />
                             </FloatingLabel>
 
                             <FloatingLabel
                                 label="Marca"
                                 className="mb-4 formulario-nuevo1-input"
                             >
-                                <Form.Control type="text" placeholder="name@example.com" size="lg" />
+                                <Form.Control
+                                    type="text"
+                                    size="lg"
+                                    name="marca"
+                                    value={marca}
+                                    onChange={onInputChange}
+                                />
                             </FloatingLabel>
                         </Form>
                         <datalist id="browsers">
@@ -58,7 +92,7 @@ export const FormularioNuevo1 = ({ activarFomulario1, activarFormulario2, clickB
                     </div>
 
                     <div className="formulario-nuevo1-botones">
-                        <div className="formulario-nuevo1-boton-siguiente" onClick={ botonSiguiente }>
+                        <div className="formulario-nuevo1-boton-siguiente" onClick={botonSiguiente}>
                             <BotonSiguiente />
                         </div>
                     </div>

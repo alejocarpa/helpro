@@ -16,7 +16,7 @@ export const FotoCargada = ({ fotosNuevas = [], onFileInputChange, imagenesCarga
     }
 
     useEffect(() => {
-        if(totalImagenes.length <= 3){
+        if(totalImagenes.length <= (fotosNuevas.length-1)){
             setTotalImagenes([ ...totalImagenes, ...imagenesCargadas ]);
         }
     }, [imagenesCargadas]);
