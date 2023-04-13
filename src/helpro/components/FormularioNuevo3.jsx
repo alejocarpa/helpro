@@ -1,8 +1,22 @@
+import { useSelector } from 'react-redux';
 import { BotonAtras, BotonSiguiente } from '../layout';
 import { CalificacionComponent } from './';
 import './FormularioNuevo3.css';
 
-export const FormularioNuevo3 = ({ activarFormulario2, activarFormulario3, clickBotonAtras, formState }) => {
+export const FormularioNuevo3 = ({ 
+    activarFormulario2, 
+    activarFormulario3, 
+    activarFormulario4, 
+    clickBotonAtras, 
+    completoFormulario3, 
+    completoFormulario4, 
+    comentario, 
+    onInputChange,
+    formState
+ }) => {
+
+    const { nuevaCalificacion } = useSelector(state => state.helpro);
+    //console.log(nuevoProducto)
 
     const botonAtras = () => {
         activarFormulario2(true);
@@ -11,7 +25,11 @@ export const FormularioNuevo3 = ({ activarFormulario2, activarFormulario3, click
     }
 
     const botonSiguiente = () => {
-        
+        activarFormulario3(false);
+        activarFormulario4(true);
+        clickBotonAtras(false);
+        completoFormulario3(true);
+        completoFormulario4(true);
     }
 
     return (
@@ -19,7 +37,7 @@ export const FormularioNuevo3 = ({ activarFormulario2, activarFormulario3, click
             <div className="formulario-nuevo3-elements">
                 <div className="formulario-nuevo3-bloque">
                     <div className="formulario-nuevo3-estrellas">
-                        <CalificacionComponent formState={formState} />
+                        <CalificacionComponent nuevaCalificacion={ nuevaCalificacion } formState={ formState } />
                     </div>
                     <div className="formulario-nuevo3-texto">
                         <div className="formulario-nuevo3-titulo">
@@ -29,6 +47,9 @@ export const FormularioNuevo3 = ({ activarFormulario2, activarFormulario3, click
                             <textarea 
                                 className="formulario-nuevo3-textarea" 
                                 placeholder="Recuerda que tu comentario es muy importante para la comunidad, por eso te invito a hacerlo de forma objetiva y real. Se parte de la cultura Helpro."
+                                name="comentario"
+                                value={ comentario }
+                                onChange={ onInputChange }
                             />
                         </div>
                         <div className="formulario-nuevo3-contenedor-botones">

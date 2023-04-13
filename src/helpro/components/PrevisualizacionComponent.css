@@ -1,0 +1,110 @@
+@import '../../index.css';
+
+.previsualizacion-container{
+    /* border: 1px solid #0f0; */
+    width: 100%;
+    height: 100%;
+}
+
+.previsualizacion-elements{
+    width: 100%;
+    height: 100%;
+}
+
+.previsualizacion-bloque{
+    background-color: #FFFFFF;
+    border-bottom: 1px solid var(--color-borde);
+    box-shadow: 0px 0px 10px 0.1px var(--color-borde-difuminado);
+    border-radius: 30px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.previsualizacion-imagenes{
+    border-right: 1px solid var(--color-borde);
+    box-shadow: 0px 0px 10px 0.1px var(--color-borde-difuminado);
+    border-radius: 30px;
+    padding: 15px;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.previsualizacion-imagen-ampliada{
+    /* border: 1px solid #00f; */
+    width: 95%;
+    position: relative;
+    padding-top: 57%;
+    overflow: hidden;
+}
+
+.previsualizacion-imagen-img-ampliada{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: all 0.3s linear;
+}
+
+.previsualizacion-imagen-diminuta{
+    /* border: 1px solid #00f; */
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.previsualizacion-diminuta-img{
+    width: 10%;
+    border: 1px solid var(--color-borde);
+    box-shadow: 0px 0px 10px 1px var(--color-borde-difuminado);
+    position: relative;
+    padding-top: 6%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.previsualizacion-imagen-img-diminuta{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: all 0.3s linear;
+}
+
+.previsualizacion-detalle{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.previsualizacion-titulo-nombre{
+    font-size: 2.3vw;
+    font-weight: 600;
+}
+
+.previsualizacion-tabla{
+    width: 90%;
+    padding-top: 15px;
+    font-size: 1.2vw;
+}

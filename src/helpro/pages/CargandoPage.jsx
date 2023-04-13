@@ -4,7 +4,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import { getItemsByName } from '../../helpers';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 export const CargandoPage = () => {
 

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const nuevoProducto = JSON.parse( localStorage.getItem('nuevoProducto') );
+const nuevaCalificacion = JSON.parse( localStorage.getItem('nuevaCalificacion') );
 
 export const helproSlice = createSlice({
     name: 'helpro',
@@ -9,7 +10,22 @@ export const helproSlice = createSlice({
         elementClicked: '',
         urlArray: [],
         fotosNuevas: [ { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' } ],
-        nuevoProducto
+        nuevoProducto: {
+            nombre: '',
+            categoria: '', 
+            tipo: '', 
+            marca: '', 
+            comentario: ''
+        },
+        nuevoComentario: [
+            {
+                nombreUsuario: 'Alejandro Cardenas',
+                comentario: '',
+                calificacion: 1,
+                fecha: 'marzo-30-2021 09:30 am'
+            }
+        ],
+        nuevaCalificacion
     },
     reducers: {
         clickingElement: ( state, action ) => {
@@ -33,12 +49,28 @@ export const helproSlice = createSlice({
             state.fotosNuevas.push( {fotoURL: ''} );
         },
         agregandoNuevoProducto: ( state, action ) => {
-            state.nuevoProducto = { ...action.payload, ImagenURL: state.fotosNuevas[0].fotoURL, calificacion: action.payload?.calificacion }
+            state.nuevoProducto = { ...state.nuevoProducto, ...action.payload, ImagenURL: state.fotosNuevas[0].fotoURL }
             localStorage.setItem('nuevoProducto', JSON.stringify( state.nuevoProducto ) );
+        },
+        agregandoNuevoComentario: ( state, action ) => {
+            state.nuevoComentario[0] = { ...state.nuevoComentario[0], comentario: action.payload?.comentario }
+        },
+        agregandoNuevaCalificacion: ( state, action ) => {
+            state.nuevaCalificacion = { calificacion: action.payload?.calificacion }
+            localStorage.setItem('nuevaCalificacion', JSON.stringify( state.nuevaCalificacion ) );
         },
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { clickingElement, almacenarUrl, agregandoFotosNuevas, eliminandoFotosNuevas, agregandoNuevoProducto } = helproSlice.actions;
+export const 
+    { 
+        clickingElement, 
+        almacenarUrl, 
+        agregandoFotosNuevas, 
+        eliminandoFotosNuevas, 
+        agregandoNuevoProducto, 
+        agregandoNuevoComentario,
+        agregandoNuevaCalificacion
+    } = helproSlice.actions;

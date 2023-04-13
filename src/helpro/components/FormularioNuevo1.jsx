@@ -49,10 +49,10 @@ export const FormularioNuevo1 = (
                                     onChange={onInputChange}
                                 >
                                     <option>Elige una categoria</option>
-                                    <option value="1">Producto</option>
-                                    <option value="2">Servicio</option>
-                                    <option value="3">Local Comercial</option>
-                                    <option value="4">Aplicacion</option>
+                                    <option value="Producto">Producto</option>
+                                    <option value="Servicio">Servicio</option>
+                                    <option value="Local Comercial">Local Comercial</option>
+                                    <option value="Aplicacion">Aplicacion</option>
                                 </Form.Select>
                             </FloatingLabel>
 

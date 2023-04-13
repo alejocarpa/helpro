@@ -1,16 +1,27 @@
 import { useEffect, useState } from 'react';
-import { BarraEtapas, FormularioNuevo1, FormularioNuevo2, FormularioNuevo3 } from '../components';
+import { BarraEtapas, FormularioNuevo1, FormularioNuevo2, FormularioNuevo3, FormularioNuevo4 } from '../components';
 import { HelproLayout } from '../layout/HelproLayout';
 import './NuevoProducto.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks';
-import { agregandoNuevoProducto } from '../../store/helpro/helproSlice';
+import { agregandoNuevoComentario, agregandoNuevoProducto } from '../../store/helpro/helproSlice';
 
-const nuevoProducto = JSON.parse( localStorage.getItem('nuevoProducto') );
+let nuevoProductoStorage = JSON.parse( localStorage.getItem('nuevoProducto') );
+if(!nuevoProductoStorage){
+    nuevoProductoStorage = {
+        nombre: '',
+        categoria: '', 
+        tipo: '', 
+        marca: '', 
+        comentario: ''
+    }
+}
 
 export const NuevoProducto = () => {
 
     const dispatch = useDispatch();
+
+    const { fotosNuevas, nuevoComentario, nuevaCalificacion } = useSelector( state => state.helpro );
 
     const claseEntradaDerecha = 'nuevo-producto-formulario animate__animated animate__backInRight';
     const claseSalidaIzquierda = 'nuevo-producto-formulario animate__animated animate__backOutLeft';
@@ -22,18 +33,22 @@ export const NuevoProducto = () => {
     const [formularioActivo1, setFormularioActivo1] = useState(true);
     const [formularioActivo2, setFormularioActivo2] = useState(false);
     const [formularioActivo3, setFormularioActivo3] = useState(false);
+    const [formularioActivo4, setFormularioActivo4] = useState(false);
     const [clickBotonAtras, setClickBotonAtras] = useState(false);
 
     const [completoFormulario1, setCompletoFormulario1] = useState(false);
     const [completoFormulario2, setCompletoFormulario2] = useState(false);
+    const [completoFormulario3, setCompletoFormulario3] = useState(false);
+    const [completoFormulario4, setCompletoFormulario4] = useState(false);
 
-    //const { nuevoProducto } = useSelector(state => state.helpro);
-    const { nombre, categoria, tipo, marca, onInputChange, formState } = useForm(nuevoProducto);
+    const { nombre, categoria, tipo, marca, comentario, onInputChange, formState } = useForm(nuevoProductoStorage);
 
     useEffect(() => {
-        dispatch( agregandoNuevoProducto(formState) );
+        //console.log(formState)
+        dispatch( agregandoNuevoProducto({ ...formState }));
+        dispatch( agregandoNuevoComentario({ ...formState }) );
     }, [formState])
-    
+
 
     return (
         <>
@@ -45,9 +60,12 @@ export const NuevoProducto = () => {
                                 activarFomulario1 = { setFormularioActivo1 } 
                                 activarFormulario2={ setFormularioActivo2 }
                                 activarFormulario3={ setFormularioActivo3 }
+                                activarFormulario4={ setFormularioActivo4 }
                                 clickBotonAtras = { setClickBotonAtras }
                                 completoFormulario1 = { completoFormulario1 }
                                 completoFormulario2 = { completoFormulario2 }
+                                completoFormulario3 = { completoFormulario3 }
+                                completoFormulario4 = { completoFormulario4 }
                             />
                         </div>
                         <div className="nuevo-producto-bloque">
@@ -91,8 +109,27 @@ export const NuevoProducto = () => {
                                 <FormularioNuevo3 
                                     activarFormulario2={ setFormularioActivo2 }
                                     activarFormulario3={ setFormularioActivo3 }
+                                    activarFormulario4={ setFormularioActivo4 }
                                     clickBotonAtras = { setClickBotonAtras }
-                                    formState={formState}
+                                    completoFormulario3 = { setCompletoFormulario3 }
+                                    completoFormulario4 = { setCompletoFormulario4 }
+                                    comentario={comentario}
+                                    onInputChange={onInputChange}
+                                    formState={ formState }
+                                />
+                            </div>
+
+                            <div 
+                                style={{ display: formularioActivo4 ? 'flex' : 'none' }}
+                                className={ formularioActivo4 ? ( clickBotonAtras ? claseEntradaIzquierda : claseEntradaDerecha ) : claseSalidaIzquierda }
+                            >
+                                <FormularioNuevo4
+                                    activarFormulario3={ setFormularioActivo3 }
+                                    activarFormulario4={ setFormularioActivo4 }
+                                    clickBotonAtras = { setClickBotonAtras }
+                                    fotosNuevas = { fotosNuevas }
+                                    nuevoComentario = { nuevoComentario }
+                                    nuevaCalificacion = { nuevaCalificacion }
                                 />
                             </div>
                         </div>

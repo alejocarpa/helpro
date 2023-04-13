@@ -1,11 +1,12 @@
 import './BarraEtapas.css';
 
-export const BarraEtapas = ({ activarFomulario1, activarFormulario2, activarFormulario3, clickBotonAtras, completoFormulario1, completoFormulario2 }) => {
+export const BarraEtapas = ({ activarFomulario1, activarFormulario2, activarFormulario3, activarFormulario4, clickBotonAtras, completoFormulario1, completoFormulario2, completoFormulario3, completoFormulario4 }) => {
 
     const formularioActivo1 = () => {
         activarFomulario1(true);
         activarFormulario2(false);
         activarFormulario3(false);
+        activarFormulario4(false);
         clickBotonAtras(true);
     }
 
@@ -13,6 +14,23 @@ export const BarraEtapas = ({ activarFomulario1, activarFormulario2, activarForm
         activarFomulario1(false);
         activarFormulario2(true);
         activarFormulario3(false);
+        activarFormulario4(false);
+        clickBotonAtras(true);
+    }
+
+    const formularioActivo3 = () => {
+        activarFomulario1(false);
+        activarFormulario2(false);
+        activarFormulario3(true);
+        activarFormulario4(false);
+        clickBotonAtras(true);
+    }
+
+    const formularioActivo4 = () => {
+        activarFomulario1(false);
+        activarFormulario2(false);
+        activarFormulario3(false);
+        activarFormulario4(true);
         clickBotonAtras(true);
     }
 
@@ -71,7 +89,14 @@ export const BarraEtapas = ({ activarFomulario1, activarFormulario2, activarForm
                 </div>
 
                 <div className="barra-etapas-imagen-superior">
-                    <div className="barra-etapas-superior-imagen">
+                    <div 
+                        className="barra-etapas-superior-imagen"
+                        style={{ 
+                            backgroundColor: completoFormulario3 ? '#E1DCEE' : 'transparent',
+                            cursor: completoFormulario3 ? 'pointer' : 'auto'
+                        }}
+                        onClick = { completoFormulario3 ? formularioActivo3 : funcionVacia }
+                    >
                         <img 
                             src='/images/etapa-calificacion.png' 
                             alt="element-category"
@@ -94,7 +119,14 @@ export const BarraEtapas = ({ activarFomulario1, activarFormulario2, activarForm
                     <div className="barra-etapas-inferior-linea">
                         
                     </div>
-                    <div className="barra-etapas-inferior-imagen">
+                    <div 
+                        className="barra-etapas-inferior-imagen"
+                        style={{ 
+                            backgroundColor: completoFormulario4 ? '#E1DCEE' : 'transparent',
+                            cursor: completoFormulario4 ? 'pointer' : 'auto'
+                        }}
+                        onClick = { completoFormulario4 ? formularioActivo4 : funcionVacia }
+                    >
                         <img 
                             src='/images/etapa-vista.png' 
                             alt="element-category"

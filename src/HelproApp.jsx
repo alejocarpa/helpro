@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { BotonAgregar } from "./helpro/components";
 import { AppRouter } from "./router/AppRouter";
 import { clickingElement } from "./store/helpro";
+import { useLocation } from "react-router-dom";
 
 export const HelproApp = () => {
 
@@ -11,10 +12,15 @@ export const HelproApp = () => {
         dispatch( clickingElement( e.target.outerHTML ) );
     }
 
+    const { pathname } = useLocation();
+
     return (
         <div onClick={ clickedElement }>
             <AppRouter />
-            <BotonAgregar />
+
+            {
+                pathname !== '/auth/login' && pathname !== '/auth/register' && pathname !== '/auth/recover_password' ? <BotonAgregar /> : ""
+            }
         </div>
     )
 }
