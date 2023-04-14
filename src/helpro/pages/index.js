@@ -3,3 +3,4 @@ export * from './ItemPage';
 export * from './SearchPage';
 export * from './CargandoPage';
 export * from './NuevoProducto';
+export * from './ConfiguracionPage';

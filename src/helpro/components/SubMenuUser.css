@@ -23,11 +23,17 @@
 }
 
 .submenu-seccion{
+    /* border: 1px solid #f00; */
     width: 100%;
     display: flex;
     justify-content: right;
     align-items: center;
     margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.submenu-seccion:hover{
+    transform: scale(1.1);
 }
 
 .submenu-icono{

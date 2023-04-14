@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { almacenarUrl } from "../../store/helpro/helproSlice";
-import { HomePage, ItemPage, SearchPage, CargandoPage, NuevoProducto } from "../pages";
+import { HomePage, ItemPage, SearchPage, CargandoPage, NuevoProducto, ConfiguracionPage } from "../pages";
 
 export const HelproRoutes = () => {
 
@@ -23,6 +23,7 @@ export const HelproRoutes = () => {
             <Route path="search/:nombreItem" element={ <SearchPage /> } />
             <Route path="loading/:nombreItem" element={ <CargandoPage /> } />
             <Route path="nuevo" element={ <NuevoProducto /> } />
+            <Route path="configuracion" element={ <ConfiguracionPage /> } />
 
             <Route path="/*" element={ <Navigate to="home" /> } />
         </Routes>

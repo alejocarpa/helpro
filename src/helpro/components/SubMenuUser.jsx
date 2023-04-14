@@ -2,13 +2,27 @@ import './SubMenuUser.css';
 import { FaTools } from 'react-icons/fa';
 import { ImExit } from 'react-icons/im';
 import { BiHelpCircle } from 'react-icons/bi';
+import { useNavigate } from 'react-router-dom';
 
 export const SubMenuUser = () => {
+
+    const navigate = useNavigate();
+
+    const navegarSubmenu = ( pantalla ) => {
+        
+        if( pantalla === 'configuracion' ){
+            navigate(`/configuracion`);
+        }
+    }
+
     return (
         <div className="submenu-container animate__animated animate__fadeInDown">
             <div className="submenu-elements">
 
-                <div className="submenu-seccion">
+                <div 
+                    className="submenu-seccion"
+                    onClick = { () => navegarSubmenu('configuracion') }
+                >
                     <div className="submenu-icono">
                         <FaTools />
                     </div>
