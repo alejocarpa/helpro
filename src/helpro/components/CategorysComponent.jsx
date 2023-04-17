@@ -12,7 +12,7 @@ export const CategorysComponent = () => {
             <div className="categorys-container">
                 <div className="categorys-elements">
                     <div className="categorys-block">
-                        <div className="categorys-image">
+                        <div className="categorys-image animate__animated animate__backInDown">
                             <img
                                 src='/images/electrodomesticos-category.png'
                                 alt="element-category"
@@ -25,7 +25,7 @@ export const CategorysComponent = () => {
                         </div>
                     </div>
                     <div className="categorys-block">
-                        <div className="categorys-image">
+                        <div className="categorys-image animate__animated animate__backInLeft">
                             <img
                                 src='/images/tienda-category.png'
                                 alt="element-category"
@@ -38,7 +38,7 @@ export const CategorysComponent = () => {
                         </div>
                     </div>
                     <div className="categorys-block">
-                        <div className="categorys-image">
+                        <div className="categorys-image animate__animated animate__backInRight">
                             <img
                                 src='/images/servicio-category.png'
                                 alt="element-category"
@@ -51,7 +51,7 @@ export const CategorysComponent = () => {
                         </div>
                     </div>
                     <div className="categorys-block">
-                        <div className="categorys-image">
+                        <div className="categorys-image animate__animated animate__backInUp">
                             <img
                                 src='/images/app-category.png'
                                 alt="element-category"
@@ -64,7 +64,7 @@ export const CategorysComponent = () => {
                         </div>
                     </div>
                     <div className="categorys-block">
-                        <div className="categorys-image">
+                        <div className="categorys-image animate__animated animate__backInDown">
                             <img
                                 src='/images/lugares-category.png'
                                 alt="element-category"
@@ -77,7 +77,7 @@ export const CategorysComponent = () => {
                         </div>
                     </div>
                     <div className="categorys-block">
-                        <div className="categorys-image">
+                        <div className="categorys-image animate__animated animate__backInLeft">
                             <img
                                 src='/images/productos-category.png'
                                 alt="element-category"

@@ -72,6 +72,16 @@
     padding: 12px;
 }
 
+.formulario-nuevo3-textarea-vacio{
+    width: 100%;
+    min-height: 100%;
+    font-size: 1.4vw;
+    border: 2px solid red;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 1px red;
+    padding: 12px;
+}
+
 .formulario-nuevo3-contenedor-botones{
     /* border: 1px solid #f00; */
     width: 100%;
@@ -84,5 +94,15 @@
 
 .formulario-nuevo3-contenedor-boton-siguiente{
     float: right;
+}
+
+.formulario-nuevo3-validacion{
+    color: red;
+}
+
+.formulario-nuevo3-validacion-comentario{
+    width: 100%;
+    color: red;
+    margin-top: 3px;
 }
 

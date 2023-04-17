@@ -18,7 +18,7 @@ export const BotonAgregar = () => {
             <div className="boton-agregar-container">
                 <div className="boton-agregar-elements">
                     <div 
-                        className="boton-agregar-circulo"
+                        className="boton-agregar-circulo animate__animated animate__rubberBand"
                         onMouseEnter={() => {
                             setDisplayMensaje('block');
                         }}

@@ -1,6 +1,16 @@
 import './BarraEtapas.css';
 
-export const BarraEtapas = ({ activarFomulario1, activarFormulario2, activarFormulario3, activarFormulario4, clickBotonAtras, completoFormulario1, completoFormulario2, completoFormulario3, completoFormulario4 }) => {
+export const BarraEtapas = ({ 
+    activarFomulario1, 
+    activarFormulario2, 
+    activarFormulario3, 
+    activarFormulario4, 
+    clickBotonAtras, 
+    completoFormulario1, 
+    completoFormulario2, 
+    completoFormulario3, 
+    completoFormulario4
+}) => {
 
     const formularioActivo1 = () => {
         activarFomulario1(true);
@@ -47,7 +57,13 @@ export const BarraEtapas = ({ activarFomulario1, activarFormulario2, activarForm
                             backgroundColor: completoFormulario1 ? '#E1DCEE' : 'transparent',
                             cursor: completoFormulario1 ? 'pointer' : 'auto'
                         }}
-                        onClick = { completoFormulario1 ? formularioActivo1 : funcionVacia }
+                        onClick = { 
+                            completoFormulario1 && completoFormulario2 && completoFormulario3 
+                            ? 
+                            formularioActivo1 
+                            : 
+                            funcionVacia 
+                        }
                     >
                         <img 
                             src='/images/etapa-datos.png' 
@@ -77,7 +93,13 @@ export const BarraEtapas = ({ activarFomulario1, activarFormulario2, activarForm
                             backgroundColor: completoFormulario2 ? '#E1DCEE' : 'transparent',
                             cursor: completoFormulario2 ? 'pointer' : 'auto'
                         }}
-                        onClick = { completoFormulario2 ? formularioActivo2 : funcionVacia }
+                        onClick = { 
+                            completoFormulario1 && completoFormulario2 && completoFormulario3
+                            ? 
+                            formularioActivo2 
+                            : 
+                            funcionVacia 
+                        }
                     >
                         <img 
                             src='/images/etapa-fotos.png' 
@@ -95,7 +117,13 @@ export const BarraEtapas = ({ activarFomulario1, activarFormulario2, activarForm
                             backgroundColor: completoFormulario3 ? '#E1DCEE' : 'transparent',
                             cursor: completoFormulario3 ? 'pointer' : 'auto'
                         }}
-                        onClick = { completoFormulario3 ? formularioActivo3 : funcionVacia }
+                        onClick = { 
+                            completoFormulario1 && completoFormulario2 && completoFormulario3 
+                            ? 
+                            formularioActivo3 
+                            : 
+                            funcionVacia 
+                        }
                     >
                         <img 
                             src='/images/etapa-calificacion.png' 
@@ -125,7 +153,12 @@ export const BarraEtapas = ({ activarFomulario1, activarFormulario2, activarForm
                             backgroundColor: completoFormulario4 ? '#E1DCEE' : 'transparent',
                             cursor: completoFormulario4 ? 'pointer' : 'auto'
                         }}
-                        onClick = { completoFormulario4 ? formularioActivo4 : funcionVacia }
+                        onClick = { 
+                            completoFormulario1 && completoFormulario2 && completoFormulario3 && completoFormulario4 
+                            ? 
+                            formularioActivo4 
+                            : 
+                            funcionVacia }
                     >
                         <img 
                             src='/images/etapa-vista.png' 

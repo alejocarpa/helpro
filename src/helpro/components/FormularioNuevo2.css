@@ -38,6 +38,15 @@
     align-items: center;
 }
 
+.formulario-nuevo2-file-vacio{
+    border: 3px dashed red;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .formulario-nuevo2-file:hover{
     border: 5px dashed var(--color-principal);
     cursor: pointer;
@@ -142,4 +151,11 @@
 
 .formulario-nuevo2-contenedor-boton-siguiente{
     float: right;
+}
+
+.formulario-nuevo2-validacion{
+    /* border: 1px solid #f00; */
+    width: 100%;
+    color: red;
+    margin-top: 3px;
 }

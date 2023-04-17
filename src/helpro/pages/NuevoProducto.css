@@ -49,7 +49,12 @@
 
 
 @media screen and (max-height: 800px) {
+
+    .nuevo-producto-container{
+        height: 100vh;
+    }
+
     .nuevo-producto-bloque{
-        height: 70%;
+        height: 100%;
     }
 }
