@@ -3,14 +3,17 @@ import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 import { MensajeAyudaBotonAgregar } from './MensajeAyudaBotonAgregar';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export const BotonAgregar = () => {
 
     const navigate = useNavigate();
     const [displayMensaje, setDisplayMensaje] = useState('none');
 
+    const { status } = useSelector( state => state.auth );
+
     const cargarNuevoProducto = () => {
-        navigate(`nuevo`);
+        status === 'not-authenticated' ? navigate(`auth/login`) : navigate(`nuevo`);
     }
 
     return (

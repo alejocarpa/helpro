@@ -1,21 +1,60 @@
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthLayout } from "../layout/AuthLayout";
 import './LoginPage.css';
+import { useForm } from "../../hooks";
+import { useDispatch, useSelector } from "react-redux";
+import { startLoginWithEmailPassword } from "../../store/auth";
+import { useEffect, useState } from "react";
+
+const initialForm = {
+    email: '',
+    password: '' 
+}
 
 export const LoginPage = () => {
 
+    const [mensajeError, setMensajeError] = useState('')
+    const { email, password, onInputChange } = useForm(initialForm);
+    const dispatch = useDispatch();
+    const { status, errorMessage } = useSelector( state => state.auth );
+
+    const onSubmit = ( event ) => {
+        event.preventDefault();
+
+        dispatch( startLoginWithEmailPassword({ email, password }) );
+    }
+
+    useEffect(() => {
+        errorMessage === "Wrong email" ? setMensajeError("El correo electronico no existe") : ""
+        errorMessage === "Wrong password" ? setMensajeError("La constrasena es incorrecta") : ""
+    }, [errorMessage]);
+    
+
     return (
         <AuthLayout title="Iniciar sesión">
-            <Form>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Control type="email" placeholder="Correo electrónico" />
+            <Form onSubmit={ onSubmit }>
+                <Form.Group className="mt-3">
+                    <Form.Control 
+                        type="email" 
+                        placeholder="Correo electrónico"
+                        name="email"
+                        value={ email }
+                        onChange={ onInputChange }
+                    />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Control type="password" placeholder="Contraseña" />
+                <Form.Group className="mt-3">
+                    <Form.Control 
+                        type="password" 
+                        placeholder="Contraseña" 
+                        name="password"
+                        value={ password }
+                        onChange={ onInputChange }
+                    />
                 </Form.Group>
-                <Button style={{ width: '100%' }}>
-                    Entrar
+                { errorMessage ? <div className="mt-1 login-page-error-message">{ mensajeError }</div> : "" }
+                <Button className="mt-3" style={{ width: '100%' }} type="submit">
+                    { status === 'checking' ? <Spinner size="sm" animation="border" variant="light" /> : "Entrar" }
                 </Button>
             </Form>
             <hr />

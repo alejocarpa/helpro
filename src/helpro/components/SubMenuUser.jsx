@@ -3,16 +3,23 @@ import { FaTools } from 'react-icons/fa';
 import { ImExit } from 'react-icons/im';
 import { BiHelpCircle } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../store/auth/authSlice';
 
 export const SubMenuUser = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const navegarSubmenu = ( pantalla ) => {
         
         if( pantalla === 'configuracion' ){
             navigate(`/configuracion`);
         }
+    }
+
+    const logoutUser = () => {
+        dispatch( logout() );
     }
 
     return (
@@ -31,7 +38,7 @@ export const SubMenuUser = () => {
                     </div>
                 </div>
                 
-                <div className="submenu-seccion">
+                <div className="submenu-seccion" onClick={ logoutUser }>
                     <div className="submenu-icono">
                         <ImExit />
                     </div>

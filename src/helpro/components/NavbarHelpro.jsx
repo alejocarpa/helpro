@@ -1,10 +1,13 @@
 import { useSelector } from 'react-redux';
 import { BarraBusqueda, LogoNavbarHelpro, MenuUser, SubMenuUser } from './';
 import './NavbarHelpro.css';
+import { BotonLogin } from '../layout';
+import { Spinner } from 'react-bootstrap';
 
 export const NavbarHelpro = () => {
 
     const { elementClicked } = useSelector(state => state.helpro);
+    const { status } = useSelector( state => state.auth );
 
     let divSubmenu = document.getElementById('navbar-submenu-user');
 
@@ -53,11 +56,26 @@ export const NavbarHelpro = () => {
                     </div>
 
                     <div className="navbar-usuario">
-                        <MenuUser desplegarSubmenu={desplegarSubmenu} />
+                        { 
+                            status === 'checking'
+                            ?
+                            <Spinner animation="border" variant="light" />
+                            :
+                            status === 'authenticated' 
+                            ? 
+                            <MenuUser desplegarSubmenu={ desplegarSubmenu } /> 
+                            : 
+                            <BotonLogin /> 
+                        }
                     </div>
                 </div>
             </div>
-            <div id="navbar-submenu-user" style={{ display: 'none' }}><SubMenuUser /></div>
+            <div 
+                id="navbar-submenu-user" 
+                style={{ display: 'none' }}
+            >
+                <SubMenuUser />
+            </div>
         </>
     )
 }

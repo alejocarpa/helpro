@@ -6,33 +6,38 @@
 }
 
 .menu-user-elements{
+    /* border: 1px solid #ff0; */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .menu-user-icon{
+    /* border: 1px solid #f00; */
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    font-size: 35px;
-    margin-right: 6px;
+    font-size: 2.6vw;
+    padding-right: 8px;
     cursor: pointer;
 }
 
 .menu-user-name{
+    /* border: 1px solid #0f0; */
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    margin-right: 3px;
+    padding-right: 6px;
+    font-size: 1.3vw;
     cursor: pointer;
 }
 
 .menu-user-desplegar{
+    /* border: 1px solid #00f; */
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    font-size: 15px;
+    font-size: 1.1vw;
     cursor: pointer;
 }
 
