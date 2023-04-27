@@ -28,21 +28,33 @@ export const loginWithEmailPassword = async ({ email, password }) => {
         password_user: password
     }
 
-    const { data } = await axios.post(url, form, { 
-            headers: {"Authorization": `${ apikeyEndpoint }`} 
-    });
+    try{
+        const { data } = await axios.post(url, form, { 
+                headers: {"Authorization": `${ apikeyEndpoint }`} 
+        });
 
-    let errorMessage = '';
-    let ok = true;
-    if( data?.status === 404 ){
-        errorMessage = data?.results;
-        ok = false;
-    }
+        let errorMessage = '';
+        let ok = true;
+        if( data?.status === 404 ){
+            errorMessage = data?.results;
+            ok = false;
+        }
 
-    return {
-        ok: ok,
-        data: data,
-        errorMessage: errorMessage
+        return {
+            ok: ok,
+            data: data,
+            errorMessage: errorMessage
+        }
+    }catch(error){
+        const errorResponse = error.message;
+
+        if( errorResponse ){
+            return {
+                ok: false,
+                data: [],
+                errorMessage: errorResponse
+            }
+        }
     }
 }
 
@@ -86,21 +98,33 @@ export const registerUserWithEmailPassword = async({ email, password, name, surn
         date_created_user: `${year}-${month}-${day}`
     }
 
-    const { data } = await axios.post(url, form, { 
-            headers: {"Authorization": `${ apikeyEndpoint }`} 
-    });
+    try{
+        const { data } = await axios.post(url, form, { 
+                headers: {"Authorization": `${ apikeyEndpoint }`} 
+        });
 
-    let errorMessage = '';
-    let ok = true;
-    if( data?.status === 404 ){
-        errorMessage = data?.results;
-        ok = false;
-    }
+        let errorMessage = '';
+        let ok = true;
+        if( data?.status === 404 ){
+            errorMessage = data?.results;
+            ok = false;
+        }
 
-    return {
-        ok: ok,
-        data: data,
-        errorMessage: errorMessage
+        return {
+            ok: ok,
+            data: data,
+            errorMessage: errorMessage
+        }
+    }catch(error){
+        const errorResponse = error.message;
+
+        if( errorResponse ){
+            return {
+                ok: false,
+                data: [],
+                errorMessage: errorResponse
+            }
+        }
     }
 }
 
@@ -128,20 +152,38 @@ export const loginWithToken = async ({ tokenUser }) => {
         token_user: tokenUser
     }
 
-    const { data } = await axios.post(url, form, { 
-            headers: {"Authorization": `${ apikeyEndpoint }`} 
-    });
+    
+    try{
+        const { data } = await axios.post(url, form, { 
+                headers: {"Authorization": `${ apikeyEndpoint }`} 
+        });
 
-    let errorMessage = '';
-    let ok = true;
-    if( data?.status === 404 ){
-        errorMessage = data?.results;
-        ok = false;
+        let errorMessage = '';
+        let ok = true;
+        if( data?.status === 404 ){
+            errorMessage = data?.results;
+            ok = false;
+        }
+
+        return {
+            ok: ok,
+            data: data,
+            errorMessage: errorMessage
+        }
+    }catch(error){
+        const errorResponse = error.message;
+
+        if( errorResponse ){
+            return {
+                ok: false,
+                data: [],
+                errorMessage: errorResponse
+            }
+        }
     }
 
-    return {
-        ok: ok,
-        data: data,
-        errorMessage: errorMessage
-    }
+    
+    
+
+    
 }
