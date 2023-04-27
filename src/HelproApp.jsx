@@ -6,19 +6,12 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { startLoginWithToken } from "./store/auth";
 
-const nuevoProductoStorage = {
-    nombre: '',
-    categoria: '', 
-    tipo: '', 
-    marca: '', 
-    comentario: ''
-}
-localStorage.setItem('nuevoProducto', JSON.stringify( nuevoProductoStorage ) );
 
 export const HelproApp = () => {
 
     const dispatch = useDispatch();
     const tokenUser = JSON.parse( localStorage.getItem('token') );
+    const tokenAnterior = JSON.parse( localStorage.getItem('tokenAnterior') );
 
     const clickedElement = (e) => {
         dispatch( clickingElement( e.target.outerHTML ) );
@@ -29,6 +22,21 @@ export const HelproApp = () => {
     useEffect(() => {
         dispatch( startLoginWithToken({ tokenUser }) );
     }, [tokenUser]);
+
+    useEffect(() => {
+        if( tokenAnterior !== tokenUser ){
+            const nuevoProductoStorage = {
+                nombre: '',
+                categoria: '', 
+                tipo: '', 
+                marca: '', 
+                comentario: ''
+            }
+            localStorage.setItem('nuevoProducto', JSON.stringify( nuevoProductoStorage ) );
+            localStorage.setItem('tokenAnterior', JSON.stringify( tokenUser ) );
+        }
+    }, [tokenUser]);
+    
     
 
     return (

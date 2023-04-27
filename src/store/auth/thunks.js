@@ -12,10 +12,10 @@ export const startLoginWithEmailPassword = ({ email, password }) => {
         if( !ok ) return dispatch( logout( { errorMessage } ) );
 
         const [ resultData ] = data?.results;
-        const { id_user:uid, name_user:displayName, surname_user:displaySurname, token_user } = resultData
+        const { id_user:uid, name_user:displayName, surname_user:displaySurname, token_user:token } = resultData
 
-        localStorage.setItem('token', JSON.stringify( token_user ) );
-        dispatch( login( { uid, displayName, email, displaySurname } ) );
+        localStorage.setItem('token', JSON.stringify( token ) );
+        dispatch( login( { uid, displayName, email, displaySurname, token } ) );
     }
 }
 
@@ -138,10 +138,10 @@ export const startLoginWithToken = ({ tokenUser }) => {
         if( !ok ) return dispatch( logout( { errorMessage } ) );
 
         const [ resultData ] = data?.results;
-        const { id_user:uid, name_user:displayName, surname_user:displaySurname, token_user, email_user:email } = resultData
+        const { id_user:uid, name_user:displayName, surname_user:displaySurname, token_user:token, email_user:email } = resultData
 
-        localStorage.setItem('token', JSON.stringify( token_user ) );
-        dispatch( login( { uid, displayName, email, displaySurname } ) );
+        localStorage.setItem('token', JSON.stringify( token ) );
+        dispatch( login( { uid, displayName, email, displaySurname, token } ) );
     }
 }
 

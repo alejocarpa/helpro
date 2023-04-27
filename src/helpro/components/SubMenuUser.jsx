@@ -3,7 +3,7 @@ import { FaTools } from 'react-icons/fa';
 import { ImExit } from 'react-icons/im';
 import { BiHelpCircle } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/auth/authSlice';
 import { limpiarNuevoProducto } from '../../store/helpro/helproSlice';
 
@@ -11,6 +11,7 @@ export const SubMenuUser = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { token } = useSelector( state => state.auth );
 
     const navegarSubmenu = ( pantalla ) => {
         
@@ -20,6 +21,7 @@ export const SubMenuUser = () => {
     }
 
     const logoutUser = () => {
+        localStorage.setItem('tokenAnterior', JSON.stringify( token ) );
         dispatch( limpiarNuevoProducto() );
         dispatch( logout() );
     }

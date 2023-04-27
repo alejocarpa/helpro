@@ -13,8 +13,6 @@ export const NuevoProducto = () => {
     const { fotosNuevas, nuevoComentario, nuevaCalificacion } = useSelector( state => state.helpro );
     const { uid, displayName } = useSelector( state => state.auth );
 
-    const [nuevoProductoStorage, setNuevoProductoStorage] = useState()
-
     const claseEntradaDerecha = 'nuevo-producto-formulario animate__animated animate__backInRight';
     const claseSalidaIzquierda = 'nuevo-producto-formulario animate__animated animate__backOutLeft';
 
@@ -33,17 +31,12 @@ export const NuevoProducto = () => {
     const [completoFormulario3, setCompletoFormulario3] = useState(false);
     const [completoFormulario4, setCompletoFormulario4] = useState(false);
 
-    const { nombre, categoria, tipo, marca, comentario, onInputChange, formState } = useForm(nuevoProductoStorage);
+    const { nombre, categoria, tipo, marca, comentario, onInputChange, formState } = useForm( JSON.parse( localStorage.getItem('nuevoProducto')));
 
     useEffect(() => {
         dispatch( agregandoNuevoProducto({ ...formState }));
         dispatch( agregandoNuevoComentario({ ...formState, uid, displayName }) );
     }, [formState]);
-
-    useEffect(() => {
-        setNuevoProductoStorage( JSON.parse( localStorage.getItem('nuevoProducto') ))
-    }, []);
-
 
     return (
         <>
