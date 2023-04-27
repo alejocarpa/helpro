@@ -1,0 +1,8 @@
+
+.register-page-validacion{
+    color: red;
+}
+
+.register-page-input-vacio{
+    border: 2px solid red;
+}

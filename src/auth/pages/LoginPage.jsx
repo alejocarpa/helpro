@@ -28,6 +28,7 @@ export const LoginPage = () => {
     useEffect(() => {
         errorMessage === "Wrong email" ? setMensajeError("El correo electronico no existe") : ""
         errorMessage === "Wrong password" ? setMensajeError("La constrasena es incorrecta") : ""
+        errorMessage === "Network Error" ? setMensajeError("Error: error de conexión") : ""
     }, [errorMessage]);
     
 

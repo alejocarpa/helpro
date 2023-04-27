@@ -13,8 +13,7 @@ export const FormularioNuevo3 = ({
     completoFormulario4, 
     comentario, 
     onInputChange,
-    formState,
-    setValidarFormulario3
+    formState
  }) => {
 
     const { nuevaCalificacion } = useSelector(state => state.helpro);

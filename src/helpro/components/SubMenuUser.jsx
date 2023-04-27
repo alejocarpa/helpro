@@ -5,6 +5,7 @@ import { BiHelpCircle } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/auth/authSlice';
+import { limpiarNuevoProducto } from '../../store/helpro/helproSlice';
 
 export const SubMenuUser = () => {
 
@@ -19,6 +20,7 @@ export const SubMenuUser = () => {
     }
 
     const logoutUser = () => {
+        dispatch( limpiarNuevoProducto() );
         dispatch( logout() );
     }
 

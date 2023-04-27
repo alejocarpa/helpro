@@ -6,22 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks';
 import { agregandoNuevoComentario, agregandoNuevoProducto } from '../../store/helpro/helproSlice';
 
-let nuevoProductoStorage = JSON.parse( localStorage.getItem('nuevoProducto') );
-if(!nuevoProductoStorage){
-    nuevoProductoStorage = {
-        nombre: '',
-        categoria: '', 
-        tipo: '', 
-        marca: '', 
-        comentario: ''
-    }
-}
-
 export const NuevoProducto = () => {
 
     const dispatch = useDispatch();
 
     const { fotosNuevas, nuevoComentario, nuevaCalificacion } = useSelector( state => state.helpro );
+    const { uid, displayName } = useSelector( state => state.auth );
+
+    const [nuevoProductoStorage, setNuevoProductoStorage] = useState()
 
     const claseEntradaDerecha = 'nuevo-producto-formulario animate__animated animate__backInRight';
     const claseSalidaIzquierda = 'nuevo-producto-formulario animate__animated animate__backOutLeft';
@@ -44,10 +36,13 @@ export const NuevoProducto = () => {
     const { nombre, categoria, tipo, marca, comentario, onInputChange, formState } = useForm(nuevoProductoStorage);
 
     useEffect(() => {
-        //console.log(formState)
         dispatch( agregandoNuevoProducto({ ...formState }));
-        dispatch( agregandoNuevoComentario({ ...formState }) );
-    }, [formState])
+        dispatch( agregandoNuevoComentario({ ...formState, uid, displayName }) );
+    }, [formState]);
+
+    useEffect(() => {
+        setNuevoProductoStorage( JSON.parse( localStorage.getItem('nuevoProducto') ))
+    }, []);
 
 
     return (

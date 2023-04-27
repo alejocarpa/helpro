@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const nuevoProducto = JSON.parse( localStorage.getItem('nuevoProducto') );
 const nuevaCalificacion = JSON.parse( localStorage.getItem('nuevaCalificacion') );
 
 export const helproSlice = createSlice({
@@ -19,15 +18,18 @@ export const helproSlice = createSlice({
         },
         nuevoComentario: [
             {
-                nombreUsuario: 'Alejandro Cardenas',
+                idUser: '',
+                nombreUsuario: '',
                 comentario: '',
-                calificacion: 1,
-                fecha: 'marzo-30-2021 09:30 am'
+                fecha: ''
             }
         ],
         nuevaCalificacion
     },
     reducers: {
+        validarGuardandoProducto: ( state ) => {
+            state.guardandoNuevoProducto = true;
+        },
         clickingElement: ( state, action ) => {
             state.elementClicked = action.payload;
         },
@@ -53,11 +55,41 @@ export const helproSlice = createSlice({
             localStorage.setItem('nuevoProducto', JSON.stringify( state.nuevoProducto ) );
         },
         agregandoNuevoComentario: ( state, action ) => {
-            state.nuevoComentario[0] = { ...state.nuevoComentario[0], comentario: action.payload?.comentario }
+            state.nuevoComentario[0] = { 
+                ...state.nuevoComentario[0], 
+                comentario: action.payload?.comentario,
+                idUser: action.payload?.uid,
+                nombreUsuario: action.payload?.displayName
+            }
         },
         agregandoNuevaCalificacion: ( state, action ) => {
             state.nuevaCalificacion = { calificacion: action.payload?.calificacion }
             localStorage.setItem('nuevaCalificacion', JSON.stringify( state.nuevaCalificacion ) );
+        },
+        limpiarNuevoProducto: ( state, action ) => {
+            state.guardandoNuevoProducto = false;
+            state.elementClicked = '';
+            state.urlArray = [];
+            state.fotosNuevas = [ { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' } ];
+            state.nuevoProducto = {
+                nombre: '',
+                categoria: '', 
+                tipo: '', 
+                marca: '', 
+                comentario: ''
+            }
+            state.nuevoComentario = [
+                {
+                    idUser: '',
+                    nombreUsuario: '',
+                    comentario: '',
+                    calificacion: 1,
+                    fecha: ''
+                }
+            ],
+            state.nuevaCalificacion = { calificacion: null };
+            localStorage.removeItem('nuevoProducto');
+            localStorage.removeItem('nuevaCalificacion');
         },
     }
 });
@@ -72,5 +104,6 @@ export const
         eliminandoFotosNuevas, 
         agregandoNuevoProducto, 
         agregandoNuevoComentario,
-        agregandoNuevaCalificacion
+        agregandoNuevaCalificacion,
+        limpiarNuevoProducto
     } = helproSlice.actions;

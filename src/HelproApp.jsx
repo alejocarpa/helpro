@@ -6,6 +6,15 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { startLoginWithToken } from "./store/auth";
 
+const nuevoProductoStorage = {
+    nombre: '',
+    categoria: '', 
+    tipo: '', 
+    marca: '', 
+    comentario: ''
+}
+localStorage.setItem('nuevoProducto', JSON.stringify( nuevoProductoStorage ) );
+
 export const HelproApp = () => {
 
     const dispatch = useDispatch();
