@@ -181,9 +181,49 @@ export const loginWithToken = async ({ tokenUser }) => {
             }
         }
     }
-
-    
-    
-
-    
 }
+
+export const startloadingMaster = ({ table, select, linkTo, equalTo }) => {
+    return async (dispatch) => {
+
+        const { ok, data } = await loadingMaster({ table, select, linkTo, equalTo });
+
+        if( !ok ) return [];
+
+        return data?.results;
+    }
+}
+
+export const loadingMaster = async ({ table, select, linkTo, equalTo }) => {
+    const url = `${ urlEndpoint }/${ table }?select=${ select }&linkTo=${ linkTo }&equalTo=${ equalTo }`;
+
+    try{
+        const { data } = await axios.get(url, { 
+                headers: {"Authorization": `${ apikeyEndpoint }`} 
+        });
+
+        let errorMessage = '';
+        let ok = true;
+        if( data?.status === 404 ){
+            errorMessage = data?.results;
+            ok = false;
+        }
+
+        return {
+            ok: ok,
+            data: data,
+            errorMessage: errorMessage
+        }
+    }catch(error){
+        const errorResponse = error.message;
+
+        if( errorResponse ){
+            return {
+                ok: false,
+                data: [],
+                errorMessage: errorResponse
+            }
+        }
+    }
+}
+    

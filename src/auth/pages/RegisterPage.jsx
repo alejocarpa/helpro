@@ -1,10 +1,11 @@
+import { useEffect, useState } from "react";
 import { Button, Form, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { AuthLayout } from "../layout/AuthLayout";
+import { AuthLayout } from "../layout";
 import { useForm } from "../../hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { startCreatingUserWithEmailPassword } from "../../store/auth";
-import { useEffect, useState } from "react";
+import { OptionLayoutCountries } from "../../helpers";
 import './RegisterPage.css';
 
 const initialState = {
@@ -159,8 +160,7 @@ export const RegisterPage = () => {
                     value={country}
                     onChange={onInputChange}
                 >
-                    <option value="">Elige un pais</option>
-                    <option value="1">Colombia</option>
+                    <OptionLayoutCountries />
                 </Form.Select>
                 { validacionPais ? <div className="register-page-validacion">Se debe ingresar un pais</div> : "" }
                 <Form.Group className="mt-3">
