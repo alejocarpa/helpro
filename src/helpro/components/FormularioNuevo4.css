@@ -32,8 +32,38 @@
 .formulario-nuevo4-detalle{
     /* border: 1px solid #f00; */
     width: 100%;
-    height: 90%;
-    padding-bottom: 20px;
+    /* height: 90%; */
+}
+
+.formulario-nuevo4-bloque-comentario{
+    /* border: 1px solid #f00; */
+    background-color: #FFFFFF;
+    border-bottom: 1px solid var(--color-borde);
+    box-shadow: 0px 0px 10px 0.1px var(--color-borde-difuminado);
+    border-radius: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.formulario-nuevo4-comentario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.formulario-nuevo4-comentario-text-right{
+    padding: 20px;
+    border: 1px solid var(--color-borde);
+    border-radius: 15px 15px 15px 0px;
+    box-shadow: 0px 0px 10px 1px var(--color-borde-difuminado);
+    background-color: #EAE2EE;
 }
 
 .formulario-nuevo4-botones{

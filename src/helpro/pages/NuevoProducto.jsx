@@ -6,12 +6,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks';
 import { agregandoNuevoComentario, agregandoNuevoProducto } from '../../store/helpro/helproSlice';
 
+const initialForm = JSON.parse( localStorage.getItem('nuevoProducto'));
+
 export const NuevoProducto = () => {
 
     const dispatch = useDispatch();
 
     const { fotosNuevas, nuevoComentario, nuevaCalificacion } = useSelector( state => state.helpro );
-    const { uid, displayName } = useSelector( state => state.auth );
+    const { uid, displayName, displaySurname } = useSelector( state => state.auth );
 
     const claseEntradaDerecha = 'nuevo-producto-formulario animate__animated animate__backInRight';
     const claseSalidaIzquierda = 'nuevo-producto-formulario animate__animated animate__backOutLeft';
@@ -31,11 +33,11 @@ export const NuevoProducto = () => {
     const [completoFormulario3, setCompletoFormulario3] = useState(false);
     const [completoFormulario4, setCompletoFormulario4] = useState(false);
 
-    const { nombre, categoria, tipo, marca, comentario, onInputChange, formState } = useForm( JSON.parse( localStorage.getItem('nuevoProducto')));
+    const { nombre, categoria, tipo, marca, comentario, country, city, otroTipo, onInputChange, formState, setFormState } = useForm( initialForm );
 
     useEffect(() => {
         dispatch( agregandoNuevoProducto({ ...formState }));
-        dispatch( agregandoNuevoComentario({ ...formState, uid, displayName }) );
+        dispatch( agregandoNuevoComentario({ ...formState, uid, displayName, displaySurname }) );
     }, [formState]);
 
     return (
@@ -70,6 +72,11 @@ export const NuevoProducto = () => {
                                     categoria={categoria}
                                     tipo={tipo}
                                     marca={marca}
+                                    country={country}
+                                    city={city}
+                                    otroTipo={otroTipo}
+                                    formState={formState}
+                                    setFormState={setFormState}
                                     onInputChange={onInputChange}
                                 />
                             </div>

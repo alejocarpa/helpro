@@ -11,15 +11,19 @@ export const helproSlice = createSlice({
         fotosNuevas: [ { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' } ],
         nuevoProducto: {
             nombre: '',
-            categoria: '', 
-            tipo: '', 
+            categoria: null, 
+            tipo: null, 
             marca: '', 
-            comentario: ''
+            comentario: '',
+            otroTipo: null,
+            country: null,
+            city: null
         },
         nuevoComentario: [
             {
                 idUser: '',
                 nombreUsuario: '',
+                apellidoUsuario: '',
                 comentario: '',
                 fecha: ''
             }
@@ -51,7 +55,11 @@ export const helproSlice = createSlice({
             state.fotosNuevas.push( {fotoURL: ''} );
         },
         agregandoNuevoProducto: ( state, action ) => {
-            state.nuevoProducto = { ...state.nuevoProducto, ...action.payload, ImagenURL: state.fotosNuevas[0].fotoURL }
+            state.nuevoProducto = { 
+                ...state.nuevoProducto, 
+                ...action.payload,
+                ImagenURL: state.fotosNuevas[0].fotoURL 
+            }
             localStorage.setItem('nuevoProducto', JSON.stringify( state.nuevoProducto ) );
         },
         agregandoNuevoComentario: ( state, action ) => {
@@ -59,7 +67,8 @@ export const helproSlice = createSlice({
                 ...state.nuevoComentario[0], 
                 comentario: action.payload?.comentario,
                 idUser: action.payload?.uid,
-                nombreUsuario: action.payload?.displayName
+                nombreUsuario: action.payload?.displayName,
+                apellidoUsuario: action.payload?.displaySurname
             }
         },
         agregandoNuevaCalificacion: ( state, action ) => {

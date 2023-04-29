@@ -5,7 +5,7 @@ import { AuthLayout } from "../layout";
 import { useForm } from "../../hooks";
 import { useDispatch, useSelector } from "react-redux";
 import { startCreatingUserWithEmailPassword } from "../../store/auth";
-import { OptionLayoutCountries } from "../../helpers";
+import { OptionCountries } from "../../helpers";
 import './RegisterPage.css';
 
 const initialState = {
@@ -160,7 +160,7 @@ export const RegisterPage = () => {
                     value={country}
                     onChange={onInputChange}
                 >
-                    <OptionLayoutCountries />
+                    <OptionCountries />
                 </Form.Select>
                 { validacionPais ? <div className="register-page-validacion">Se debe ingresar un pais</div> : "" }
                 <Form.Group className="mt-3">

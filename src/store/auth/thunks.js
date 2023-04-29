@@ -183,10 +183,10 @@ export const loginWithToken = async ({ tokenUser }) => {
     }
 }
 
-export const startloadingMaster = ({ table, select, linkTo, equalTo }) => {
+export const startloadingMaster = ( table, select, linkTo, equalTo, orderBy, orderMode ) => {
     return async (dispatch) => {
 
-        const { ok, data } = await loadingMaster({ table, select, linkTo, equalTo });
+        const { ok, data } = await loadingMaster( table, select, linkTo, equalTo, orderBy, orderMode );
 
         if( !ok ) return [];
 
@@ -194,8 +194,14 @@ export const startloadingMaster = ({ table, select, linkTo, equalTo }) => {
     }
 }
 
-export const loadingMaster = async ({ table, select, linkTo, equalTo }) => {
-    const url = `${ urlEndpoint }/${ table }?select=${ select }&linkTo=${ linkTo }&equalTo=${ equalTo }`;
+export const loadingMaster = async ( table, select, linkTo, equalTo, orderBy, orderMode ) => {
+
+    let orderByCadena = '';
+    if(orderBy){
+        orderByCadena = `&orderBy=${ orderBy }&orderMode=${ orderMode }`;
+    }
+
+    const url = `${ urlEndpoint }/${ table }?select=${ select }&linkTo=${ linkTo }&equalTo=${ equalTo }${orderByCadena}`;
 
     try{
         const { data } = await axios.get(url, { 

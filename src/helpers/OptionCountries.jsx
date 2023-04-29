@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux"
 import { startloadingMaster } from "../store/auth";
 
-export const OptionLayoutCountries = () => {
+export const OptionCountries = () => {
 
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
@@ -13,9 +13,11 @@ export const OptionLayoutCountries = () => {
         const select = "id_country,name_country";
         const linkTo = "state_country";
         const equalTo = "1";
+        const orderBy = "name_country";
+        const orderMode = "ASC";
 
         const fetchData = async() => {
-            const results = await dispatch( startloadingMaster({ table, select, linkTo, equalTo }) );
+            const results = await dispatch( startloadingMaster( table, select, linkTo, equalTo, orderBy, orderMode ) );
             setData(results);
         }
 

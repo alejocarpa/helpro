@@ -18,15 +18,13 @@
     width: 60%;
     height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
     flex-direction: column;
 }
 
 .nuevo-producto-bloque{
     /* border: 1px solid #00f; */
     width: 100%;
-    height: 60%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +34,7 @@
 .nuevo-producto-guia{
     /* border: 1px solid #f00; */
     width: 100%;
-    height: 20%;
+    height: 30%;
 }
 
 .nuevo-producto-formulario{
@@ -51,7 +49,7 @@
 @media screen and (max-height: 800px) {
 
     .nuevo-producto-container{
-        height: 100vh;
+        height: 120vh;
     }
 
     .nuevo-producto-bloque{

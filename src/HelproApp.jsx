@@ -30,7 +30,10 @@ export const HelproApp = () => {
                 categoria: '', 
                 tipo: '', 
                 marca: '', 
-                comentario: ''
+                comentario: '',
+                country: '',
+                city: '',
+                otroTipo: ''
             }
             localStorage.setItem('nuevoProducto', JSON.stringify( nuevoProductoStorage ) );
             localStorage.setItem('tokenAnterior', JSON.stringify( tokenUser ) );
