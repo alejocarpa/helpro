@@ -1,6 +1,6 @@
 import { PrevisualizacionComponent } from './';
 import './FormularioNuevo4.css';
-import { BotonAtras, BotonSiguiente } from '../layout';
+import { BotonAtras, BotonGuardar } from '../layout';
 import { useSelector } from 'react-redux';
 
 export const FormularioNuevo4 = ({ activarFormulario3, activarFormulario4, clickBotonAtras, fotosNuevas, nuevoComentario }) => {
@@ -48,7 +48,7 @@ export const FormularioNuevo4 = ({ activarFormulario3, activarFormulario4, click
                             <BotonAtras />
                         </div>
                         <div className="formulario-nuevo4-contenedor-boton-siguiente" onClick={ botonSiguiente }>
-                            <BotonSiguiente />
+                            <BotonGuardar />
                         </div>
                     </div>
                 </div>

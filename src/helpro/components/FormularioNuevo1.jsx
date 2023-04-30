@@ -23,8 +23,6 @@ export const FormularioNuevo1 = (
         onInputChange
     }) => {
 
-    const dispatch = useDispatch();
-
     const [desplegarMarca, setDesplegarMarca] = useState(false);
     const [desplegarUbicacion, setDesplegarUbicacion] = useState(false);
     const [desplegarOtroTipo, setDesplegarOtroTipo] = useState(false);
@@ -165,11 +163,15 @@ export const FormularioNuevo1 = (
     }, [tipo]);
 
     useEffect(() => {
-        if (marca !== '') {
-            setValidacionMarca(false);
-            completoFormulario1(true);
+        if(categoria === '1'){
+            if (marca !== '') {
+                setValidacionMarca(false);
+                completoFormulario1(true);
+            }else{
+                completoFormulario1(false);
+            }
         }else{
-            completoFormulario1(false);
+            completoFormulario1(true);
         }
     }, [marca]);
 
@@ -179,9 +181,9 @@ export const FormularioNuevo1 = (
             completoFormulario1(true);
         }else{
             completoFormulario1(false);
+            setFormState( { ...formState, city: '' });
         }
 
-        setFormState( { ...formState, city: '' });
     }, [country]);
 
     useEffect(() => {
@@ -194,11 +196,15 @@ export const FormularioNuevo1 = (
     }, [city]);
 
     useEffect(() => {
-        if (otroTipo !== '') {
-            setValidacionOtroTipo(false);
-            completoFormulario1(true);
+        if( tipo === 'otro' ){
+            if (otroTipo !== '') {
+                setValidacionOtroTipo(false);
+                completoFormulario1(true);
+            }else{
+                completoFormulario1(false);
+            }
         }else{
-            completoFormulario1(false);
+            completoFormulario1(true);
         }
     }, [otroTipo]);
 

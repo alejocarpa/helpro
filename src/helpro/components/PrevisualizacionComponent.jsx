@@ -54,10 +54,31 @@ export const PrevisualizacionComponent = ({ nuevoProducto, fotosNuevas, nuevaCal
                         </div>
                         <div className="previsualizacion-tabla">
                             <ListGroup variant="flush">
-                                <ListGroup.Item><b>Categoria:</b> {nuevoProducto?.categoria}</ListGroup.Item>
-                                <ListGroup.Item><b>Tipo:</b> {nuevoProducto?.tipo}</ListGroup.Item>
-                                <ListGroup.Item><b>Marca:</b> {nuevoProducto?.marca}</ListGroup.Item>
-                                <ListGroup.Item><b>Ubicacion:</b> {nuevoProducto?.ubicacion}</ListGroup.Item>
+                                <ListGroup.Item><b>Categoria:</b> {nuevoProducto?.nombrecategoria}</ListGroup.Item>
+                                {
+                                    nuevoProducto?.categoria === '3'
+                                    ?
+                                    <>
+                                        <ListGroup.Item><b>Ubicación:</b> {nuevoProducto?.nombrecountry}</ListGroup.Item>
+                                        <ListGroup.Item><b>Ciudad:</b> {nuevoProducto?.nombrecity}</ListGroup.Item>
+                                    </>
+                                    :
+                                    ""
+                                }
+                                {
+                                    nuevoProducto?.tipo === 'otro'
+                                    ?
+                                    <ListGroup.Item><b>Tipo:</b> {nuevoProducto?.otroTipo}</ListGroup.Item>
+                                    :
+                                    <ListGroup.Item><b>Tipo:</b> {nuevoProducto?.nombretipo}</ListGroup.Item>
+                                }
+                                {
+                                    nuevoProducto?.categoria === '1'
+                                    ?
+                                    <ListGroup.Item><b>Marca:</b> {nuevoProducto?.marca}</ListGroup.Item>
+                                    :
+                                    ""
+                                }
                                 <ListGroup.Item><b>Calificacion</b><MostrarCalificacion calificacion={nuevaCalificacion?.calificacion} /></ListGroup.Item>
                             </ListGroup>
                         </div>

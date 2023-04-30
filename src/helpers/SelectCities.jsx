@@ -7,7 +7,7 @@ export const SelectCities = ({country, city, onInputChange}) => {
 
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
-
+    
     useEffect(() => {
 
         const table = "cities";

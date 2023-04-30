@@ -36,7 +36,9 @@ export const HelproApp = () => {
                 otroTipo: ''
             }
             localStorage.setItem('nuevoProducto', JSON.stringify( nuevoProductoStorage ) );
-            localStorage.setItem('tokenAnterior', JSON.stringify( tokenUser ) );
+            if( tokenUser ){
+                localStorage.setItem('tokenAnterior', JSON.stringify( tokenUser ) );
+            }
         }
     }, [tokenUser]);
     

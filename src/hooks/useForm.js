@@ -25,10 +25,18 @@ export const useForm = ( initialForm = {}, formValidations = {} ) => {
 
     const onInputChange = ({ target }) => {
         const { name, value } = target;
-        setFormState({
-            ...formState,
-            [ name ]: value
-        });
+        if( target.type === 'select-one' ){
+            setFormState({
+                ...formState,
+                [ name ]: value,
+                [ `nombre${name}` ]: target[target.selectedIndex].text
+            });
+        }else{
+            setFormState({
+                ...formState,
+                [ name ]: value
+            });
+        }
     }
 
     const onResetForm = () => {
