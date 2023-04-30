@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux"
+import { useDispatch } from "react-redux";
 import { startloadingMaster } from "../store/auth";
+import { Form } from "react-bootstrap";
 
-export const OptionCities = ({country}) => {
+export const SelectCities = ({country, city, onInputChange}) => {
 
     const [data, setData] = useState([]);
     const dispatch = useDispatch();
@@ -26,16 +27,21 @@ export const OptionCities = ({country}) => {
             .catch(console.error);
 
     }, [country])
-    
 
     return (
         <>
-            <option value="">Elige una ciudad</option>
-            {
-                data.map((colum) => (
-                    <option key={ colum.id_city } value={ colum.id_city }>{ colum.name_city }</option>
-                ))
-            }
+            <Form.Select
+                name="city"
+                value={city}
+                onChange={onInputChange}
+            >
+                <option value="">Elige una ciudad</option>
+                {
+                    data.map((colum) => (
+                        <option key={ colum.id_city } value={ colum.id_city }>{ colum.name_city }</option>
+                    ))
+                }
+            </Form.Select>
         </>
     )
 }

@@ -2,9 +2,8 @@ import { FloatingLabel, Form } from 'react-bootstrap';
 import { BotonSiguiente } from '../layout';
 import './FormularioNuevo1.css';
 import { useEffect, useState } from 'react';
-import { OptionCategories, OptionCities, OptionCountries, OptionTypes } from '../../helpers';
+import { SelectCategories, SelectCities, SelectCountries, SelectType } from '../../helpers';
 import { useDispatch } from 'react-redux';
-import { startloadingMaster } from '../../store/auth';
 
 export const FormularioNuevo1 = (
     {
@@ -26,11 +25,6 @@ export const FormularioNuevo1 = (
 
     const dispatch = useDispatch();
 
-    const [dataCategories, setDataCategories] = useState([]);
-    const [dataTypes, setDataTypes] = useState([]);
-    const [dataCountries, setDataCountries] = useState([]);
-    const [dataCities, setDataCities] = useState([]);
-
     const [desplegarMarca, setDesplegarMarca] = useState(false);
     const [desplegarUbicacion, setDesplegarUbicacion] = useState(false);
     const [desplegarOtroTipo, setDesplegarOtroTipo] = useState(false);
@@ -42,26 +36,6 @@ export const FormularioNuevo1 = (
     const [validacionPais, setValidacionPais] = useState(false);
     const [validacionCiudad, setValidacionCiudad] = useState(false);
     const [validacionOtroTipo, setValidacionOtroTipo] = useState(false);
-
-    const fetchDataCategories = async() => {
-        const results = await dispatch( startloadingMaster( "categories", "id_category,name_category", "state_category", "1", "name_category", "ASC" ) );
-        setDataCategories(results);
-    }
-
-    const fetchDataTypes = async() => {
-        const results = await dispatch( startloadingMaster( "types", "id_type,name_type", "state_type,id_category_type", `1*|*${categoria}`, "name_type", "ASC" ) );
-        setDataTypes(results);
-    }
-
-    const fetchDataCountries = async() => {
-        const results = await dispatch( startloadingMaster( "countries", "id_country,name_country", "state_country", "1", "name_country", "ASC" ) );
-        setDataCountries(results);
-    }
-
-    const fetchDataCities = async() => {
-        const results = await dispatch( startloadingMaster( "cities", "id_city,name_city", "state_city,id_country_city", `1*|*${country}`, "name_city", "ASC" ) );
-        setDataCities(results);
-    }
 
     const botonSiguiente = () => {
 
@@ -228,26 +202,6 @@ export const FormularioNuevo1 = (
         }
     }, [otroTipo]);
 
-    useEffect(() => {
-
-        fetchDataCategories()
-            // make sure to catch any error
-            .catch(console.error);
-
-        fetchDataTypes()
-            // make sure to catch any error
-            .catch(console.error);
-
-        fetchDataCountries()
-            // make sure to catch any error
-            .catch(console.error);
-
-        fetchDataCities()
-            // make sure to catch any error
-            .catch(console.error);
-
-    }, [])
-
     return (
         <div className="formulario-nuevo1-container">
             <div className="formulario-nuevo1-elements">
@@ -272,13 +226,7 @@ export const FormularioNuevo1 = (
                                 label="Categoría" 
                                 className={ validacionCategoria ? "mt-3 formulario-nuevo1-input-vacio" : "mt-3 formulario-nuevo1-input" }
                             >
-                                <Form.Select
-                                    name="categoria"
-                                    value={categoria}
-                                    onChange={onInputChange}
-                                >
-                                    <OptionCategories categoria={categoria} />
-                                </Form.Select>
+                                <SelectCategories categoria={categoria} onInputChange={onInputChange} />
                             </FloatingLabel>
                             {validacionCategoria ? <div className="formulario-nuevo1-validacion">El producto debe tener una categoria</div> : ""}
                             {
@@ -289,19 +237,7 @@ export const FormularioNuevo1 = (
                                         label="Ubicación" 
                                         className={ validacionPais ? "mt-3 formulario-nuevo1-input-vacio" : "mt-3 formulario-nuevo1-input" }
                                     >
-                                        <Form.Select
-                                            aria-label="Floating label select example"
-                                            name="country"
-                                            value={country}
-                                            onChange={onInputChange}
-                                        >
-                                            <option value="">Elige un pais</option>
-                                            {
-                                                dataCountries.map((colum) => (
-                                                    <option key={ colum.id_country } value={ colum.id_country }>{ colum.name_country }</option>
-                                                ))
-                                            }
-                                        </Form.Select>
+                                        <SelectCountries country={country} onInputChange={onInputChange} />
                                     </FloatingLabel>
                                     {validacionPais ? <div className="formulario-nuevo1-validacion">Debes elegir una ubicación</div> : ""}
 
@@ -309,19 +245,7 @@ export const FormularioNuevo1 = (
                                         label="Ciudad" 
                                         className={ validacionCiudad ? "mt-3 formulario-nuevo1-input-vacio" : "mt-3 formulario-nuevo1-input" }
                                     >
-                                        <Form.Select
-                                            aria-label="Floating label select example"
-                                            name="city"
-                                            value={city}
-                                            onChange={onInputChange}
-                                        >
-                                            <option value="">Elige una ciudad</option>
-                                            {
-                                                dataCities.map((colum) => (
-                                                    <option key={ colum.id_city } value={ colum.id_city }>{ colum.name_city }</option>
-                                                ))
-                                            }
-                                        </Form.Select>
+                                        <SelectCities country={country} city={city} onInputChange={onInputChange} />
                                     </FloatingLabel>
                                     {validacionCiudad ? <div className="formulario-nuevo1-validacion">Debes elegir una ciudad</div> : ""}
                                 </>
@@ -333,14 +257,7 @@ export const FormularioNuevo1 = (
                                 label="Tipo"
                                 className={ validacionTipo ? "mt-3 formulario-nuevo1-input-vacio" : "mt-3 formulario-nuevo1-input" }
                             >
-                                <Form.Select
-                                    aria-label="Floating label select example"
-                                    name="tipo"
-                                    value={tipo}
-                                    onChange={onInputChange}
-                                >
-                                    <OptionTypes categoria={categoria} />
-                                </Form.Select>
+                                <SelectType categoria={categoria} tipo={tipo} onInputChange={onInputChange} />
                             </FloatingLabel>
                             {validacionTipo ? <div className="formulario-nuevo1-validacion">El producto debe tener un tipo</div> : ""}
 
