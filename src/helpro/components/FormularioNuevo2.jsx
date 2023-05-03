@@ -11,8 +11,10 @@ export const FormularioNuevo2 = ({
     activarFormulario3, 
     clickBotonAtras, 
     completoFormulario2, 
-    totalImagenes, 
+    totalImagenes,
     setTotalImagenes, 
+    imagenesCargadas,
+    setImagenesCargadas,
     formState
 }) => {
 
@@ -20,7 +22,7 @@ export const FormularioNuevo2 = ({
 
     const { fotosNuevas } = useSelector( state => state.helpro );
     const fileInputRef = useRef();
-    const [imagenesCargadas, setImagenesCargadas] = useState([]);
+    // const [imagenesCargadas, setImagenesCargadas] = useState([]);
     const [validacionImagenes, setValidacionImagenes] = useState(false);
 
     const botonAtras = () => {

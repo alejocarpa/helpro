@@ -5,6 +5,7 @@ import './NuevoProducto.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks';
 import { agregandoNuevoComentario, agregandoNuevoProducto } from '../../store/helpro/helproSlice';
+import { startSavingNewProduct } from '../../store/helpro/thunks';
 
 const initialForm = JSON.parse( localStorage.getItem('nuevoProducto'));
 
@@ -12,8 +13,8 @@ export const NuevoProducto = () => {
 
     const dispatch = useDispatch();
 
-    const { fotosNuevas, nuevoComentario, nuevaCalificacion } = useSelector( state => state.helpro );
-    const { uid, displayName, displaySurname } = useSelector( state => state.auth );
+    const { nuevoProducto, fotosNuevas, nuevoComentario, nuevaCalificacion } = useSelector( state => state.helpro );
+    const { uid, displayName, displaySurname, token } = useSelector( state => state.auth );
 
     const claseEntradaDerecha = 'nuevo-producto-formulario animate__animated animate__backInRight';
     const claseSalidaIzquierda = 'nuevo-producto-formulario animate__animated animate__backOutLeft';
@@ -21,6 +22,7 @@ export const NuevoProducto = () => {
     const claseEntradaIzquierda = 'nuevo-producto-formulario animate__animated animate__backInLeft';
 
     const [totalImagenes, setTotalImagenes] = useState([]);
+    const [imagenesCargadas, setImagenesCargadas] = useState([]);
 
     const [formularioActivo1, setFormularioActivo1] = useState(true);
     const [formularioActivo2, setFormularioActivo2] = useState(false);
@@ -34,6 +36,12 @@ export const NuevoProducto = () => {
     const [completoFormulario4, setCompletoFormulario4] = useState(false);
 
     const { nombre, categoria, tipo, marca, comentario, country, city, otroTipo, onInputChange, formState, setFormState } = useForm( initialForm );
+
+    const publicarNuevoProducto = () => {
+        if( completoFormulario1 && completoFormulario2 && completoFormulario3 ){
+            dispatch( startSavingNewProduct({ nuevoProducto, nuevoComentario, nuevaCalificacion, totalImagenes, token }));
+        }
+    }
 
     useEffect(() => {
         dispatch( agregandoNuevoProducto({ ...formState }));
@@ -93,6 +101,8 @@ export const NuevoProducto = () => {
                                     completoFormulario2 = { setCompletoFormulario2 }
                                     totalImagenes = { totalImagenes }
                                     setTotalImagenes = { setTotalImagenes }
+                                    imagenesCargadas={ imagenesCargadas }
+                                    setImagenesCargadas={ setImagenesCargadas }
                                     formState={ formState }
                                 />
                             </div>
@@ -125,6 +135,7 @@ export const NuevoProducto = () => {
                                     fotosNuevas = { fotosNuevas }
                                     nuevoComentario = { nuevoComentario }
                                     nuevaCalificacion = { nuevaCalificacion }
+                                    publicarNuevoProducto={ publicarNuevoProducto }
                                 />
                             </div>
                         </div>

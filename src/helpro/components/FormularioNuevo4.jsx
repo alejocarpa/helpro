@@ -3,7 +3,13 @@ import './FormularioNuevo4.css';
 import { BotonAtras, BotonGuardar } from '../layout';
 import { useSelector } from 'react-redux';
 
-export const FormularioNuevo4 = ({ activarFormulario3, activarFormulario4, clickBotonAtras, fotosNuevas, nuevoComentario }) => {
+export const FormularioNuevo4 = ({ 
+    activarFormulario3, 
+    activarFormulario4, 
+    clickBotonAtras, 
+    fotosNuevas, 
+    nuevoComentario,
+    publicarNuevoProducto }) => {
 
     const { nuevoProducto, nuevaCalificacion } = useSelector(state => state.helpro);
 
@@ -13,10 +19,6 @@ export const FormularioNuevo4 = ({ activarFormulario3, activarFormulario4, click
         activarFormulario3(true);
         activarFormulario4(false);
         clickBotonAtras(true);
-    }
-
-    const botonSiguiente = () => {
-
     }
 
     return (
@@ -47,7 +49,7 @@ export const FormularioNuevo4 = ({ activarFormulario3, activarFormulario4, click
                         <div className="formulario-nuevo4-contenedor-boton-atras" onClick={ botonAtras }>
                             <BotonAtras />
                         </div>
-                        <div className="formulario-nuevo4-contenedor-boton-siguiente" onClick={ botonSiguiente }>
+                        <div className="formulario-nuevo4-contenedor-boton-siguiente" onClick={ publicarNuevoProducto }>
                             <BotonGuardar />
                         </div>
                     </div>

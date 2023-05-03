@@ -28,7 +28,8 @@ export const helproSlice = createSlice({
                 fecha: ''
             }
         ],
-        nuevaCalificacion
+        nuevaCalificacion,
+        mensajeRespuesta: null
     },
     reducers: {
         validarGuardandoProducto: ( state ) => {
@@ -100,6 +101,10 @@ export const helproSlice = createSlice({
             localStorage.removeItem('nuevoProducto');
             localStorage.removeItem('nuevaCalificacion');
         },
+        respuestaGuardandoProducto: ( state, action ) => {
+            state.guardandoNuevoProducto = false;
+            state.mensajeRespuesta = action.payload;
+        },
     }
 });
 
@@ -107,6 +112,7 @@ export const helproSlice = createSlice({
 // Action creators are generated for each case reducer function
 export const 
     { 
+        validarGuardandoProducto,
         clickingElement, 
         almacenarUrl, 
         agregandoFotosNuevas, 
@@ -114,5 +120,6 @@ export const
         agregandoNuevoProducto, 
         agregandoNuevoComentario,
         agregandoNuevaCalificacion,
-        limpiarNuevoProducto
+        limpiarNuevoProducto,
+        respuestaGuardandoProducto
     } = helproSlice.actions;
