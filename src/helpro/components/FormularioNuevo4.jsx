@@ -11,7 +11,7 @@ export const FormularioNuevo4 = ({
     nuevoComentario,
     publicarNuevoProducto }) => {
 
-    const { nuevoProducto, nuevaCalificacion } = useSelector(state => state.helpro);
+    const { nuevoProducto, nuevaCalificacion, guardandoNuevoProducto } = useSelector(state => state.helpro);
 
     const [ coment ] = nuevoComentario;
 
@@ -49,7 +49,7 @@ export const FormularioNuevo4 = ({
                         <div className="formulario-nuevo4-contenedor-boton-atras" onClick={ botonAtras }>
                             <BotonAtras />
                         </div>
-                        <div className="formulario-nuevo4-contenedor-boton-siguiente" onClick={ publicarNuevoProducto }>
+                        <div className="formulario-nuevo4-contenedor-boton-siguiente" onClick={ guardandoNuevoProducto ? ()=>{ } : publicarNuevoProducto }>
                             <BotonGuardar />
                         </div>
                     </div>

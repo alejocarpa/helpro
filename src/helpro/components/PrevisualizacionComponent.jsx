@@ -75,7 +75,11 @@ export const PrevisualizacionComponent = ({ nuevoProducto, fotosNuevas, nuevaCal
                                 {
                                     nuevoProducto?.categoria === '1'
                                     ?
-                                    <ListGroup.Item><b>Marca:</b> {nuevoProducto?.marca}</ListGroup.Item>
+                                        nuevoProducto?.marca === 'otra'
+                                        ?
+                                        <ListGroup.Item><b>Marca:</b> {nuevoProducto?.otraMarca}</ListGroup.Item>
+                                        :
+                                        <ListGroup.Item><b>Marca:</b> {nuevoProducto?.nombremarca}</ListGroup.Item>
                                     :
                                     ""
                                 }

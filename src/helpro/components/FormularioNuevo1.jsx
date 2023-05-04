@@ -2,7 +2,7 @@ import { FloatingLabel, Form } from 'react-bootstrap';
 import { BotonSiguiente } from '../layout';
 import './FormularioNuevo1.css';
 import { useEffect, useState } from 'react';
-import { SelectCategories, SelectCities, SelectCountries, SelectType } from '../../helpers';
+import { SelectCategories, SelectCities, SelectCountries, SelectMarks, SelectType } from '../../helpers';
 import { useDispatch } from 'react-redux';
 
 export const FormularioNuevo1 = (
@@ -18,6 +18,7 @@ export const FormularioNuevo1 = (
         country,
         city,
         otroTipo,
+        otraMarca,
         formState,
         setFormState,
         onInputChange
@@ -26,6 +27,7 @@ export const FormularioNuevo1 = (
     const [desplegarMarca, setDesplegarMarca] = useState(false);
     const [desplegarUbicacion, setDesplegarUbicacion] = useState(false);
     const [desplegarOtroTipo, setDesplegarOtroTipo] = useState(false);
+    const [desplegarOtraMarca, setDesplegarOtraMarca] = useState(false);
 
     const [validacionNombre, setValidacionNombre] = useState(false);
     const [validacionCategoria, setValidacionCategoria] = useState(false);
@@ -34,6 +36,7 @@ export const FormularioNuevo1 = (
     const [validacionPais, setValidacionPais] = useState(false);
     const [validacionCiudad, setValidacionCiudad] = useState(false);
     const [validacionOtroTipo, setValidacionOtroTipo] = useState(false);
+    const [validacionOtraMarca, setValidacionOtraMarca] = useState(false);
 
     const botonSiguiente = () => {
 
@@ -99,6 +102,16 @@ export const FormularioNuevo1 = (
             }
         }
 
+        if( desplegarOtraMarca ){
+            if (otraMarca === "") {
+                setValidacionOtraMarca(true);
+                completoFormulario1(false);
+                return;
+            } else {
+                setValidacionOtraMarca(false);
+            }
+        }
+
         activarFomulario1(false);
         activarFormulario2(true);
         clickBotonAtras(false);
@@ -119,11 +132,11 @@ export const FormularioNuevo1 = (
         }
 
         if(categoria !== '1'){
-            setFormState({ ...formState, marca: '' })
+            setFormState({ ...formState, marca: '', otraMarca: '' });
         }
 
         if(categoria !== '3'){
-            setFormState({ ...formState, country: '', city: '' })
+            setFormState({ ...formState, country: '', city: '' });
         }
 
     }, [categoria]);
@@ -164,12 +177,21 @@ export const FormularioNuevo1 = (
 
     useEffect(() => {
         if(categoria === '1'){
+
             if (marca !== '') {
                 setValidacionMarca(false);
                 completoFormulario1(true);
             }else{
                 completoFormulario1(false);
             }
+
+            if (marca === 'otra') {
+                setDesplegarOtraMarca(true);
+            }else{
+                setDesplegarOtraMarca(false);
+                setFormState( { ...formState, otraMarcaxxx: '' });
+            }
+
         }else{
             completoFormulario1(true);
         }
@@ -207,6 +229,19 @@ export const FormularioNuevo1 = (
             completoFormulario1(true);
         }
     }, [otroTipo]);
+
+    useEffect(() => {
+        if( marca === 'otra' ){
+            if (otraMarca !== '') {
+                setValidacionOtraMarca(false);
+                completoFormulario1(true);
+            }else{
+                completoFormulario1(false);
+            }
+        }else{
+            completoFormulario1(true);
+        }
+    }, [otraMarca]);
 
     return (
         <div className="formulario-nuevo1-container">
@@ -297,15 +332,31 @@ export const FormularioNuevo1 = (
                                             label="Marca"
                                             className={ validacionMarca ? "mt-3 formulario-nuevo1-input-vacio" : "mt-3 formulario-nuevo1-input" }
                                         >
+                                            <SelectMarks marca={marca} categoria={categoria} onInputChange={onInputChange} />
+                                        </FloatingLabel>
+                                        {validacionMarca ? <div className="formulario-nuevo1-validacion">El producto debe tener una Marca</div> : ""}
+                                    </>
+                                    :
+                                    ""
+                            }
+
+                            {
+                                desplegarOtraMarca
+                                    ?
+                                    <>
+                                        <FloatingLabel
+                                            label="¿cual?"
+                                            className={ validacionOtraMarca ? "mt-3 formulario-nuevo1-input-vacio" : "mt-3 formulario-nuevo1-input" }
+                                        >
                                             <Form.Control
                                                 type="text"
                                                 size="lg"
-                                                name="marca"
-                                                value={marca}
+                                                name="otraMarca"
+                                                value={ otraMarca }
                                                 onChange={onInputChange}
                                             />
                                         </FloatingLabel>
-                                        {validacionMarca ? <div className="formulario-nuevo1-validacion">El producto debe tener una Marca</div> : ""}
+                                        {validacionOtraMarca ? <div className="formulario-nuevo1-validacion">El producto debe tener una marca</div> : ""}
                                     </>
                                     :
                                     ""

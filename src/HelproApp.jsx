@@ -33,7 +33,8 @@ export const HelproApp = () => {
                 comentario: '',
                 country: '',
                 city: '',
-                otroTipo: ''
+                otroTipo: '',
+                otraMarca: ''
             }
             localStorage.setItem('nuevoProducto', JSON.stringify( nuevoProductoStorage ) );
             if( tokenUser ){

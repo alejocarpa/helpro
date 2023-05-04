@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const nuevaCalificacion = JSON.parse( localStorage.getItem('nuevaCalificacion') );
+const nuevoProducto = JSON.parse( localStorage.getItem('nuevoProducto') );
 
 export const helproSlice = createSlice({
     name: 'helpro',
@@ -9,16 +10,7 @@ export const helproSlice = createSlice({
         elementClicked: '',
         urlArray: [],
         fotosNuevas: [ { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' } ],
-        nuevoProducto: {
-            nombre: '',
-            categoria: null, 
-            tipo: null, 
-            marca: '', 
-            comentario: '',
-            otroTipo: null,
-            country: null,
-            city: null
-        },
+        nuevoProducto,
         nuevoComentario: [
             {
                 idUser: '',
@@ -29,7 +21,8 @@ export const helproSlice = createSlice({
             }
         ],
         nuevaCalificacion,
-        mensajeRespuesta: null
+        mensajeRespuesta: null,
+        estadoRespuesta: null
     },
     reducers: {
         validarGuardandoProducto: ( state ) => {
@@ -86,7 +79,11 @@ export const helproSlice = createSlice({
                 categoria: '', 
                 tipo: '', 
                 marca: '', 
-                comentario: ''
+                comentario: '',
+                country: '',
+                city: '',
+                otroTipo: '',
+                otraMarca: ''
             }
             state.nuevoComentario = [
                 {
@@ -98,12 +95,11 @@ export const helproSlice = createSlice({
                 }
             ],
             state.nuevaCalificacion = { calificacion: null };
-            localStorage.removeItem('nuevoProducto');
-            localStorage.removeItem('nuevaCalificacion');
         },
         respuestaGuardandoProducto: ( state, action ) => {
             state.guardandoNuevoProducto = false;
-            state.mensajeRespuesta = action.payload;
+            state.mensajeRespuesta = action.payload.mensajeRespuesta;
+            state.estadoRespuesta = action.payload.estadoRespuesta;
         },
     }
 });

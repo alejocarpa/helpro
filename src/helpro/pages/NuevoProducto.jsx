@@ -6,12 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from '../../hooks';
 import { agregandoNuevoComentario, agregandoNuevoProducto } from '../../store/helpro/helproSlice';
 import { startSavingNewProduct } from '../../store/helpro/thunks';
-
-const initialForm = JSON.parse( localStorage.getItem('nuevoProducto'));
+import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 export const NuevoProducto = () => {
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const { nuevoProducto, fotosNuevas, nuevoComentario, nuevaCalificacion } = useSelector( state => state.helpro );
     const { uid, displayName, displaySurname, token } = useSelector( state => state.auth );
@@ -35,18 +36,36 @@ export const NuevoProducto = () => {
     const [completoFormulario3, setCompletoFormulario3] = useState(false);
     const [completoFormulario4, setCompletoFormulario4] = useState(false);
 
-    const { nombre, categoria, tipo, marca, comentario, country, city, otroTipo, onInputChange, formState, setFormState } = useForm( initialForm );
+    const { nombre, categoria, tipo, marca, comentario, country, city, otroTipo, otraMarca, onInputChange, formState, setFormState } = useForm( nuevoProducto );
 
-    const publicarNuevoProducto = () => {
+    const publicarNuevoProducto = async() => {
         if( completoFormulario1 && completoFormulario2 && completoFormulario3 ){
-            dispatch( startSavingNewProduct({ nuevoProducto, nuevoComentario, nuevaCalificacion, totalImagenes, token }));
+            const { mensajeRespuesta, estadoRespuesta } = await dispatch( startSavingNewProduct({ nuevoProducto, nuevoComentario, nuevaCalificacion, totalImagenes, token }));
+            
+            if( estadoRespuesta ){
+                Swal.fire({
+                    icon: 'success',
+                    title: mensajeRespuesta,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+                navigate(`home`);
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: mensajeRespuesta,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
         }
     }
 
     useEffect(() => {
         dispatch( agregandoNuevoProducto({ ...formState }));
         dispatch( agregandoNuevoComentario({ ...formState, uid, displayName, displaySurname }) );
-    }, [formState]);
+    }, [nombre, categoria, tipo, marca, comentario, country, city, otroTipo, otraMarca]);
+    
 
     return (
         <>
@@ -83,6 +102,7 @@ export const NuevoProducto = () => {
                                     country={country}
                                     city={city}
                                     otroTipo={otroTipo}
+                                    otraMarca={otraMarca}
                                     formState={formState}
                                     setFormState={setFormState}
                                     onInputChange={onInputChange}
