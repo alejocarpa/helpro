@@ -129,6 +129,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
     const formProducts = {
         name_product: nameNewProduct,
+        image_product: '/'+totalImagenes[0]?.name,
         id_category_product: nuevoProducto.categoria,
         id_type_product: idType,
         id_mark_product: idMark,
@@ -324,5 +325,21 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
         data: "Se creo el producto correctamente",
         errorMessage: "Se creo el producto correctamente"
     }
+
+}
+
+export const getItemsByCategorys = async ( category = '' ) => {
+
+    const url = `${urlEndpoint}/products?select=*&linkTo=id_category_product&equalTo=${category}&startAt=0&endAt=5&orderBy=score_product&orderMode=DESC`;
+
+    try{
+        const { data } = await axios.get(url, { 
+            headers: {"Authorization": `${ apikeyEndpoint }`} 
+        });
+        return data.results;
+    }catch(error){
+        return [];
+    }
+    
 
 }

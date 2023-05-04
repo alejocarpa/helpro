@@ -16,7 +16,7 @@ export const ProductoCategoria = ({ dataItems = [], tituloCategoria = '' }) => {
                                 dataItems.map((item, id) => (
                                     <div 
                                         className="producto-categoria-detalle-card" 
-                                        key={item.id}
+                                        key={item.id_product}
                                         style={{ marginLeft:  id === 0 ? "0%" : "4%"  }}
                                     >
                                         <CardProducto item={item} />
