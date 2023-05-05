@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import './ItemBusqueda.css';
+import { urlEndpointImages } from '../../helpers';
 
 export const ItemBusqueda = ({ data }) => {
 
@@ -13,26 +14,27 @@ export const ItemBusqueda = ({ data }) => {
         <div className="item-container">
             {
                 data
-                    ? data.map((item, id) => (
-                        <div 
+                    ? data.map((item, id) => {
+                        const urlImage = `${urlEndpointImages}/${item.id_product}/${item.image_product}`
+                        return <div 
                             className="item-elements animate__animated animate__zoomIn" 
-                            key={item.id} 
+                            key={item.id_product} 
                             id={`item${id}`} 
-                            aria_label={ item.nombre }
-                            onClick={ () => openSearchItem( item.nombre ) }
+                            aria_label={ item.name_product }
+                            onClick={ () => openSearchItem( item.name_product ) }
                         >
                             <div className="item-imagen">
                                 <img
-                                    src={item.ImagenURL}
+                                    src={urlImage}
                                     width="40px"
                                     height="40px"
                                     alt="MDN"
                                 />
                             </div>
-                            <div className="item-nombre">{item.nombre}</div>
-                            <div className="item-tipo">{item.tipo}</div>
+                            <div className="item-nombre">{item.name_product}</div>
+                            <div className="item-tipo">{item.name_type}</div>
                         </div>
-                    ))
+                    })
                     : ""
             }
         </div>

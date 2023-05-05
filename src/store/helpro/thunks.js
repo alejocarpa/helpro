@@ -340,6 +340,24 @@ export const getItemsByCategorys = async ( category = '' ) => {
     }catch(error){
         return [];
     }
-    
+
+}
+
+export const getItemsByName = async ( name = '' ) => {
+
+    const url = `${urlEndpoint}/relations?select=id_product,name_product,image_product,name_type&linkTo=name_product&equalTo=${name}&startAt=0&endAt=10&searchByName=true&rel=products,types&type=product,type`;
+
+    try{
+        const { data } = await axios.get(url, { 
+            headers: {"Authorization": `${ apikeyEndpoint }`} 
+        });
+        if(data.status === 200){
+            return data.results;
+        }else{
+            return [];
+        }
+    }catch(error){
+        return [];
+    }
 
 }

@@ -5,7 +5,7 @@ import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import './BarraBusqueda.css';
 import { ItemBusqueda } from "./";
-import { getItemsByName } from "../../helpers";
+import { getItemsByName } from "../../store/helpro/thunks";
 
 export const BarraBusqueda = () => {
 
@@ -26,8 +26,9 @@ export const BarraBusqueda = () => {
     }
 
     const handleKeyDown = (event) => {
-
+        
         if (event.key === "ArrowDown") {
+
             if (idItem < countData) {
                 const item = document.getElementById(`item${idItem}`);
 
@@ -71,13 +72,12 @@ export const BarraBusqueda = () => {
         setNombreItem(value);
     }
 
-    useEffect(() => {
-
+    const obtenerData = async() => {
         if (nombreItem !== "") {
 
             if (tecla !== "ArrowDown" && tecla !== "ArrowUp") {
                 
-                const data = getItemsByName( nombreItem );
+                const data = await getItemsByName( nombreItem );
 
                 setCardItem(<ItemBusqueda data={ data } />);
                 setCountData(data.length);
@@ -89,6 +89,11 @@ export const BarraBusqueda = () => {
             setCardItem(<ItemBusqueda data={[]} />);
 
         }
+    }
+
+    useEffect(() => {
+
+        obtenerData();
 
     }, [nombreItem]);
 
