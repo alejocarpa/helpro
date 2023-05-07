@@ -7,11 +7,11 @@ import './index.css';
 import { store } from './store';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Provider store={ store }>
-      <BrowserRouter>
-        <HelproApp />
-      </BrowserRouter>
-    </Provider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <Provider store={ store }>
+    <BrowserRouter>
+      <HelproApp />
+    </BrowserRouter>
+  </Provider>
+  // </React.StrictMode>,
 )

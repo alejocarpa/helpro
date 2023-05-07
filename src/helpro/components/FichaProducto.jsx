@@ -1,13 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import './FichaProducto.css';
 import { MostrarCalificacion } from "./MostrarCalificacion";
+import { urlEndpointImages } from '../../helpers';
 
 export const FichaProducto = ({ item }) => {
 
     const navigate = useNavigate();
 
     const openItem = () => {
-        navigate( `/item/${ item.id }` );
+        navigate( `/item/${ item.id_product }` );
     }
 
     return (
@@ -17,22 +18,22 @@ export const FichaProducto = ({ item }) => {
                     <div className="ficha-producto-imagen">
                         <img
                             className="ficha-producto-imagen-img"
-                            src={item.ImagenURL}
-                            alt={item.nombre}
+                            src={`${urlEndpointImages}/${item.id_product}/${item.image_product}`}
+                            alt={item.name_product}
                         />
                     </div>
                     <div className="ficha-producto-detalle">
                         <div className="ficha-producto-detalle-nombre">
-                            {item.nombre}
+                            {item.name_product}
                         </div>
                         <div className="ficha-producto-detalle-categoria">
-                            {item.categoria}
+                            {item.name_category}
                         </div>
                         <div className="ficha-producto-detalle-tipo">
-                            Tipo: {item.tipo}
+                            Tipo: {item.name_type}
                         </div>
                         <div className="ficha-producto-detalle-calificacion">
-                            <MostrarCalificacion calificacion={ item.calificacion } />
+                            <MostrarCalificacion calificacion={ parseFloat(item.score_product) } />
                         </div>
                     </div>
                 </div>

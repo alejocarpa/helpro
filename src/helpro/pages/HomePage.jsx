@@ -3,6 +3,7 @@ import { HelproLayout } from "../layout/HelproLayout";
 import './HomePage.css';
 import { getItemsByCategorys } from "../../store/helpro/thunks";
 import { useEffect, useState } from "react";
+import { Placeholder } from "react-bootstrap";
 
 export const HomePage = () => {
 
@@ -12,15 +13,20 @@ export const HomePage = () => {
     const [dataLocalesComerciales, setDataLocalesComerciales] = useState([]);
 
     const obtenerData = async() => {
-        setDataProductos( await getItemsByCategorys( 1 ) );
-        setDataAplicaciones( await getItemsByCategorys( 4 ) );
-        setDataServicios( await getItemsByCategorys( 2 ) );
-        setDataLocalesComerciales( await getItemsByCategorys( 3 ) );
+        /*--------------------------------------------------------
+        Se hace la peticion getItemsByCategorys pasando tres argumentos
+        el primero es el id de la categoria, el segundo es limit de arranque
+        y el tercero es offset del limite 
+        --------------------------------------------------------*/
+        setDataProductos( await getItemsByCategorys( 1, 0, 5 ) );
+        setDataAplicaciones( await getItemsByCategorys( 4, 0, 5 ) );
+        setDataServicios( await getItemsByCategorys( 2, 0, 5 ) );
+        setDataLocalesComerciales( await getItemsByCategorys( 3, 0, 5 ) );
     }
     
     useEffect(() => {
         obtenerData();
-    }, [])
+    }, []);
     
     return (
         <>

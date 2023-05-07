@@ -1,29 +1,36 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import { getComentsById, getFotosById, getItemById } from "../../helpers";
+import { getItemById, getFotosById, getComentsById } from "../../store/helpro/thunks";
 import { DetalleItem } from "../components";
 import { HelproLayout } from "../layout/HelproLayout";
 import './ItemPage.css';
 
 export const ItemPage = () => {
 
-    // const { pathname } = useLocation();
-    // useRoute( pathname );
-
     window.scroll(0, 0);
+
+    const [dataItem, setDataItem] = useState([]);
+    const [fotos, setFotos] = useState([]);
+    const [comments, setComments] = useState([]);
 
     const { idItem } = useParams();
 
-    const dataItem = getItemById( idItem );
+    const obtenerData = async() => {
+        setDataItem( await getItemById( idItem ) );
+        setFotos( await getFotosById( idItem ) );
+        setComments( await getComentsById( idItem ) );
+    }
 
-    const coments = getComentsById();
-
-    const fotos = getFotosById();
+    useEffect(() => {
+        obtenerData();
+    }, [])
+    
  
     return (
         <HelproLayout>
             <div className="item-page-container">
                 <div className="item-page-elements">
-                    <DetalleItem item={ dataItem } fotos={ fotos } coments={ coments } />
+                    <DetalleItem item={ dataItem } fotos={ fotos } coments={ comments } />
                 </div>
             </div>
         </HelproLayout>

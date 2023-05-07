@@ -62,7 +62,7 @@ export const NuevoProducto = () => {
     }
 
     useEffect(() => {
-        dispatch( agregandoNuevoProducto({ ...formState }));
+        dispatch( agregandoNuevoProducto({ nombre, categoria, tipo, marca, comentario, country, city, otroTipo, otraMarca, ...formState }));
         dispatch( agregandoNuevoComentario({ ...formState, uid, displayName, displaySurname }) );
     }, [nombre, categoria, tipo, marca, comentario, country, city, otroTipo, otraMarca]);
     

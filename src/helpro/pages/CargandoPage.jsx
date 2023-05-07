@@ -1,13 +1,14 @@
 import { HelproLayout } from '../layout/HelproLayout';
 import './CargandoPage.css';
 import Spinner from 'react-bootstrap/Spinner';
-import { getItemsByName } from '../../helpers';
+import { getItemsByName } from "../../store/helpro/thunks";
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export const CargandoPage = () => {
 
+    const [data, setData] = useState([]);
     const { urlArray } = useSelector(state => state.helpro);
     const navigate = useNavigate();
 
@@ -18,15 +19,23 @@ export const CargandoPage = () => {
     };
 
     const { nombreItem } = useParams();
-    const data = getItemsByName( nombreItem );
+
+    const obtenerData = async() => {
+        setData( await getItemsByName( nombreItem, 0, 50 ) );
+    }
 
     useEffect(() => {
+
+        obtenerData();
+
         if( data.length === 1 ){
-            data.map( item => navigate(`/item/${ item.id }`) )
+            data.map( item => navigate(`/item/${ item.id_product }`) )
         }else if( data.length > 1 ){
             navigate(`/search/${ nombreItem }`)
         }
+        
     }, [data]);
+
 
     return (
         <HelproLayout>

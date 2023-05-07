@@ -1,15 +1,24 @@
 import { useParams } from "react-router-dom";
 import { FichaProducto } from "../components";
 import { HelproLayout } from "../layout/HelproLayout";
-import { getItemsByName } from "../../helpers";
+import { getItemsByName } from "../../store/helpro/thunks";
 import './SearchPage.css';
+import { useEffect, useState } from "react";
 
 
 export const SearchPage = () => {
 
     const { nombreItem } = useParams();
+    const [data, setData] = useState([]);
 
-    const data = getItemsByName( nombreItem );
+    const obtenerData = async() => {
+        setData( await getItemsByName( nombreItem, 0, 50 ) );
+    }
+
+    useEffect(() => {
+        obtenerData();
+    }, [nombreItem])
+    
     
     return (
         <>
@@ -17,7 +26,7 @@ export const SearchPage = () => {
                 <div className="search-container">
                     {
                         data.map((item) => (
-                            <div key={ item.id } className="search-ficha-producto">
+                            <div key={ item.id_product } className="search-ficha-producto">
                                 <FichaProducto item={ item } />
                             </div>
                         ))

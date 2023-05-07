@@ -77,7 +77,12 @@ export const BarraBusqueda = () => {
 
             if (tecla !== "ArrowDown" && tecla !== "ArrowUp") {
                 
-                const data = await getItemsByName( nombreItem );
+                /*--------------------------------------------------------
+                Se hace la peticion getItemsByName pasando tres argumentos
+                el primero es el nombre del articulo, el segundo es limit de arranque
+                y el tercero es offset del limite 
+                --------------------------------------------------------*/
+                const data = await getItemsByName( nombreItem, 0, 10 );
 
                 setCardItem(<ItemBusqueda data={ data } />);
                 setCountData(data.length);

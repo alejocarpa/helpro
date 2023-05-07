@@ -4,12 +4,18 @@ import './DetalleItem.css';
 import { MostrarCalificacion } from './MostrarCalificacion';
 import { BarraProgreso } from './BarraProgreso';
 import { BsStarFill } from "react-icons/bs";
+import { urlEndpointImages } from '../../helpers';
+import { BotonGuardar, BotonLogin } from '../layout';
+import { useSelector } from 'react-redux';
 
 export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
 
     const [item1] = item;
-    const [imagenAmpliada, setImagenAmpliada] = useState(item1.ImagenURL);
-    const [filtroComentario, setFiltroComentario] = useState(coments);
+    const [foto1] = fotos;
+    const urlImageAmpliada = `${urlEndpointImages}/${foto1?.link_image}`;
+    const [imagenAmpliada, setImagenAmpliada] = useState(urlImageAmpliada);
+    const [filtroComentario, setFiltroComentario] = useState([]);
+    const { status } = useSelector( state => state.auth );
 
     const mostrarTodosComentarios = () => {
         setFiltroComentario(coments);
@@ -17,7 +23,7 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
 
     const filtrarComentarios = ( estrellas ) => {
         const newFilter = coments.filter( item => 
-            item.calificacion === estrellas
+            item.score_comment === estrellas
         )
         setFiltroComentario( newFilter );
     }
@@ -28,7 +34,7 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
 
     const calcularPorcentajeComentarios = ( estrellas ) => {
         const newFilter = coments.filter( item => 
-            item.calificacion === estrellas
+            item.score_comment === estrellas
         )
         
         const calculo = ( newFilter.length * 100 ) / coments.length;
@@ -38,11 +44,21 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
 
     let ubicacionComent = true;
 
-    useEffect(() => {
-        setImagenAmpliada(item1.ImagenURL);
-    }, [item1.ImagenURL])
-    
+    const textarea = document.querySelector("textarea");
+    const resizeTextarea = (e) => {
+        textarea.style.height = "70px";
+        let scHeight = e.target.scrollHeight;
+        textarea.style.height = `${scHeight}px`;
+    }
 
+    useEffect(() => {
+        setImagenAmpliada(urlImageAmpliada);
+    }, [urlImageAmpliada]);
+
+    useEffect(() => {
+        setFiltroComentario(coments);
+    }, [coments]);
+    
     return (
         <>
             <div className="detalle-item-container">
@@ -53,49 +69,55 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
                                 <img
                                     className="detalle-item-imagen-img-ampliada"
                                     src={imagenAmpliada}
-                                    alt={item1.nombre}
+                                    alt={item1?.name_product}
                                 />
                             </div>
                             <div className="detalle-item-imagen-diminuta">
-                                <div
-                                    className="detalle-item-diminuta-img"
-                                    onClick={() => cambiarImagen(item1.ImagenURL)}
-                                >
-                                    <img
-                                        className="detalle-item-imagen-img-diminuta"
-                                        src={item1.ImagenURL}
-                                        alt={item1.nombre}
-                                    />
-                                </div>
                                 {
-                                    fotos.map((foto, id) => (
-                                        <div
+                                    fotos.map((foto, id) => {
+                                        const fotoURL = `${urlEndpointImages}/${foto.link_image}`;
+                                        return <div
                                             key={id}
                                             className="detalle-item-diminuta-img"
                                             style={{ marginLeft: '15px' }}
-                                            onClick={() => cambiarImagen(foto.fotoURL)}
+                                            onClick={() => cambiarImagen(fotoURL)}
                                         >
                                             <img
                                                 className="detalle-item-imagen-img-diminuta"
-                                                src={foto.fotoURL}
-                                                alt={foto.fotoURL}
+                                                src={fotoURL}
+                                                alt={foto.id_image}
                                             />
                                         </div>
-                                    ))
+                                    })
                                 }
                             </div>
                         </div>
                         <div className="detalle-item-detalle">
                             <div className="detalle-item-titulo-nombre">
-                                {item1.nombre}
+                                {item1?.name_product}
                             </div>
                             <div className="detalle-item-tabla">
                                 <ListGroup variant="flush">
-                                    <ListGroup.Item><b>Categoria:</b> {item1.categoria}</ListGroup.Item>
-                                    <ListGroup.Item><b>Tipo:</b> {item1.tipo}</ListGroup.Item>
-                                    <ListGroup.Item><b>Marca:</b> {item1.marca}</ListGroup.Item>
-                                    <ListGroup.Item><b>Ubicacion:</b> {item1.ubicacion}</ListGroup.Item>
-                                    <ListGroup.Item><b>Calificacion</b><MostrarCalificacion calificacion={item1.calificacion} /></ListGroup.Item>
+                                    <ListGroup.Item><b>Categoria:</b> {item1?.name_category}</ListGroup.Item>
+                                    {
+                                        item1?.id_category_product === 3
+                                        ?
+                                        <>
+                                            <ListGroup.Item><b>Ubicación:</b> {item1?.name_country}</ListGroup.Item>
+                                            <ListGroup.Item><b>Ciudad:</b> {item1?.name_city}</ListGroup.Item>
+                                        </>
+                                        :
+                                        ""
+                                    }
+                                    <ListGroup.Item><b>Tipo:</b> {item1?.name_type}</ListGroup.Item>
+                                    {
+                                        item1?.id_category_product === 1
+                                        ?
+                                        <ListGroup.Item><b>Marca:</b> {item1?.name_mark}</ListGroup.Item>
+                                        :
+                                        ""
+                                    }
+                                    <ListGroup.Item><b>Calificacion</b><MostrarCalificacion calificacion={parseFloat(item1?.score_product)} /></ListGroup.Item>
                                 </ListGroup>
                             </div>
                         </div>
@@ -105,14 +127,14 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
                         <div className="detalle-item-calificacion-total-bloque">
                             <div className="detalle-item-calificacion-encabezado" onClick={ mostrarTodosComentarios }>
                                 <div className="detalle-item-calificacion-num">
-                                    { item1.calificacion }
+                                    { item1?.score_product }
                                 </div>
                                 <div className="detalle-item-calificacion-stars-bloque">
                                     <div className="detalle-item-calificacion-total">
                                         { coments.length } calificaciones en total
                                     </div>
                                     <div className="detalle-item-calificacion-stars">
-                                        <MostrarCalificacion calificacion={item1.calificacion} />
+                                        <MostrarCalificacion calificacion={ parseFloat(item1?.score_product) } />
                                     </div>
                                 </div>
                             </div>
@@ -163,6 +185,33 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
                             </div>
                         </div>
                     </div>
+                    <div className="detalle-item-bloque-textarea">
+                        <div className="detalle-item-space-textarea">
+                            <textarea 
+                                onChange={ resizeTextarea } 
+                                className="detalle-item-textarea"
+                                placeholder={
+                                    status === 'authenticated'
+                                    ?
+                                    "Deja tu comentario..."
+                                    :
+                                    "Debes iniciar sesión para dejar un comentario...."
+                                }
+                                readOnly={
+                                    status === 'authenticated'
+                                    ?
+                                    false
+                                    :
+                                    true
+                                }
+                            ></textarea>
+                        </div>
+                        <div className="detalle-item-space-boton">
+                            <div className="detalle-item-boton">
+                                { status === 'authenticated' ? <BotonGuardar /> : <BotonLogin /> }
+                            </div>
+                        </div>
+                    </div>
                     <div className="detalle-item-coments">
                         <div className="detalle-item-coments-titulo">
                             Comentarios
@@ -171,26 +220,30 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
                             filtroComentario.map((coment, id) => {
                                 ubicacionComent = !ubicacionComent;
 
+                                const event = new Date(coment.date_created_comment);
+                                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                                const dateFormat = event.toLocaleDateString('es-CO', options);
+
                                 return <div className={ ubicacionComent ? "detalle-item-comentario-right" : "detalle-item-comentario-left" } key={ id }>
                                     <div className="detalle-item-comentario-user">
                                         <div className="detalle-item-user-circulo">
-                                            { coment.nombreUsuario[0] }
+                                            { coment.name_user[0] }
                                         </div>
                                     </div>
                                     <div className="detalle-item-comentario-bloque">
                                         <div className={ ubicacionComent ? "detalle-item-comentario-text-right" : "detalle-item-comentario-text-left" }>
                                             <div className="detalle-item-comentario-nombre-user">
-                                                { coment.nombreUsuario }
+                                                { coment.name_user }
                                             </div>
                                             <div className="detalle-item-comentario-text-user">
-                                                { coment.comentario }
+                                                { coment.text_comment }
                                             </div>
                                             <div className="detalle-item-comentario-calificacion-user">
-                                                <MostrarCalificacion calificacion={coment.calificacion} />
+                                                <MostrarCalificacion calificacion={ parseFloat(coment.score_comment) } />
                                             </div>
                                         </div>
                                         <div className="detalle-item-comentario-fecha">
-                                            { coment.fecha }
+                                            { dateFormat }
                                         </div>
                                     </div>
                                 </div>

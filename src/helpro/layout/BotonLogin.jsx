@@ -17,7 +17,7 @@ export const BotonLogin = () => {
                     <FiLogIn />
                 </div>
                 <div className="boton-login-texto">
-                    Inisiar sesion
+                    Iniciar sesión
                 </div>
             </div>
         </div>

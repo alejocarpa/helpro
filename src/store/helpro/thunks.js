@@ -328,29 +328,92 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
 }
 
-export const getItemsByCategorys = async ( category = '' ) => {
+export const getItemsByCategorys = async ( category = '', startAt = 0, endAt = 5 ) => {
 
-    const url = `${urlEndpoint}/products?select=*&linkTo=id_category_product&equalTo=${category}&startAt=0&endAt=5&orderBy=score_product&orderMode=DESC`;
+    const url = `${urlEndpoint}/products?select=*&linkTo=id_category_product&equalTo=${category}&startAt=${startAt}&endAt=${endAt}&orderBy=score_product&orderMode=DESC`;
+
+    try{
+
+        const { data } = await axios.get(url, { 
+            headers: {"Authorization": `${ apikeyEndpoint }`} 
+        });
+
+        return data.results;
+    }catch(error){
+        
+        return [];
+    }
+
+}
+
+export const getItemsByName = async ( name = '', startAt = 0, endAt = 10 ) => {
+
+    const url = `${urlEndpoint}/relations?select=id_product,name_product,image_product,name_type,score_product,name_category&linkTo=name_product&equalTo=${name}&startAt=${startAt}&endAt=${endAt}&searchByName=true&rel=products,types,categories&type=product,type,category`;
 
     try{
         const { data } = await axios.get(url, { 
             headers: {"Authorization": `${ apikeyEndpoint }`} 
         });
-        return data.results;
+        if(data.status === 200){
+            return data.results;
+        }else{
+            return [];
+        }
     }catch(error){
         return [];
     }
 
 }
 
-export const getItemsByName = async ( name = '' ) => {
+export const getItemById = async ( id = '' ) => {
 
-    const url = `${urlEndpoint}/relations?select=id_product,name_product,image_product,name_type&linkTo=name_product&equalTo=${name}&startAt=0&endAt=10&searchByName=true&rel=products,types&type=product,type`;
+    const url = `${urlEndpoint}/relations?select=id_product,name_product,image_product,name_type,score_product,id_category_product,name_category,id_mark_product,name_mark,id_country_product,name_country,id_city_product,name_city&linkTo=id_product&equalTo=${id}&rel=products,types,categories,marks,countries,cities&type=product,type,category,mark,country,city`;
 
     try{
         const { data } = await axios.get(url, { 
             headers: {"Authorization": `${ apikeyEndpoint }`} 
         });
+
+        if(data.status === 200){
+            return data.results;
+        }else{
+            return [];
+        }
+    }catch(error){
+        return [];
+    }
+
+}
+
+export const getFotosById = async ( id = '' ) => {
+
+    const url = `${urlEndpoint}/images?select=id_image,link_image&linkTo=id_product_image&equalTo=${id}&orderBy=id_image&orderMode=ASC`;
+
+    try{
+        const { data } = await axios.get(url, { 
+            headers: {"Authorization": `${ apikeyEndpoint }`} 
+        });
+
+        if(data.status === 200){
+            return data.results;
+        }else{
+            return [];
+        }
+    }catch(error){
+        return [];
+    }
+
+}
+
+export const getComentsById = async ( id = '' ) => {
+
+    const url = `${urlEndpoint}/relations?select=score_comment,text_comment,date_updated_comment,date_created_comment,name_user,surname_user&linkTo=id_product_comment&equalTo=${id}&orderBy=date_updated_comment&orderMode=DESC&rel=comments,users&type=comment,user`;
+
+    try{
+        const { data } = await axios.get(url, { 
+            headers: {"Authorization": `${ apikeyEndpoint }`} 
+        });
+
         if(data.status === 200){
             return data.results;
         }else{
