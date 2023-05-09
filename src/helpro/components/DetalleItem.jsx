@@ -281,8 +281,13 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [], stateNewComme
                         {
                             filtroComentario.map((coment, id) => {
                                 ubicacionComent = !ubicacionComent;
-
-                                const event = new Date(coment.date_created_comment);
+                                
+                                const arrayDate = coment.date_created_comment.split('-');
+                                const year = arrayDate[0];
+                                const month = arrayDate[1];
+                                const day = arrayDate[2];
+                                
+                                const event = new Date(year, month-1, day);
                                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                                 const dateFormat = event.toLocaleDateString('es-CO', options);
 

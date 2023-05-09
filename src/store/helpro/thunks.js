@@ -377,6 +377,21 @@ export const savingNewComment = async ({ id_product, uid, nuevoComentario, nueva
             }
         }
 
+        const idComment = data?.results?.lastId;
+
+        const { ok:estadoRespuesta, errorMessage:mensajeRespuesta } = await updatingProduct({ id_product, token });
+
+        if(!estadoRespuesta){
+            const urlCommentsDelete = `${urlEndpoint}/types?token=${token}&id=${idComment}&nameId=id_comment`;
+            await axios.delete(urlCommentsDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
+
+            return {
+                ok: false,
+                data: [],
+                errorMessage: mensajeRespuesta
+            }
+        }
+
         return {
             ok: true,
             data: "Se guardo el comentario",
@@ -397,7 +412,43 @@ export const savingNewComment = async ({ id_product, uid, nuevoComentario, nueva
 
 }
 
+export const updatingProduct = async({ id_product, token }) => {
 
+    const urlProducts = `${urlEndpoint}/products?token=${token}&table=users&suffix=user&updateProduct=true`;
+
+    const formProducts = {
+        id_product: id_product
+    }
+
+    try{
+
+        const { data } = await axios.put(urlProducts, formProducts, {
+            headers: { "Authorization": `${apikeyEndpoint}` }
+        });
+        
+        if (data?.status === 404 || data?.status === 400) {
+            return {
+                ok: false,
+                data: [],
+                errorMessage: data?.results
+            }
+        }
+
+        return {
+            ok: true,
+            data: "Se Actualizo el producto",
+            errorMessage: "Se Actualizo el producto"
+        }
+
+    }catch(error){
+        return {
+            ok: false,
+            data: [],
+            errorMessage: data?.results
+        }
+    }
+
+}
 
 export const getItemsByCategorys = async ( category = '', startAt = 0, endAt = 5 ) => {
 
