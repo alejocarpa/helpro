@@ -328,6 +328,77 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
 }
 
+export const startSavingNewComment = ({ id_product, uid, nuevoComentario, nuevaCalificacion, token }) => {
+    return async (dispatch) => {
+        dispatch(validarGuardandoProducto());
+
+        const { ok:estadoRespuesta, errorMessage:mensajeRespuesta } = await savingNewComment({ id_product, uid, nuevoComentario, nuevaCalificacion, token });
+
+        if (!estadoRespuesta){
+            dispatch(respuestaGuardandoProducto({ mensajeRespuesta, estadoRespuesta }));
+
+            return { mensajeRespuesta, estadoRespuesta };
+        }
+
+        dispatch(respuestaGuardandoProducto({ mensajeRespuesta, estadoRespuesta }));
+        dispatch(limpiarNuevoProducto());
+        return { mensajeRespuesta, estadoRespuesta };
+
+    }
+}
+
+export const savingNewComment = async ({ id_product, uid, nuevoComentario, nuevaCalificacion, token }) => {
+    
+    const [dataComment] = nuevoComentario;
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth() + 1;
+    const day = new Date().getDate();
+
+    const urlComments = `${urlEndpoint}/comments?token=${token}&table=users&suffix=user`;
+
+    const formComments = {
+        text_comment: dataComment?.comentario,
+        score_comment: nuevaCalificacion?.calificacion,
+        id_user_comment: uid,
+        id_product_comment: id_product,
+        date_created_comment: `${year}-${month}-${day}`
+    }
+
+    try {
+        const { data } = await axios.post(urlComments, formComments, {
+            headers: { "Authorization": `${apikeyEndpoint}` }
+        });
+        
+        if (data?.status === 404 || data?.status === 400) {
+            return {
+                ok: false,
+                data: [],
+                errorMessage: data?.results
+            }
+        }
+
+        return {
+            ok: true,
+            data: "Se guardo el comentario",
+            errorMessage: "Se guardo el comentario"
+        }
+
+    } catch (error) {
+        const errorResponse = error.message;
+
+        if (errorResponse) {
+            return {
+                ok: false,
+                data: [],
+                errorMessage: errorResponse
+            }
+        }
+    }
+
+}
+
+
+
 export const getItemsByCategorys = async ( category = '', startAt = 0, endAt = 5 ) => {
 
     const url = `${urlEndpoint}/products?select=*&linkTo=id_category_product&equalTo=${category}&startAt=${startAt}&endAt=${endAt}&orderBy=score_product&orderMode=DESC`;

@@ -86,38 +86,41 @@ export const CalificacionComponent = ({ nuevaCalificacion, formState }) => {
             setCalificoCuatroEstrella(false);
             setCalificoCincoEstrella(false);
             setPresionoClick(true);
-        }
-        if( nuevaCalificacion?.calificacion === 2 ){
+        }else if( nuevaCalificacion?.calificacion === 2 ){
             setCalificoUnaEstrella(true);
             setCalificoDosEstrella(true);
             setCalificoTresEstrella(false);
             setCalificoCuatroEstrella(false);
             setCalificoCincoEstrella(false);
             setPresionoClick(true);
-        }
-        if( nuevaCalificacion?.calificacion === 3 ){
+        }else if( nuevaCalificacion?.calificacion === 3 ){
             setCalificoUnaEstrella(true);
             setCalificoDosEstrella(true);
             setCalificoTresEstrella(true);
             setCalificoCuatroEstrella(false);
             setCalificoCincoEstrella(false);
             setPresionoClick(true);
-        }
-        if( nuevaCalificacion?.calificacion === 4 ){
+        }else if( nuevaCalificacion?.calificacion === 4 ){
             setCalificoUnaEstrella(true);
             setCalificoDosEstrella(true);
             setCalificoTresEstrella(true);
             setCalificoCuatroEstrella(true);
             setCalificoCincoEstrella(false);
             setPresionoClick(true);
-        }
-        if( nuevaCalificacion?.calificacion === 5 ){
+        }else if( nuevaCalificacion?.calificacion === 5 ){
             setCalificoUnaEstrella(true);
             setCalificoDosEstrella(true);
             setCalificoTresEstrella(true);
             setCalificoCuatroEstrella(true);
             setCalificoCincoEstrella(true);
             setPresionoClick(true);
+        }else{
+            setCalificoUnaEstrella(false);
+            setCalificoDosEstrella(false);
+            setCalificoTresEstrella(false);
+            setCalificoCuatroEstrella(false);
+            setCalificoCincoEstrella(false);
+            setPresionoClick(false);
         }
     }, [nuevaCalificacion?.calificacion])
 

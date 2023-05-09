@@ -1,5 +1,5 @@
 import { Button, Form, Spinner } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthLayout } from "../layout/AuthLayout";
 import './LoginPage.css';
 import { useForm } from "../../hooks";
@@ -18,11 +18,14 @@ export const LoginPage = () => {
     const { email, password, onInputChange } = useForm(initialForm);
     const dispatch = useDispatch();
     const { status, errorMessage } = useSelector( state => state.auth );
+    const { urlArray } = useSelector( state => state.helpro );
+    const navigate = useNavigate();
 
     const onSubmit = ( event ) => {
         event.preventDefault();
 
         dispatch( startLoginWithEmailPassword({ email, password }) );
+        navigate( urlArray[urlArray.length-1] );
     }
 
     useEffect(() => {

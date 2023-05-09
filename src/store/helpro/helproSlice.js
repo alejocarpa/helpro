@@ -72,7 +72,6 @@ export const helproSlice = createSlice({
         limpiarNuevoProducto: ( state, action ) => {
             state.guardandoNuevoProducto = false;
             state.elementClicked = '';
-            state.urlArray = [];
             state.fotosNuevas = [ { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' }, { fotoURL: '' } ];
             state.nuevoProducto = {
                 nombre: '',
@@ -95,6 +94,7 @@ export const helproSlice = createSlice({
                 }
             ],
             state.nuevaCalificacion = { calificacion: null };
+            localStorage.setItem('nuevaCalificacion', JSON.stringify({ calificacion: null }) );
         },
         respuestaGuardandoProducto: ( state, action ) => {
             state.guardandoNuevoProducto = false;

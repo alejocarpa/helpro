@@ -6,16 +6,24 @@ import { BarraProgreso } from './BarraProgreso';
 import { BsStarFill } from "react-icons/bs";
 import { urlEndpointImages } from '../../helpers';
 import { BotonGuardar, BotonLogin } from '../layout';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { CalificacionComponent } from './';
+import { useForm } from '../../hooks/useForm';
+import { agregandoNuevoComentario } from '../../store/helpro/helproSlice';
+import { startSavingNewComment } from '../../store/helpro/thunks';
+import Swal from 'sweetalert2';
 
-export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
-
+export const DetalleItem = ({ item = [], fotos = [], coments = [], stateNewComment }) => {
+    
     const [item1] = item;
     const [foto1] = fotos;
     const urlImageAmpliada = `${urlEndpointImages}/${foto1?.link_image}`;
     const [imagenAmpliada, setImagenAmpliada] = useState(urlImageAmpliada);
     const [filtroComentario, setFiltroComentario] = useState([]);
-    const { status } = useSelector( state => state.auth );
+    const { status, uid, displayName, displaySurname, token } = useSelector( state => state.auth );
+    const { nuevoComentario, nuevaCalificacion } = useSelector( state => state.helpro );
+    const { comentario, onInputChange, setFormState } = useForm( { comentario: nuevoComentario[0]?.comentario } );
+    const dispatch = useDispatch();
 
     const mostrarTodosComentarios = () => {
         setFiltroComentario(coments);
@@ -51,6 +59,40 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
         textarea.style.height = `${scHeight}px`;
     }
 
+    const id_product = item1?.id_product;
+    const saveNewComment = async() => {
+        
+        if( nuevoComentario[0]?.comentario !== "" && nuevaCalificacion?.calificacion !== null ){
+            
+            const { mensajeRespuesta, estadoRespuesta } = await dispatch( startSavingNewComment({ id_product, uid, nuevoComentario, nuevaCalificacion, token }) )
+
+            if( estadoRespuesta ){
+                Swal.fire({
+                    icon: 'success',
+                    title: mensajeRespuesta,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+                setFormState({ comentario: '' });
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: mensajeRespuesta,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Se debe ingresar un comentario y una calificacion',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
+
+    }
+
     useEffect(() => {
         setImagenAmpliada(urlImageAmpliada);
     }, [urlImageAmpliada]);
@@ -58,6 +100,10 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
     useEffect(() => {
         setFiltroComentario(coments);
     }, [coments]);
+
+    useEffect(() => {
+        dispatch( agregandoNuevoComentario({ comentario, uid, displayName, displaySurname }) );
+    }, [comentario])    
     
     return (
         <>
@@ -188,7 +234,10 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
                     <div className="detalle-item-bloque-textarea">
                         <div className="detalle-item-space-textarea">
                             <textarea 
-                                onChange={ resizeTextarea } 
+                                onKeyUp={ resizeTextarea }
+                                name="comentario"
+                                value={ comentario }
+                                onChange={ onInputChange }
                                 className="detalle-item-textarea"
                                 placeholder={
                                     status === 'authenticated'
@@ -207,11 +256,24 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [] }) => {
                             ></textarea>
                         </div>
                         <div className="detalle-item-space-boton">
-                            <div className="detalle-item-boton">
+                            <div className="detalle-item-boton" onClick={ saveNewComment }>
                                 { status === 'authenticated' ? <BotonGuardar /> : <BotonLogin /> }
                             </div>
                         </div>
                     </div>
+                    {
+                        status === 'authenticated'
+                        ?
+                        <>
+                            <div className="detalle-item-space-calificacion">
+                                <div className="detalle-item-calificacion-user">
+                                    <CalificacionComponent nuevaCalificacion={ nuevaCalificacion } />
+                                </div>
+                            </div>
+                        </>
+                        :
+                        ""
+                    }
                     <div className="detalle-item-coments">
                         <div className="detalle-item-coments-titulo">
                             Comentarios

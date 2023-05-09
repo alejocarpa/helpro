@@ -4,14 +4,18 @@ import { getItemById, getFotosById, getComentsById } from "../../store/helpro/th
 import { DetalleItem } from "../components";
 import { HelproLayout } from "../layout/HelproLayout";
 import './ItemPage.css';
+import { useSelector } from "react-redux";
+
+const stateNewComment = {
+    comentario: ''
+}
 
 export const ItemPage = () => {
-
-    window.scroll(0, 0);
 
     const [dataItem, setDataItem] = useState([]);
     const [fotos, setFotos] = useState([]);
     const [comments, setComments] = useState([]);
+    const { guardandoNuevoProducto } = useSelector( state => state.helpro );
 
     const { idItem } = useParams();
 
@@ -23,14 +27,15 @@ export const ItemPage = () => {
 
     useEffect(() => {
         obtenerData();
-    }, [])
+        window.scroll(0, 0);
+    }, [guardandoNuevoProducto])
     
  
     return (
         <HelproLayout>
             <div className="item-page-container">
                 <div className="item-page-elements">
-                    <DetalleItem item={ dataItem } fotos={ fotos } coments={ comments } />
+                    <DetalleItem item={ dataItem } fotos={ fotos } coments={ comments } stateNewComment={ stateNewComment } />
                 </div>
             </div>
         </HelproLayout>
