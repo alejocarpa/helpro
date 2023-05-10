@@ -527,9 +527,9 @@ export const getFotosById = async ( id = '' ) => {
 
 }
 
-export const getComentsById = async ( id = '' ) => {
+export const getComentsById = async ( id = '', limit = 0, offset = 10 ) => {
 
-    const url = `${urlEndpoint}/relations?select=score_comment,text_comment,date_updated_comment,date_created_comment,name_user,surname_user&linkTo=id_product_comment&equalTo=${id}&orderBy=date_updated_comment&orderMode=DESC&rel=comments,users&type=comment,user`;
+    const url = `${urlEndpoint}/relations?select=score_comment,text_comment,date_updated_comment,date_created_comment,name_user,surname_user&linkTo=id_product_comment&equalTo=${id}&orderBy=date_updated_comment&orderMode=DESC&startAt=${limit}&endAt=${offset}&rel=comments,users&type=comment,user`;
 
     try{
         const { data } = await axios.get(url, { 

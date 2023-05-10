@@ -13,7 +13,18 @@ import { agregandoNuevoComentario } from '../../store/helpro/helproSlice';
 import { startSavingNewComment } from '../../store/helpro/thunks';
 import Swal from 'sweetalert2';
 
-export const DetalleItem = ({ item = [], fotos = [], coments = [], stateNewComment }) => {
+export const DetalleItem = ({ 
+    item = [], 
+    fotos = [], 
+    coments = [], 
+    newComments = [],
+    setLimiteInicial,
+    setLimiteFinal,
+    setProductoAbajo,
+    limIni,
+    limFin,
+    proAba
+}) => {
     
     const [item1] = item;
     const [foto1] = fotos;
@@ -27,6 +38,9 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [], stateNewComme
 
     const mostrarTodosComentarios = () => {
         setFiltroComentario(coments);
+        setLimiteInicial(limIni);
+        setLimiteFinal(limFin);
+        setProductoAbajo(proAba);
     }
 
     const filtrarComentarios = ( estrellas ) => {
@@ -98,12 +112,16 @@ export const DetalleItem = ({ item = [], fotos = [], coments = [], stateNewComme
     }, [urlImageAmpliada]);
 
     useEffect(() => {
-        setFiltroComentario(coments);
+        setFiltroComentario([ ...coments ]);
     }, [coments]);
 
     useEffect(() => {
+        setFiltroComentario([ ...filtroComentario, ...newComments ]);
+    }, [newComments]);
+
+    useEffect(() => {
         dispatch( agregandoNuevoComentario({ comentario, uid, displayName, displaySurname }) );
-    }, [comentario])    
+    }, [comentario]);
     
     return (
         <>
