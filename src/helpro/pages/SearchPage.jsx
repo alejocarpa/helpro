@@ -1,22 +1,31 @@
 import { useParams } from "react-router-dom";
 import { FichaProducto } from "../components";
 import { HelproLayout } from "../layout/HelproLayout";
-import { getItemsByName } from "../../store/helpro/thunks";
+import { getItemsByCategorys, getItemsByName } from "../../store/helpro/thunks";
 import './SearchPage.css';
 import { useEffect, useState } from "react";
 
 
 export const SearchPage = () => {
 
-    const { nombreItem } = useParams();
+    const { nombreItem, tipoConsulta } = useParams();
+
     const [data, setData] = useState([]);
 
-    const obtenerData = async() => {
+    const obtenerDataByName = async() => {
         setData( await getItemsByName( nombreItem, 0, 50 ) );
     }
 
+    const obtenerDataByCategory = async() => {
+        setData( await getItemsByCategorys( nombreItem, 0, 50 ) );
+    }
+
     useEffect(() => {
-        obtenerData();
+        if(tipoConsulta === '1'){
+            obtenerDataByCategory();
+        }else if(tipoConsulta === '0'){
+            obtenerDataByName();
+        }
     }, [nombreItem])
     
     

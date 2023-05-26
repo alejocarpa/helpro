@@ -23,11 +23,21 @@ export const DetalleItem = ({
     setProductoAbajo,
     limIni,
     limFin,
-    proAba
+    proAba,
+    totalComments,
+    porcentaje1,
+    porcentaje2,
+    porcentaje3,
+    porcentaje4,
+    porcentaje5,
+    filtrarComentarios,
+    obtenerComentarios,
+    setFiltro
 }) => {
     
     const [item1] = item;
     const [foto1] = fotos;
+    const [totalComments1] = totalComments;
     const urlImageAmpliada = `${urlEndpointImages}/${foto1?.link_image}`;
     const [imagenAmpliada, setImagenAmpliada] = useState(urlImageAmpliada);
     const [filtroComentario, setFiltroComentario] = useState([]);
@@ -37,31 +47,16 @@ export const DetalleItem = ({
     const dispatch = useDispatch();
 
     const mostrarTodosComentarios = () => {
+        obtenerComentarios( limIni, limFin );
+        setFiltro(0);
         setFiltroComentario(coments);
         setLimiteInicial(limIni);
         setLimiteFinal(limFin);
         setProductoAbajo(proAba);
     }
 
-    const filtrarComentarios = ( estrellas ) => {
-        const newFilter = coments.filter( item => 
-            item.score_comment === estrellas
-        )
-        setFiltroComentario( newFilter );
-    }
-
     const cambiarImagen = (imagenURL) => {
         setImagenAmpliada(imagenURL);
-    }
-
-    const calcularPorcentajeComentarios = ( estrellas ) => {
-        const newFilter = coments.filter( item => 
-            item.score_comment === estrellas
-        )
-        
-        const calculo = ( newFilter.length * 100 ) / coments.length;
-
-        return calculo;
     }
 
     let ubicacionComent = true;
@@ -195,7 +190,7 @@ export const DetalleItem = ({
                                 </div>
                                 <div className="detalle-item-calificacion-stars-bloque">
                                     <div className="detalle-item-calificacion-total">
-                                        { coments.length } calificaciones en total
+                                        { totalComments1?.total } calificaciones en total
                                     </div>
                                     <div className="detalle-item-calificacion-stars">
                                         <MostrarCalificacion calificacion={ parseFloat(item1?.score_product) } />
@@ -208,7 +203,7 @@ export const DetalleItem = ({
                                     onClick={ () => filtrarComentarios(5) }
                                 >
                                     <div className="detalle-item-calificacion-barra">
-                                        <BarraProgreso porcentaje={ `${ calcularPorcentajeComentarios(5) }%` } />
+                                        <BarraProgreso porcentaje={ `${ porcentaje5 }%` } />
                                     </div>
                                     <div className="detalle-item-calificacion-estrella">
                                         5 <BsStarFill />
@@ -216,7 +211,7 @@ export const DetalleItem = ({
                                 </div>
                                 <div className="detalle-item-calificacion-numero-de-estrellas" onClick={ () => filtrarComentarios(4) }>
                                     <div className="detalle-item-calificacion-barra">
-                                        <BarraProgreso porcentaje={ `${ calcularPorcentajeComentarios(4) }%` } />
+                                        <BarraProgreso porcentaje={ `${ porcentaje4 }%` } />
                                     </div>
                                     <div className="detalle-item-calificacion-estrella">
                                         4 <BsStarFill />
@@ -224,7 +219,7 @@ export const DetalleItem = ({
                                 </div>
                                 <div className="detalle-item-calificacion-numero-de-estrellas" onClick={ () => filtrarComentarios(3) }>
                                     <div className="detalle-item-calificacion-barra">
-                                        <BarraProgreso porcentaje={ `${ calcularPorcentajeComentarios(3) }%` } />
+                                        <BarraProgreso porcentaje={ `${ porcentaje3 }%` } />
                                     </div>
                                     <div className="detalle-item-calificacion-estrella">
                                         3 <BsStarFill />
@@ -232,7 +227,7 @@ export const DetalleItem = ({
                                 </div>
                                 <div className="detalle-item-calificacion-numero-de-estrellas" onClick={ () => filtrarComentarios(2) }>
                                     <div className="detalle-item-calificacion-barra">
-                                        <BarraProgreso porcentaje={ `${ calcularPorcentajeComentarios(2) }%` } />
+                                        <BarraProgreso porcentaje={ `${ porcentaje2 }%` } />
                                     </div>
                                     <div className="detalle-item-calificacion-estrella">
                                         2 <BsStarFill />
@@ -240,7 +235,7 @@ export const DetalleItem = ({
                                 </div>
                                 <div className="detalle-item-calificacion-numero-de-estrellas" onClick={ () => filtrarComentarios(1) }>
                                     <div className="detalle-item-calificacion-barra">
-                                        <BarraProgreso porcentaje={ `${ calcularPorcentajeComentarios(1) }%` } />
+                                        <BarraProgreso porcentaje={ `${ porcentaje1 }%` } />
                                     </div>
                                     <div className="detalle-item-calificacion-estrella">
                                         1 <BsStarFill />

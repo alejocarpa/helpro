@@ -37,9 +37,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
         const urlTypes = `${urlEndpoint}/types?token=${token}&table=users&suffix=user`;
 
-        const nameNewType = nuevoProducto.otroTipo.toLowerCase().replace(/\b[a-z]/g, function (letra) {
-            return letra.toUpperCase();
-        });
+        const nameNewType = nuevoProducto.otroTipo[0].toUpperCase() + nuevoProducto.otroTipo.slice(1);
 
         const formTypes = {
             name_type: nameNewType,
@@ -81,9 +79,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
         const urlMarks = `${urlEndpoint}/marks?token=${token}&table=users&suffix=user`;
 
-        const nameNewMark = nuevoProducto.otraMarca.toLowerCase().replace(/\b[a-z]/g, function (letra) {
-            return letra.toUpperCase();
-        });
+        const nameNewMark = nuevoProducto.otraMarca[0].toUpperCase() + nuevoProducto.otraMarca.slice(1);
 
         const formMarks = {
             name_mark: nameNewMark,
@@ -123,9 +119,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
     const urlProducts = `${urlEndpoint}/products?token=${token}&table=users&suffix=user`;
 
-    const nameNewProduct = nuevoProducto.nombre.toLowerCase().replace(/\b[a-z]/g, function (letra) {
-        return letra.toUpperCase();
-    });
+    const nameNewProduct = nuevoProducto.nombre[0].toUpperCase() + nuevoProducto.nombre.slice(1);
 
     const formProducts = {
         name_product: nameNewProduct,
@@ -133,6 +127,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
         id_category_product: nuevoProducto.categoria,
         id_type_product: idType,
         id_mark_product: idMark,
+        score_product: nuevaCalificacion.calificacion,
         id_country_product: nuevoProducto.country,
         id_city_product: nuevoProducto.city,
         id_user_product: nuevoComentario[0].idUser,
@@ -527,9 +522,16 @@ export const getFotosById = async ( id = '' ) => {
 
 }
 
-export const getComentsById = async ( id = '', limit = 0, offset = 10 ) => {
+export const getComentsById = async ( id = '', limit = 0, offset = 10, score = 0 ) => {
 
-    const url = `${urlEndpoint}/relations?select=score_comment,text_comment,date_updated_comment,date_created_comment,name_user,surname_user&linkTo=id_product_comment&equalTo=${id}&orderBy=date_updated_comment&orderMode=DESC&startAt=${limit}&endAt=${offset}&rel=comments,users&type=comment,user`;
+    let selectScore = '';
+    let filtroScore = ``;
+    if(score > 0){
+        selectScore = ',score_comment';
+        filtroScore = `*|*${score}`;
+    }
+
+    const url = `${urlEndpoint}/relations?select=score_comment,text_comment,date_updated_comment,date_created_comment,name_user,surname_user&linkTo=id_product_comment${selectScore}&equalTo=${id}${filtroScore}&orderBy=date_updated_comment&orderMode=DESC&startAt=${limit}&endAt=${offset}&rel=comments,users&type=comment,user`;
 
     try{
         const { data } = await axios.get(url, { 
@@ -543,6 +545,42 @@ export const getComentsById = async ( id = '', limit = 0, offset = 10 ) => {
         }
     }catch(error){
         return [];
+    }
+
+}
+
+export const getTotalComments = async ( id = '' ) => {
+
+    const url = `${urlEndpoint}/comments?select=count(*) as total&linkTo=id_product_comment&equalTo=${id}&noValidate=true`;
+
+    try{
+
+        const { data } = await axios.get(url, { 
+            headers: {"Authorization": `${ apikeyEndpoint }`} 
+        });
+
+        return data.results;
+    }catch(error){
+        
+        return [];
+    }
+
+}
+
+export const getGradePercentage = async ( score = 0, id = '' ) => {
+
+    const url = `${urlEndpoint}/comments?select=*&linkTo=id_product_comment,score_comment&equalTo=${id}*|*${score}&percentageScore=true`;
+
+    try{
+
+        const { data } = await axios.get(url, { 
+            headers: {"Authorization": `${ apikeyEndpoint }`} 
+        });
+
+        return data.results[0];
+    }catch(error){
+        
+        return 0;
     }
 
 }

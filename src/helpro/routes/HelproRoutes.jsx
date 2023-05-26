@@ -22,8 +22,8 @@ export const HelproRoutes = () => {
         <Routes>
             <Route path="home" element={ <HomePage /> } />
             <Route path="item/:idItem" element={ <ItemPage /> } />
-            <Route path="search/:nombreItem" element={ <SearchPage /> } />
-            <Route path="loading/:nombreItem" element={ <CargandoPage /> } />
+            <Route path="search/:nombreItem/:tipoConsulta" element={ <SearchPage /> } />
+            <Route path="loading/:nombreItem/:tipoConsulta" element={ <CargandoPage /> } />
             
             { 
                 status === 'authenticated' 

@@ -11,6 +11,7 @@ export const HomePage = () => {
     const [dataAplicaciones, setDataAplicaciones] = useState([]);
     const [dataServicios, setDataServicios] = useState([]);
     const [dataLocalesComerciales, setDataLocalesComerciales] = useState([]);
+    const [dataEntidades, setDataEntidades] = useState([]);
 
     const obtenerData = async() => {
         /*--------------------------------------------------------
@@ -22,6 +23,7 @@ export const HomePage = () => {
         setDataAplicaciones( await getItemsByCategorys( 4, 0, 5 ) );
         setDataServicios( await getItemsByCategorys( 2, 0, 5 ) );
         setDataLocalesComerciales( await getItemsByCategorys( 3, 0, 5 ) );
+        setDataEntidades( await getItemsByCategorys( 5, 0, 5 ) );
     }
     
     useEffect(() => {
@@ -63,6 +65,12 @@ export const HomePage = () => {
                         <ProductoCategoria 
                             dataItems={ dataProductos }
                             tituloCategoria="Productos"
+                        />
+                    </div>
+                    <div className="helpro-productos-x-categoria">
+                        <ProductoCategoria 
+                            dataItems={ dataEntidades }
+                            tituloCategoria="Entidades"
                         />
                     </div>
                 </div>

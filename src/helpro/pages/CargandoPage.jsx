@@ -31,7 +31,7 @@ export const CargandoPage = () => {
         if( data.length === 1 ){
             data.map( item => navigate(`/item/${ item.id_product }`) )
         }else if( data.length > 1 ){
-            navigate(`/search/${ nombreItem }`)
+            navigate(`/search/${ nombreItem }/0`)
         }
         
     }, [data]);

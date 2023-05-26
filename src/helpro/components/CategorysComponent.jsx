@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import './CategorysComponent.css';
 
 
@@ -6,25 +7,31 @@ export const CategorysComponent = () => {
     const widthImage = 60;
     const heightImage = 60;
 
+    const navigate = useNavigate();
+
+    const navigateCategory = ( category ) => {
+        navigate(`/search/${ category }/1`);
+    }
+
 
     return (
         <>
             <div className="categorys-container">
                 <div className="categorys-elements">
-                    <div className="categorys-block">
+                    <div className="categorys-block" onClick={ () => navigateCategory(5) }>
                         <div className="categorys-image animate__animated animate__backInDown">
                             <img
-                                src='/images/electrodomesticos-category.png'
+                                src='/images/entidad-category.png'
                                 alt="element-category"
                                 width={ widthImage }
                                 height={ heightImage }
                             />
                         </div>
                         <div className="categorys-text">
-                            Electrodomesticos
+                            Entidades
                         </div>
                     </div>
-                    <div className="categorys-block">
+                    <div className="categorys-block" onClick={ () => navigateCategory(3) }>
                         <div className="categorys-image animate__animated animate__backInLeft">
                             <img
                                 src='/images/tienda-category.png'
@@ -37,7 +44,7 @@ export const CategorysComponent = () => {
                             Locales comerciales
                         </div>
                     </div>
-                    <div className="categorys-block">
+                    <div className="categorys-block" onClick={ () => navigateCategory(2) }>
                         <div className="categorys-image animate__animated animate__backInRight">
                             <img
                                 src='/images/servicio-category.png'
@@ -50,7 +57,7 @@ export const CategorysComponent = () => {
                             Servicios
                         </div>
                     </div>
-                    <div className="categorys-block">
+                    <div className="categorys-block" onClick={ () => navigateCategory(4) }>
                         <div className="categorys-image animate__animated animate__backInUp">
                             <img
                                 src='/images/app-category.png'
@@ -63,7 +70,7 @@ export const CategorysComponent = () => {
                             Aplicaciones
                         </div>
                     </div>
-                    <div className="categorys-block">
+                    <div className="categorys-block" onClick={ () => navigateCategory(6) }>
                         <div className="categorys-image animate__animated animate__backInDown">
                             <img
                                 src='/images/lugares-category.png'
@@ -76,7 +83,7 @@ export const CategorysComponent = () => {
                             Lugares
                         </div>
                     </div>
-                    <div className="categorys-block">
+                    <div className="categorys-block" onClick={ () => navigateCategory(1) }>
                         <div className="categorys-image animate__animated animate__backInLeft">
                             <img
                                 src='/images/productos-category.png'

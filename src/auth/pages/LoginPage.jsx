@@ -21,16 +21,18 @@ export const LoginPage = () => {
     const { urlArray } = useSelector( state => state.helpro );
     const navigate = useNavigate();
 
-    const onSubmit = ( event ) => {
+    const onSubmit = async( event ) => {
         event.preventDefault();
 
-        dispatch( startLoginWithEmailPassword({ email, password }) );
+        const resp = await dispatch( startLoginWithEmailPassword({ email, password }) );
+        if(resp?.payload?.errorMessage) return;
+        
         navigate( urlArray[urlArray.length-1] );
     }
 
     useEffect(() => {
-        errorMessage === "Wrong email" ? setMensajeError("El correo electronico no existe") : ""
-        errorMessage === "Wrong password" ? setMensajeError("La constrasena es incorrecta") : ""
+        errorMessage === "Wrong email" ? setMensajeError("Usuario o contraseña incorrectas") : ""
+        errorMessage === "Wrong password" ? setMensajeError("Usuario o contraseña incorrectas") : ""
         errorMessage === "Network Error" ? setMensajeError("Error: error de conexión") : ""
     }, [errorMessage]);
     

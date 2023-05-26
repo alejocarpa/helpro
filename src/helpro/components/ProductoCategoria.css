@@ -44,11 +44,18 @@
     margin-top: 17px;
     margin-bottom: 35px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .producto-categoria-detalle-card{
     /* border: 1px solid #00f; */
     width: 16%;
     display: flex;
+}
+
+.producto-categoria-detalle-card-loading{
+    /* border: 1px solid #00f; */
+    width: 16%;
+    display: flex;
+    justify-content: space-between;
 }

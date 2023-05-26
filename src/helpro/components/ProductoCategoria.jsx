@@ -1,4 +1,5 @@
 import { CardProducto } from './CardProducto';
+import { CardProductoLoading } from './CardProductoLoading';
 import './ProductoCategoria.css';
 
 export const ProductoCategoria = ({ dataItems = [], tituloCategoria = '' }) => {
@@ -13,6 +14,8 @@ export const ProductoCategoria = ({ dataItems = [], tituloCategoria = '' }) => {
                         </div>
                         <div className="producto-categoria-detalle-cards">
                             {
+                                dataItems.length > 0
+                                ?
                                 dataItems.map((item, id) => (
                                     <div 
                                         className="producto-categoria-detalle-card" 
@@ -22,6 +25,34 @@ export const ProductoCategoria = ({ dataItems = [], tituloCategoria = '' }) => {
                                         <CardProducto item={item} />
                                     </div>
                                 ))
+                                :
+                                <>
+                                    <div 
+                                        className="producto-categoria-detalle-card-loading" 
+                                    >
+                                        <CardProductoLoading />
+                                    </div>
+                                    <div 
+                                        className="producto-categoria-detalle-card-loading" 
+                                    >
+                                        <CardProductoLoading />
+                                    </div>
+                                    <div 
+                                        className="producto-categoria-detalle-card-loading" 
+                                    >
+                                        <CardProductoLoading />
+                                    </div>
+                                    <div 
+                                        className="producto-categoria-detalle-card-loading" 
+                                    >
+                                        <CardProductoLoading />
+                                    </div>
+                                    <div 
+                                        className="producto-categoria-detalle-card-loading" 
+                                    >
+                                        <CardProductoLoading />
+                                    </div>
+                                </>
                             }
                         </div>
                     </div>
