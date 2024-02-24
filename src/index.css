@@ -6,6 +6,10 @@
     --color-borde-difuminado: #BCBCBC;
 }
 
+html{
+    font-family: var(--tipografia-principal);
+}
+
 body{
     /* border: 1px solid #f00; */
     margin: 0;

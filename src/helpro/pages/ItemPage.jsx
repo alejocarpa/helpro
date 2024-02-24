@@ -52,25 +52,26 @@ export const ItemPage = () => {
         for (let i = 1; i <= 5; i++) {
             
             if( i = 1){
-                setPorcentaje1( await getGradePercentage( i, id ) )
+                setPorcentaje1( await getGradePercentage( i, id, totalComments[0] ) )
             }
             if( i = 2){
-                setPorcentaje2( await getGradePercentage( i, id ) )
+                setPorcentaje2( await getGradePercentage( i, id, totalComments[0] ) )
             }
             if( i = 3){
-                setPorcentaje3( await getGradePercentage( i, id ) )
+                setPorcentaje3( await getGradePercentage( i, id, totalComments[0] ) )
             }
             if( i = 4){
-                setPorcentaje4( await getGradePercentage( i, id ) )
+                setPorcentaje4( await getGradePercentage( i, id, totalComments[0] ) )
             }
             if( i = 5){
-                setPorcentaje5( await getGradePercentage( i, id ) )
+                setPorcentaje5( await getGradePercentage( i, id, totalComments[0] ) )
             }
             
         }
     }
 
     const filtrarComentarios = async( estrellas ) => {
+
         setFiltro( estrellas );
         setProductoAbajo( proAba );
         setComments( await getComentsById( idItem, limIni, limFin, estrellas ) );
@@ -102,6 +103,12 @@ export const ItemPage = () => {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
+    useEffect(() => {
+        if( totalComments.length > 0 ){
+
+            calcularPorcentajeComentarios( idItem );
+        }
+    }, [ totalComments ]);
     
     return (
         <HelproLayout>

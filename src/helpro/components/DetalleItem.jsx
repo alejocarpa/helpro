@@ -45,7 +45,7 @@ export const DetalleItem = ({
     const { nuevoComentario, nuevaCalificacion } = useSelector( state => state.helpro );
     const { comentario, onInputChange, setFormState } = useForm( { comentario: nuevoComentario[0]?.comentario } );
     const dispatch = useDispatch();
-
+    
     const mostrarTodosComentarios = () => {
         obtenerComentarios( limIni, limFin );
         setFiltro(0);
@@ -159,7 +159,7 @@ export const DetalleItem = ({
                                 <ListGroup variant="flush">
                                     <ListGroup.Item><b>Categoria:</b> {item1?.name_category}</ListGroup.Item>
                                     {
-                                        item1?.id_category_product === 3
+                                        item1?.id_category_product == 3
                                         ?
                                         <>
                                             <ListGroup.Item><b>Ubicación:</b> {item1?.name_country}</ListGroup.Item>
@@ -170,7 +170,7 @@ export const DetalleItem = ({
                                     }
                                     <ListGroup.Item><b>Tipo:</b> {item1?.name_type}</ListGroup.Item>
                                     {
-                                        item1?.id_category_product === 1
+                                        item1?.id_category_product == 1
                                         ?
                                         <ListGroup.Item><b>Marca:</b> {item1?.name_mark}</ListGroup.Item>
                                         :
@@ -190,7 +190,7 @@ export const DetalleItem = ({
                                 </div>
                                 <div className="detalle-item-calificacion-stars-bloque">
                                     <div className="detalle-item-calificacion-total">
-                                        { totalComments1?.total } calificaciones en total
+                                        { totalComments1 } calificaciones en total
                                     </div>
                                     <div className="detalle-item-calificacion-stars">
                                         <MostrarCalificacion calificacion={ parseFloat(item1?.score_product) } />

@@ -447,14 +447,15 @@ export const updatingProduct = async({ id_product, token }) => {
 
 export const getItemsByCategorys = async ( category = '', startAt = 0, endAt = 5 ) => {
 
-    const url = `${urlEndpoint}/products?select=*&linkTo=id_category_product&equalTo=${category}&startAt=${startAt}&endAt=${endAt}&orderBy=score_product&orderMode=DESC`;
+    //const url = `${urlEndpoint}/products?select=*&linkTo=id_category_product&equalTo=${category}&startAt=${startAt}&endAt=${endAt}&orderBy=score_product&orderMode=DESC`;
+    const url = `${urlEndpoint}/producto/producto.php?categoria=${ category }&limit=${ endAt }&offset=${ startAt }`;
 
     try{
 
         const { data } = await axios.get(url, { 
-            headers: {"Authorization": `${ apikeyEndpoint }`} 
+            //headers: {"Authorization": `${ apikeyEndpoint }`} 
         });
-
+        
         return data.results;
     }catch(error){
         
@@ -465,11 +466,12 @@ export const getItemsByCategorys = async ( category = '', startAt = 0, endAt = 5
 
 export const getItemsByName = async ( name = '', startAt = 0, endAt = 10 ) => {
 
-    const url = `${urlEndpoint}/relations?select=id_product,name_product,image_product,name_type,score_product,name_category&linkTo=name_product&equalTo=${name}&startAt=${startAt}&endAt=${endAt}&searchByName=true&rel=products,types,categories&type=product,type,category`;
+    //const url = `${urlEndpoint}/relations?select=id_product,name_product,image_product,name_type,score_product,name_category&linkTo=name_product&equalTo=${name}&startAt=${startAt}&endAt=${endAt}&searchByName=true&rel=products,types,categories&type=product,type,category`;
+    const url = `${urlEndpoint}/producto/producto.php?nombre=${ name }&limit=${ endAt }&offset=${ startAt }`;
 
     try{
         const { data } = await axios.get(url, { 
-            headers: {"Authorization": `${ apikeyEndpoint }`} 
+            //headers: {"Authorization": `${ apikeyEndpoint }`} 
         });
         if(data.status === 200){
             return data.results;
@@ -484,11 +486,12 @@ export const getItemsByName = async ( name = '', startAt = 0, endAt = 10 ) => {
 
 export const getItemById = async ( id = '' ) => {
 
-    const url = `${urlEndpoint}/relations?select=id_product,name_product,image_product,name_type,score_product,id_category_product,name_category,id_mark_product,name_mark,id_country_product,name_country,id_city_product,name_city&linkTo=id_product&equalTo=${id}&rel=products,types,categories,marks,countries,cities&type=product,type,category,mark,country,city`;
+    //const url = `${urlEndpoint}/relations?select=id_product,name_product,image_product,name_type,score_product,id_category_product,name_category,id_mark_product,name_mark,id_country_product,name_country,id_city_product,name_city&linkTo=id_product&equalTo=${id}&rel=products,types,categories,marks,countries,cities&type=product,type,category,mark,country,city`;
+    const url = `${urlEndpoint}/producto/producto.php?producto=${ id }`;
 
     try{
         const { data } = await axios.get(url, { 
-            headers: {"Authorization": `${ apikeyEndpoint }`} 
+            //headers: {"Authorization": `${ apikeyEndpoint }`} 
         });
 
         if(data.status === 200){
@@ -504,11 +507,12 @@ export const getItemById = async ( id = '' ) => {
 
 export const getFotosById = async ( id = '' ) => {
 
-    const url = `${urlEndpoint}/images?select=id_image,link_image&linkTo=id_product_image&equalTo=${id}&orderBy=id_image&orderMode=ASC`;
+    //const url = `${urlEndpoint}/images?select=id_image,link_image&linkTo=id_product_image&equalTo=${id}&orderBy=id_image&orderMode=ASC`;
+    const url = `${urlEndpoint}/imagen/imagen.php?producto=${ id }`;
 
     try{
         const { data } = await axios.get(url, { 
-            headers: {"Authorization": `${ apikeyEndpoint }`} 
+            //headers: {"Authorization": `${ apikeyEndpoint }`} 
         });
 
         if(data.status === 200){
@@ -522,7 +526,7 @@ export const getFotosById = async ( id = '' ) => {
 
 }
 
-export const getComentsById = async ( id = '', limit = 0, offset = 10, score = 0 ) => {
+export const getComentsById = async ( id = '', offset = 0, limit = 10, score = '' ) => {
 
     let selectScore = '';
     let filtroScore = ``;
@@ -531,11 +535,12 @@ export const getComentsById = async ( id = '', limit = 0, offset = 10, score = 0
         filtroScore = `*|*${score}`;
     }
 
-    const url = `${urlEndpoint}/relations?select=score_comment,text_comment,date_updated_comment,date_created_comment,name_user,surname_user&linkTo=id_product_comment${selectScore}&equalTo=${id}${filtroScore}&orderBy=date_updated_comment&orderMode=DESC&startAt=${limit}&endAt=${offset}&rel=comments,users&type=comment,user`;
+    //const url = `${urlEndpoint}/relations?select=score_comment,text_comment,date_updated_comment,date_created_comment,name_user,surname_user&linkTo=id_product_comment${selectScore}&equalTo=${id}${filtroScore}&orderBy=date_updated_comment&orderMode=DESC&startAt=${limit}&endAt=${offset}&rel=comments,users&type=comment,user`;
+    const url = `${urlEndpoint}/comentario/comentario.php?producto=${ id }&puntuacion=${ score }&limit=${ limit }&offset=${ offset }`;
 
     try{
         const { data } = await axios.get(url, { 
-            headers: {"Authorization": `${ apikeyEndpoint }`} 
+            //headers: {"Authorization": `${ apikeyEndpoint }`} 
         });
 
         if(data.status === 200){
@@ -551,15 +556,16 @@ export const getComentsById = async ( id = '', limit = 0, offset = 10, score = 0
 
 export const getTotalComments = async ( id = '' ) => {
 
-    const url = `${urlEndpoint}/comments?select=count(*) as total&linkTo=id_product_comment&equalTo=${id}&noValidate=true`;
+    //const url = `${urlEndpoint}/comments?select=count(*) as total&linkTo=id_product_comment&equalTo=${id}&noValidate=true`;
+    const url = `${urlEndpoint}/comentario/comentario.php?producto=${ id }`;
 
     try{
 
         const { data } = await axios.get(url, { 
-            headers: {"Authorization": `${ apikeyEndpoint }`} 
+            //headers: {"Authorization": `${ apikeyEndpoint }`} 
         });
 
-        return data.results;
+        return [ data.total ];
     }catch(error){
         
         return [];
@@ -567,17 +573,18 @@ export const getTotalComments = async ( id = '' ) => {
 
 }
 
-export const getGradePercentage = async ( score = 0, id = '' ) => {
-
-    const url = `${urlEndpoint}/comments?select=*&linkTo=id_product_comment,score_comment&equalTo=${id}*|*${score}&percentageScore=true`;
+export const getGradePercentage = async ( score = 0, id = '', totalComments ) => {
+    
+    //const url = `${urlEndpoint}/comments?select=*&linkTo=id_product_comment,score_comment&equalTo=${id}*|*${score}&percentageScore=true`;
+    const url = `${urlEndpoint}/comentario/comentario.php?producto=${ id }&puntuacion=${ score }`;
 
     try{
 
         const { data } = await axios.get(url, { 
-            headers: {"Authorization": `${ apikeyEndpoint }`} 
+            //headers: {"Authorization": `${ apikeyEndpoint }`} 
         });
 
-        return data.results[0];
+        return (data.total*100)/totalComments;
     }catch(error){
         
         return 0;
