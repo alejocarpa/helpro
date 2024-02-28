@@ -1,32 +1,23 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { startloadingMaster } from "../store/auth";
 import { Form } from "react-bootstrap";
+import { getMasters } from "../store/helpro/thunks";
 
 export const SelectCountries = ({country, onInputChange, validacionPais, pageRegister}) => {
 
     const [data, setData] = useState([]);
-    const dispatch = useDispatch();
 
-    const table = "countries";
-    const select = "id_country,name_country";
-    const linkTo = "state_country";
-    const equalTo = "1";
-    const orderBy = "name_country";
-    const orderMode = "ASC";
+    const master = "pais";
 
     const fetchData = async() => {
-        const results = await dispatch( startloadingMaster( table, select, linkTo, equalTo, orderBy, orderMode ) );
-        setData(results);
+        
+        setData( await getMasters( master ) );    
     }
 
     useEffect(() => {
 
-        fetchData()
-            // make sure to catch any error
-            .catch(console.error);
+        fetchData();
 
-    }, [])
+    }, []);
 
     return (
         <>

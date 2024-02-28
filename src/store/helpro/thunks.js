@@ -591,3 +591,22 @@ export const getGradePercentage = async ( score = 0, id = '', totalComments ) =>
     }
 
 }
+
+export const getMasters = async( master, where ) => {
+
+    const url = `${urlEndpoint}/${ master }/${ master }.php?${ where }`;
+
+    try{
+        const { data } = await axios.get(url, { 
+            //headers: {"Authorization": `${ apikeyEndpoint }`} 
+        });
+        
+        if(data.status === 200){
+            return data.results;
+        }else{
+            return [];
+        }
+    }catch(error){
+        return [];
+    }
+}

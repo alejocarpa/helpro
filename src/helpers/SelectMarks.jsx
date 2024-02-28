@@ -1,30 +1,23 @@
 import { useEffect, useState } from "react";
-import { startloadingMaster } from "../store/auth";
-import { useDispatch } from "react-redux";
 import { Form } from "react-bootstrap";
+import { getMasters } from "../store/helpro/thunks";
 
 export const SelectMarks = ({marca, categoria, onInputChange}) => {
 
     const [data, setData] = useState([]);
-    const dispatch = useDispatch();
+
+    const master = "marca";
+        
+    const fetchData = async() => {
+
+        const where = `categoria=${ categoria }`;
+
+        setData ( await getMasters( master, where ) );
+    }
 
     useEffect(() => {
 
-        const table = "marks";
-        const select = "id_mark,name_mark";
-        const linkTo = "state_mark,id_category_mark";
-        const equalTo = `1*|*${categoria}`;
-        const orderBy = "name_mark";
-        const orderMode = "ASC";
-
-        const fetchData = async() => {
-            const results = await dispatch( startloadingMaster( table, select, linkTo, equalTo, orderBy, orderMode ) );
-            setData(results);
-        }
-
-        fetchData()
-            // make sure to catch any error
-            .catch(console.error);
+        fetchData();
 
     }, [categoria])
 
