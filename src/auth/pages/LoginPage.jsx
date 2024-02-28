@@ -34,6 +34,7 @@ export const LoginPage = () => {
         errorMessage === "Wrong email" ? setMensajeError("Usuario o contraseña incorrectas") : ""
         errorMessage === "Wrong password" ? setMensajeError("Usuario o contraseña incorrectas") : ""
         errorMessage === "Network Error" ? setMensajeError("Error: error de conexión") : ""
+        errorMessage === "Usuario y/o contraseña invalido" ? setMensajeError( errorMessage ) : ""
     }, [errorMessage]);
     
 

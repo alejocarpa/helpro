@@ -3,14 +3,15 @@ import { chekingCredentials, login, logout } from "./authSlice";
 import { apikeyEndpoint, urlEndpoint } from "../../helpers/entorno";
 
 export const startLoginWithEmailPassword = ({ email, password }) => {
+    
     return async (dispatch) => {
 
         dispatch(chekingCredentials());
 
         const { ok, data, errorMessage } = await loginWithEmailPassword({ email, password });
-
-        if( !ok ) return dispatch( logout( { errorMessage } ) );
-
+        
+        if( !ok ) return dispatch( logout( { errorMessage: "Usuario y/o contraseña invalido" } ) );
+        
         const [ resultData ] = data?.results;
         const { id_user:uid, name_user:displayName, surname_user:displaySurname, token_user:token } = resultData
 
@@ -21,16 +22,11 @@ export const startLoginWithEmailPassword = ({ email, password }) => {
 
 
 export const loginWithEmailPassword = async ({ email, password }) => {
-    const url = `${urlEndpoint}/users?login=true&suffix=user`;
-
-    const form = {
-        email_user: email,
-        password_user: password
-    }
+    const url = `${urlEndpoint}/auth/auth.php?usuario=${ email }&password=${ password }&login=1`;
 
     try{
-        const { data } = await axios.post(url, form, { 
-                headers: {"Authorization": `${ apikeyEndpoint }`} 
+        const { data } = await axios.get(url, { 
+                //headers: {"Authorization": `${ apikeyEndpoint }`} 
         });
 
         let errorMessage = '';
@@ -129,6 +125,7 @@ export const registerUserWithEmailPassword = async({ email, password, name, surn
 }
 
 export const startLoginWithToken = ({ tokenUser }) => {
+    
     return async (dispatch) => {
 
         dispatch(chekingCredentials());
@@ -146,16 +143,19 @@ export const startLoginWithToken = ({ tokenUser }) => {
 }
 
 export const loginWithToken = async ({ tokenUser }) => {
-    const url = `${urlEndpoint}/users?loginToken=true&suffix=user`;
-
+    const url = `${urlEndpoint}/auth/auth.php?validar=1`;
+    
     const form = {
         token_user: tokenUser
     }
 
     
     try{
-        const { data } = await axios.post(url, form, { 
-                headers: {"Authorization": `${ apikeyEndpoint }`} 
+        const { data } = await axios.get(url, { 
+                headers: {
+                    //"Authorization": `${ apikeyEndpoint }`
+                    "token": tokenUser
+                }
         });
 
         let errorMessage = '';
