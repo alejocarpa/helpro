@@ -131,8 +131,7 @@ export const BarraBusqueda = () => {
                 <InputGroup>
                     <Form.Control
                         placeholder="Buscar producto, tienda, servicio, etc."
-                        aria-label="Recipient's username"
-                        aria-describedby="basic-addon2"
+                        
                         type="search"
                         name="nombreItem"
                         id="nombreItem"
@@ -141,10 +140,10 @@ export const BarraBusqueda = () => {
                         onKeyDown={handleKeyDown}
                         onChange={onInputChange}
                     />
-                    <button className="boton-busqueda" type="submit">
-                        <InputGroup.Text style={{ border: 'none' }}>
-                            <BsSearch style={{ fontSize: '20px' }} />
-                        </InputGroup.Text>
+                    <button className="boton-busqueda">
+                        
+                        <BsSearch style={{ fontSize: '20px' }} />
+                        
                     </button>
                 </InputGroup>
                 <div

@@ -3,11 +3,17 @@ import { BarraBusqueda, LogoNavbarHelpro, MenuUser, SubMenuUser } from './';
 import './NavbarHelpro.css';
 import { BotonLogin } from '../layout';
 import { Spinner } from 'react-bootstrap';
+import { MenuLateral } from './MenuLateral';
+import { useState } from 'react';
+import { HiMenu } from "react-icons/hi";
+import useScreenSize from '../../hooks/useScreenSize';
 
-export const NavbarHelpro = () => {
+export const NavbarHelpro = ({ clickMenuHamburguesa, dezplegarMenu, setDezplegarMenu }) => {
 
     const { elementClicked } = useSelector(state => state.helpro);
     const { status } = useSelector( state => state.auth );
+
+    const { width } = useScreenSize();
 
     let divSubmenu = document.getElementById('navbar-submenu-user');
 
@@ -45,7 +51,7 @@ export const NavbarHelpro = () => {
     
     return (
         <>
-            <div className="navbar-container">
+            <div className="navbar-container" onClick={ dezplegarMenu ? () => setDezplegarMenu( false ) : () => {} }>
                 <div className="navbar-elements">
                     <div className="navbar-logo">
                         <LogoNavbarHelpro />
@@ -55,19 +61,30 @@ export const NavbarHelpro = () => {
                         <BarraBusqueda />
                     </div>
 
-                    <div className="navbar-usuario">
-                        { 
-                            status === 'checking'
-                            ?
-                            <Spinner animation="border" variant="light" />
-                            :
-                            status === 'authenticated' 
-                            ? 
-                            <MenuUser desplegarSubmenu={ desplegarSubmenu } /> 
-                            : 
-                            <BotonLogin /> 
-                        }
-                    </div>
+                    {
+                        width <= 440
+                        ?
+                        <div className="navbar-menu-hamburguesa">
+                            <HiMenu onClick={ clickMenuHamburguesa } style={{ cursor: 'pointer' }} />
+                        </div>                        
+                        :
+                        <div className="navbar-usuario">
+                            { 
+                                status === 'checking'
+                                ?
+                                <Spinner animation="border" variant="light" />
+                                :
+                                status === 'authenticated' 
+                                ? 
+                                <MenuUser desplegarSubmenu={ desplegarSubmenu } /> 
+                                : 
+                                <BotonLogin /> 
+                            }
+                        </div>
+                    }
+                    
+
+                    <MenuLateral dezplegarMenu={ dezplegarMenu } />
                 </div>
             </div>
             <div 

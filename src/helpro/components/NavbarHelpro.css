@@ -1,6 +1,7 @@
 @import '../../index.css';
 
 .navbar-container{
+    /* border: 1px solid #f00; */
     width: 100%;
     height: 95px;
     background-color: var(--color-principal);
@@ -13,6 +14,7 @@
 }
 
 .navbar-elements{
+    /* border: 1px solid #f00; */
     width: 90%;
     height: 100%;
     display: flex;
@@ -41,4 +43,30 @@
     display: flex;
     justify-content:flex-end;
     align-items: center;
+}
+
+@media screen and (max-width: 440px) {
+
+    .navbar-logo{
+        display: none;
+    }
+
+    .navbar-barra-busqueda{
+        width: 90%;
+    }
+
+    .navbar-usuario{
+        width: 10%;
+        justify-content: center;
+    }
+
+    .navbar-menu-hamburguesa{
+        /* border: 1px solid #f00; */
+        width: 10%;
+        height: 100%;
+        display: flex;
+        justify-content:right;
+        align-items: center;
+        font-size: 25px;
+    }
 }

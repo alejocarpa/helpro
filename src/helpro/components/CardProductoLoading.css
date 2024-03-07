@@ -40,12 +40,12 @@
 }
 
 .cardproduct-titulo{
-    font-size: 1.3vw;
+    font-size: 25px;
     font-weight: 500;
     margin-bottom: 5px;
 }
 
 .cardproduct-calificacion{
     width: 100%;
-    font-size: 1.3vw;
+    font-size: 25px;
 }

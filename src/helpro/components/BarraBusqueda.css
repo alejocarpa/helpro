@@ -1,4 +1,11 @@
 .boton-busqueda{
+    background-color: rgb(214, 214, 214);
+    width: 50px;
+    height: 40px;
+    color: rgb(65, 65, 65);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: none;
     border-radius: 7px;
 }

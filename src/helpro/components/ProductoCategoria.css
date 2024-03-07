@@ -5,6 +5,7 @@
 }
 
 .producto-categoria-elements{
+    /* border: 2px solid #f00; */
     width: 100%;
     display: flex;
     justify-content: center;
@@ -36,21 +37,24 @@
     width: 95%;
     margin-top: 15px;
     font-size: 30px;
+    font-weight: 600;
 }
 
 .producto-categoria-detalle-cards{
     /* border: 1px solid #f00; */
-    width: 95%;
-    margin-top: 17px;
+    width: 98%;
     margin-bottom: 35px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .producto-categoria-detalle-card{
     /* border: 1px solid #00f; */
-    width: 16%;
+    width: 220px;
     display: flex;
+    margin-top: 25px;
 }
 
 .producto-categoria-detalle-card-loading{
