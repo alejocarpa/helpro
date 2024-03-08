@@ -527,17 +527,16 @@ export const getFotosById = async ( id = '' ) => {
 }
 
 export const getComentsById = async ( id = '', offset = 0, limit = 10, score = '' ) => {
-
-    let selectScore = '';
-    let filtroScore = ``;
+    
     if(score > 0){
-        selectScore = ',score_comment';
-        filtroScore = `*|*${score}`;
+        score = score;
+    }else{
+        score = '';
     }
 
     //const url = `${urlEndpoint}/relations?select=score_comment,text_comment,date_updated_comment,date_created_comment,name_user,surname_user&linkTo=id_product_comment${selectScore}&equalTo=${id}${filtroScore}&orderBy=date_updated_comment&orderMode=DESC&startAt=${limit}&endAt=${offset}&rel=comments,users&type=comment,user`;
     const url = `${urlEndpoint}/comentario/comentario?producto=${ id }&puntuacion=${ score }&limit=${ limit }&offset=${ offset }`;
-
+    
     try{
         const { data } = await axios.get(url, { 
             //headers: {"Authorization": `${ apikeyEndpoint }`} 

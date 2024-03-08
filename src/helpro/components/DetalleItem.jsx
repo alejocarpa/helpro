@@ -189,7 +189,7 @@ export const DetalleItem = ({
                                     { item1?.score_product }
                                 </div>
                                 <div className="detalle-item-calificacion-stars-bloque">
-                                    <div className="detalle-item-calificacion-total">
+                                    <div className="detalle-item-calificacion-total-total">
                                         { totalComments1 } calificaciones en total
                                     </div>
                                     <div className="detalle-item-calificacion-stars">

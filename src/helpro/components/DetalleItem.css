@@ -302,7 +302,7 @@
     border-radius: 15px;
     outline: none;
     resize: none;
-    font-size: 1.7vw;
+    font-size: 22px;
     border: 1px solid var(--color-borde);
     max-height: 330px;
 }
@@ -349,5 +349,98 @@
 @media screen and (max-width: 700px) {
     .detalle-item-comentario-bloque{
         width: 100%;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .detalle-item-secciones {
+        flex-direction: column;
+    }
+
+    .detalle-item-imagenes {
+        /* border: 1px solid #f00; */
+        width: 100%;
+    }
+
+    .detalle-item-imagen-ampliada {
+        /* border: 1px solid #f00; */
+        width: 100%;
+        padding-top: 67%;
+    }
+
+    .detalle-item-detalle {        
+        width: 100%;
+        padding-top: 10px;
+        padding-bottom: 20px;
+    }
+
+    .detalle-item-tabla{
+        /* border: 1px solid #f00; */
+        width: 100%;
+        padding-top: 5px;
+    }
+
+    .detalle-item-calificacion-total-bloque {
+        /* border: 1px solid #f00; */
+        padding-left: 20px;
+        padding-top: 10px;
+    }
+
+    .detalle-item-bloque-textarea {
+        /* border: 1px solid #f00; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .detalle-item-space-textarea{
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .detalle-item-textarea{
+        font-size: 16px;
+    }
+
+    .detalle-item-space-boton{
+        /* border: 1px solid #0f0; */
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .detalle-item-boton{
+        /* border: 1px solid #0f0; */
+        width: 100px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        font-size: 40px;
+    }
+
+    .detalle-item-calificacion-user{
+        width: 50%;        
+        font-size: 30px;
+    }
+
+    .detalle-item-coments{
+        /* border: 1px solid #f00; */
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .detalle-item-comentario-right{
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: left;
+    }
+
+    .detalle-item-comentario-bloque{
+        /* border: 1px solid #0f0; */
+        width: 85%;
+        padding-bottom: 10px;
     }
 }

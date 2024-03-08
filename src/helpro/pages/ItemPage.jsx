@@ -78,10 +78,12 @@ export const ItemPage = () => {
     }
     
     if(altura*productoAbajo <= offset){
+        
         setLimiteInicial( limiteInicial+limiteFinal );
         setProductoAbajo( productoAbajo+productoAbajo );
 
         obtenerNuevosComentarios( limiteInicial+limiteFinal, limiteFinal );
+
     }
 
     useEffect(() => {
