@@ -56,3 +56,11 @@
         height: 100%;
     }
 }
+
+@media screen and (max-width: 440px) {
+
+    .nuevo-producto-elements{
+        /* border: 1px solid #f0f; */
+        width: 97%;
+    }
+}

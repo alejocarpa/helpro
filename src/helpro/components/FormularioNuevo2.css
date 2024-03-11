@@ -38,6 +38,12 @@
     align-items: center;
 }
 
+.formulario-nuevo2-container-file{
+    /* border: 1px solid #f00; */
+    width: 100%;
+    display: flex;
+}
+
 .formulario-nuevo2-file-vacio{
     border: 3px dashed red;
     width: 100%;
@@ -158,4 +164,24 @@
     width: 100%;
     color: red;
     margin-top: 3px;
+}
+
+@media screen and (max-width: 440px) {
+
+    .formulario-nuevo2-bloque{
+        /* border: 1px solid #f00; */
+        padding: 5px;
+        padding-bottom: 130px;
+    }
+
+    .formulario-nuevo2-container-file{
+        /* border: 1px solid #f00; */
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .formulario-nuevo2-contenedor-boton-subir{
+        width: 45%;
+    }
+
 }

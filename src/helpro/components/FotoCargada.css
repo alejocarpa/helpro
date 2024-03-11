@@ -86,3 +86,10 @@
 .formulario-nuevo2-boton-cerrar-circulo:hover{
     transform: scale(1.08);
 }
+
+@media screen and (max-width: 440px) {
+
+    .formulario-nuevo2-contenedor-imagenes{
+        width: 50%;
+    }
+}

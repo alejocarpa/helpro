@@ -25,5 +25,12 @@
 
 .boton-subir-icono{
     margin-left: 10px;
-    font-size: 1.3vw;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 440px) {
+
+    .boton-subir-elements{
+        font-size: 15px;
+    }
 }

@@ -74,21 +74,23 @@ export const FormularioNuevo2 = ({
                     <div 
                         className={ validacionImagenes ? "formulario-nuevo2-file-vacio" : "formulario-nuevo2-file" }
                     >
-                        <input 
-                            className="formulario-nuevo2-file-input" 
-                            type="file" 
-                            accept=".png, .jpg, .jpeg"
-                            multiple
-                            onChange={ onFileInputChange }
-                            ref={ fileInputRef }
-                        />
-                        <FotoCargada 
-                            fotosNuevas={ fotosNuevas }
-                            onFileInputChange = { onFileInputChange }
-                            imagenesCargadas = { imagenesCargadas }
-                            totalImagenes = { totalImagenes }
-                            setTotalImagenes = { setTotalImagenes }
-                        />
+                        <div className="formulario-nuevo2-container-file">
+                            <input 
+                                className="formulario-nuevo2-file-input" 
+                                type="file" 
+                                accept=".png, .jpg, .jpeg"
+                                multiple
+                                onChange={ onFileInputChange }
+                                ref={ fileInputRef }
+                            />
+                            <FotoCargada 
+                                fotosNuevas={ fotosNuevas }
+                                onFileInputChange = { onFileInputChange }
+                                imagenesCargadas = { imagenesCargadas }
+                                totalImagenes = { totalImagenes }
+                                setTotalImagenes = { setTotalImagenes }
+                            />
+                        </div>
                     </div>
                     { validacionImagenes ? <div className="formulario-nuevo2-validacion">Debes subir por lo menos una foto</div> : "" }
                     <div className="formulario-nuevo2-contenedor-boton">

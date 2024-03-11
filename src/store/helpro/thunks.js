@@ -117,7 +117,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
     }
 
-    const urlProducts = `${urlEndpoint}/products?token=${token}&table=users&suffix=user`;
+    const urlProducts = `${urlEndpoint}/producto/producto`;
 
     const nameNewProduct = nuevoProducto.nombre[0].toUpperCase() + nuevoProducto.nombre.slice(1);
 
@@ -137,7 +137,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
     try {
         const { data } = await axios.post(urlProducts, formProducts, {
-            headers: { "Authorization": `${apikeyEndpoint}` }
+            // headers: { "Authorization": `${apikeyEndpoint}` }
         });
 
         if (data?.status === 404 || data?.status === 400) {
@@ -179,7 +179,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
         }
     }
 
-    const urlComments = `${urlEndpoint}/comments?token=${token}&table=users&suffix=user`;
+    const urlComments = `${urlEndpoint}/comentario/comentario`;
 
     const formComments = {
         text_comment: nuevoComentario[0]?.comentario,
@@ -192,7 +192,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
     try {
         const { data } = await axios.post(urlComments, formComments, {
-            headers: { "Authorization": `${apikeyEndpoint}` }
+            // headers: { "Authorization": `${apikeyEndpoint}` }
         });
 
         if (data?.status === 404 || data?.status === 400) {
@@ -237,7 +237,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
         }
     }
 
-    const urlImages = `${urlEndpoint}/images?token=${token}&table=users&suffix=user`;
+    const urlImages = `${urlEndpoint}/imagen/imagen`;
 
     for (let i = 0; i < totalImagenes.length; i++) {
 
@@ -250,7 +250,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
     
         try {
             const { data } = await axios.post(urlImages, formImages, {
-                headers: { "Authorization": `${apikeyEndpoint}` }
+                // headers: { "Authorization": `${apikeyEndpoint}` }
             });
     
             if (data?.status === 404 || data?.status === 400) {
@@ -278,14 +278,14 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
             idImage = data?.results?.lastId;
 
-            const urlImagesUpload = `${urlEndpoint}/types?uploadImages=true`;
+            const urlImagesUpload = `${urlEndpoint}/imagen/imagen?uploadImages=true`;
 
             const formData = new FormData();
             formData.append('id_product', idProduct);
             formData.append('file', totalImagenes[i]);
 
             await axios.post(urlImagesUpload, formData, {
-                headers: { "Authorization": `${apikeyEndpoint}` }
+                // headers: { "Authorization": `${apikeyEndpoint}` }
             });
     
         } catch (error) {

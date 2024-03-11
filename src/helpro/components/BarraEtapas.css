@@ -5,6 +5,7 @@
 }
 
 .barra-etapas-container{
+    /* border: 1px solid #f00; */
     width: 100%;
     height: 100%;
 }
@@ -84,4 +85,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (max-width: 440px) {
+
+    .barra-etapas-superior-texto{
+        font-size: 18px;
+    }
+
+    .barra-etapas-inferior-texto{
+        font-size: 18px;
+    }
 }
