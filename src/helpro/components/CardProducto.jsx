@@ -8,7 +8,7 @@ export const CardProducto = ({ item }) => {
     const navigate = useNavigate();
 
     const openItem = () => {
-        navigate( `/item/${ item.id_product }` );
+        navigate( `/helpro/item/${ item.id_product }` );
     }
 
     const srcImage = `${urlEndpointImages}/${item.id_product}${item.image_product}`;

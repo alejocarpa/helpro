@@ -16,7 +16,7 @@ export const BotonAgregar = () => {
     const { status } = useSelector( state => state.auth );
 
     const cargarNuevoProducto = () => {
-        status === 'not-authenticated' ? navigate(`auth/login`) : navigate(`nuevo`);
+        status === 'not-authenticated' ? navigate(`auth/login`) : navigate(`helpro/nuevo`);
     }
 
     return (

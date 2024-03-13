@@ -26,9 +26,9 @@ export const MenuLateral = ({ dezplegarMenu }) => {
     const navegarSubmenu = ( pantalla ) => {
         
         if( pantalla === 'configuracion' ){
-            navigate(`/configuracion`);
+            navigate(`/helpro/configuracion`);
         }else if( pantalla === 'home' ){
-            navigate(`/home`);
+            navigate(`/helpro/home`);
         }
     }
 

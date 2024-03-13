@@ -16,7 +16,7 @@ export const SubMenuUser = () => {
     const navegarSubmenu = ( pantalla ) => {
         
         if( pantalla === 'configuracion' ){
-            navigate(`/configuracion`);
+            navigate(`/helpro/configuracion`);
         }
     }
 

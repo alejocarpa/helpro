@@ -20,23 +20,23 @@ export const HelproRoutes = () => {
 
     return (
         <Routes>
-            <Route path="home" element={ <HomePage /> } />
-            <Route path="item/:idItem" element={ <ItemPage /> } />
-            <Route path="search/:nombreItem/:tipoConsulta" element={ <SearchPage /> } />
-            <Route path="loading/:nombreItem/:tipoConsulta" element={ <CargandoPage /> } />
+            <Route path="helpro/home" element={ <HomePage /> } />
+            <Route path="helpro/item/:idItem" element={ <ItemPage /> } />
+            <Route path="helpro/search/:nombreItem/:tipoConsulta" element={ <SearchPage /> } />
+            <Route path="helpro/loading/:nombreItem/:tipoConsulta" element={ <CargandoPage /> } />
             
             { 
                 status === 'authenticated' 
                 ? 
                 <>
-                    <Route path="nuevo" element={ <NuevoProducto /> } />
-                    <Route path="configuracion" element={ <ConfiguracionPage /> } />
+                    <Route path="helpro/nuevo" element={ <NuevoProducto /> } />
+                    <Route path="helpro/configuracion" element={ <ConfiguracionPage /> } />
                 </>
                 : 
                 "" 
             }
 
-            <Route path="/*" element={ <Navigate to="home" /> } />
+            <Route path="/*" element={ <Navigate to="helpro/home" /> } />
         </Routes>
     )
 }

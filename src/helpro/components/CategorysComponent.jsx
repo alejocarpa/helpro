@@ -10,7 +10,7 @@ export const CategorysComponent = () => {
     const navigate = useNavigate();
 
     const navigateCategory = ( category ) => {
-        navigate(`/search/${ category }/1`);
+        navigate(`/helpro/search/${ category }/1`);
     }
 
 

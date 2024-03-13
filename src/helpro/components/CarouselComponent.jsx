@@ -10,7 +10,7 @@ export const CarouselComponent = () => {
             <Carousel.Item interval={5000}>
                 <img
                     className="d-block w-100 imagen-carousel"
-                    src="images/1.jpg"
+                    src="../images/1.jpg"
                     alt="First slide"
                 />
                 <Carousel.Caption>
@@ -21,7 +21,7 @@ export const CarouselComponent = () => {
             <Carousel.Item interval={5000}>
                 <img
                     className="d-block w-100 imagen-carousel"
-                    src="images/2.jpg"
+                    src="../images/2.jpg"
                     alt="Second slide"
                 />
                 <Carousel.Caption>
@@ -32,7 +32,7 @@ export const CarouselComponent = () => {
             <Carousel.Item interval={5000}>
                 <img
                     className="d-block w-100 imagen-carousel"
-                    src="images/3.jpg"
+                    src="../images/3.jpg"
                     alt="Third slide"
                 />
                 <Carousel.Caption>
