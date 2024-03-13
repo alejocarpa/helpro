@@ -22,7 +22,7 @@ export const BarraBusqueda = () => {
     const onSubmit = (event) => {
         
         event.preventDefault();
-        navigate(`/loading/${nombreItem}/0`);
+        navigate(`/helpro/loading/${nombreItem}/0`);
     }
 
     const handleKeyDown = (event) => {

@@ -7,7 +7,8 @@ export const ItemBusqueda = ({ data }) => {
     const navigate = useNavigate();
 
     const openSearchItem = ( nombreItem ) => {
-        navigate(`/loading/${ nombreItem }`);
+        
+        navigate(`/helpro/loading/${ nombreItem }/0`);
     }
 
     return (

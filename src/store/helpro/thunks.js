@@ -446,7 +446,7 @@ export const getItemsByName = async ( name = '', startAt = 0, endAt = 10 ) => {
 
     //const url = `${urlEndpoint}/relations?select=id_product,name_product,image_product,name_type,score_product,name_category&linkTo=name_product&equalTo=${name}&startAt=${startAt}&endAt=${endAt}&searchByName=true&rel=products,types,categories&type=product,type,category`;
     const url = `${urlEndpoint}/producto/producto?nombre=${ name }&limit=${ endAt }&offset=${ startAt }`;
-
+    
     try{
         const { data } = await axios.get(url, { 
             //headers: {"Authorization": `${ apikeyEndpoint }`} 

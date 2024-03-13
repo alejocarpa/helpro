@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 export const CargandoPage = () => {
-
+    
     const [data, setData] = useState([]);
     const { urlArray } = useSelector(state => state.helpro);
     const navigate = useNavigate();
@@ -29,13 +29,13 @@ export const CargandoPage = () => {
         obtenerData();
 
         if( data.length === 1 ){
-            data.map( item => navigate(`/item/${ item.id_product }`) )
+            data.map( item => navigate(`/helpro/item/${ item.id_product }`) )
         }else if( data.length > 1 ){
-            navigate(`/search/${ nombreItem }/0`)
+            navigate(`/helpro/search/${ nombreItem }/0`)
         }
         
     }, [data]);
-
+    
 
     return (
         <HelproLayout>

@@ -70,7 +70,7 @@ export const CategorysComponent = () => {
                             Aplicaciones
                         </div>
                     </div>
-                    <div className="categorys-block" onClick={ () => navigateCategory(6) }>
+                    {/* <div className="categorys-block" onClick={ () => navigateCategory(6) }>
                         <div className="categorys-image animate__animated animate__backInDown">
                             <img
                                 src='/images/lugares-category.png'
@@ -82,7 +82,7 @@ export const CategorysComponent = () => {
                         <div className="categorys-text">
                             Lugares
                         </div>
-                    </div>
+                    </div> */}
                     <div className="categorys-block" onClick={ () => navigateCategory(1) }>
                         <div className="categorys-image animate__animated animate__backInLeft">
                             <img

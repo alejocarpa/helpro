@@ -8,7 +8,7 @@ export const FichaProducto = ({ item }) => {
     const navigate = useNavigate();
 
     const openItem = () => {
-        navigate( `/item/${ item.id_product }` );
+        navigate( `/helpro/item/${ item.id_product }` );
     }
 
     return (
