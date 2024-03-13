@@ -45,7 +45,7 @@
     align-items: center;
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 550px) {
 
     .navbar-logo{
         display: none;

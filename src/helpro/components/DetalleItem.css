@@ -338,6 +338,7 @@
     /* border: 1px solid #00f; */
     width: 20%;
     font-size: 2.7vw;
+    margin-top: 15px;
 }
 
 @media screen and (max-width: 900px) {
@@ -352,7 +353,7 @@
     }
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 550px) {
     .detalle-item-secciones {
         flex-direction: column;
     }

@@ -8,6 +8,8 @@
 .calificacion-elements{
     width: 100%;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .calificacion-estrella{

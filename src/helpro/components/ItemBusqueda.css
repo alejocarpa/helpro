@@ -52,7 +52,7 @@
     color: #D1D0D4;
 }
 
-@media screen and (max-width: 440px) {
+@media screen and (max-width: 550px) {
 
     .item-container{
         width: 80%;

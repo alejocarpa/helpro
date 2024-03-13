@@ -62,7 +62,7 @@ export const NavbarHelpro = ({ clickMenuHamburguesa, dezplegarMenu, setDezplegar
                     </div>
 
                     {
-                        width <= 440
+                        width <= 550
                         ?
                         <div className="navbar-menu-hamburguesa">
                             <HiMenu onClick={ clickMenuHamburguesa } style={{ cursor: 'pointer' }} />
