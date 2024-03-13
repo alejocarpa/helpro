@@ -95,6 +95,7 @@ export const helproSlice = createSlice({
             ],
             state.nuevaCalificacion = { calificacion: null };
             localStorage.setItem('nuevaCalificacion', JSON.stringify({ calificacion: null }) );
+            localStorage.setItem('nuevoProducto', JSON.stringify( state.nuevoProducto ) );
         },
         respuestaGuardandoProducto: ( state, action ) => {
             state.guardandoNuevoProducto = false;

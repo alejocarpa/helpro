@@ -4,11 +4,14 @@ import { MensajeAyudaBotonAgregar } from './MensajeAyudaBotonAgregar';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import useScreenSize from '../../hooks/useScreenSize';
 
 export const BotonAgregar = () => {
 
     const navigate = useNavigate();
     const [displayMensaje, setDisplayMensaje] = useState('none');
+
+    const { width } = useScreenSize();
 
     const { status } = useSelector( state => state.auth );
 
@@ -23,7 +26,7 @@ export const BotonAgregar = () => {
                     <div 
                         className="boton-agregar-circulo animate__animated animate__rubberBand"
                         onMouseEnter={() => {
-                            setDisplayMensaje('block');
+                            width > 440 ? setDisplayMensaje('block') : setDisplayMensaje('none');
                         }}
                         onMouseLeave={() => {
                             setDisplayMensaje('none');

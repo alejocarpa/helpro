@@ -29,12 +29,12 @@ export const SelectType = ({categoria, tipo, onInputChange}) => {
                 onChange={onInputChange}
             >
                 <option value="">Elige un tipo</option>
+                <option value="otro">Otro...</option>
                 {
                     data.map((colum) => (
                         <option key={ colum.id_type } value={ colum.id_type }>{ colum.name_type }</option>
                     ))
-                }
-                <option value="otro">Otro...</option>
+                }                
             </Form.Select>
         </>
     )

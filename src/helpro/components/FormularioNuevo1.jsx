@@ -242,7 +242,7 @@ export const FormularioNuevo1 = (
             completoFormulario1(true);
         }
     }, [otraMarca]);
-
+    
     return (
         <div className="formulario-nuevo1-container">
             <div className="formulario-nuevo1-elements">

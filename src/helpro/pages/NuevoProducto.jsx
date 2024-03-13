@@ -66,6 +66,9 @@ export const NuevoProducto = () => {
         dispatch( agregandoNuevoComentario({ ...formState, uid, displayName, displaySurname }) );
     }, [nombre, categoria, tipo, marca, comentario, country, city, otroTipo, otraMarca]);
     
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, [formularioActivo1, formularioActivo2, formularioActivo3, formularioActivo4]);
 
     return (
         <>

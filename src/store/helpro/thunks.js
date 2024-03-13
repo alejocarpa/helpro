@@ -7,7 +7,7 @@ export const startSavingNewProduct = ({ nuevoProducto, nuevoComentario, nuevaCal
         dispatch(validarGuardandoProducto());
 
         const { ok:estadoRespuesta, data, errorMessage:mensajeRespuesta } = await savingNewProduct({ nuevoProducto, nuevoComentario, nuevaCalificacion, totalImagenes, token });
-
+        
         if (!estadoRespuesta){
             dispatch(respuestaGuardandoProducto({ mensajeRespuesta, estadoRespuesta }));
 
@@ -35,7 +35,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
     if (nuevoProducto?.tipo === 'otro') {
 
-        const urlTypes = `${urlEndpoint}/types?token=${token}&table=users&suffix=user`;
+        const urlTypes = `${urlEndpoint}/tipo/tipo.php`;
 
         const nameNewType = nuevoProducto.otroTipo[0].toUpperCase() + nuevoProducto.otroTipo.slice(1);
 
@@ -48,7 +48,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
         try {
             const { data } = await axios.post(urlTypes, formTypes, {
-                headers: { "Authorization": `${apikeyEndpoint}` }
+                // headers: { "Authorization": `${apikeyEndpoint}` }
             });
 
             if (data?.status === 404 || data?.status === 400) {
@@ -77,7 +77,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
     if (nuevoProducto?.marca === 'otra') {
 
-        const urlMarks = `${urlEndpoint}/marks?token=${token}&table=users&suffix=user`;
+        const urlMarks = `${urlEndpoint}/marca/marca.php`;
 
         const nameNewMark = nuevoProducto.otraMarca[0].toUpperCase() + nuevoProducto.otraMarca.slice(1);
 
@@ -90,7 +90,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
         try {
             const { data } = await axios.post(urlMarks, formMarks, {
-                headers: { "Authorization": `${apikeyEndpoint}` }
+                // headers: { "Authorization": `${apikeyEndpoint}` }
             });
 
             if (data?.status === 404 || data?.status === 400) {
@@ -140,20 +140,12 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
             // headers: { "Authorization": `${apikeyEndpoint}` }
         });
 
-        if (data?.status === 404 || data?.status === 400) {
-            if (nuevoProducto?.tipo === 'otro') {
-                const urlTypesDelete = `${urlEndpoint}/types?token=${token}&id=${idType}&nameId=id_type`;
-                await axios.delete(urlTypesDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-            }
-            if (nuevoProducto?.marca === 'otra') {
-                const urlMarksDelete = `${urlEndpoint}/marks?token=${token}&id=${idMark}&nameId=id_mark`;
-                await axios.delete(urlMarksDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-            }
+        if (data?.status === 404 || data?.status === 400 || data?.results?.error) {
 
             return {
                 ok: false,
                 data: [],
-                errorMessage: data?.results
+                errorMessage: data?.results?.error
             }
         }
 
@@ -161,15 +153,6 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
     } catch (error) {
         if (error) {
-
-            if (nuevoProducto?.tipo === 'otro') {
-                const urlTypesDelete = `${urlEndpoint}/types?token=${token}&id=${idType}&nameId=id_type`;
-                await axios.delete(urlTypesDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-            }
-            if (nuevoProducto?.marca === 'otra') {
-                const urlMarksDelete = `${urlEndpoint}/marks?token=${token}&id=${idMark}&nameId=id_mark`;
-                await axios.delete(urlMarksDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-            }
 
             return {
                 ok: false,
@@ -196,16 +179,11 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
         });
 
         if (data?.status === 404 || data?.status === 400) {
-            if (nuevoProducto?.tipo === 'otro') {
-                const urlTypesDelete = `${urlEndpoint}/types?token=${token}&id=${idType}&nameId=id_type`;
-                await axios.delete(urlTypesDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-            }
-            if (nuevoProducto?.marca === 'otra') {
-                const urlMarksDelete = `${urlEndpoint}/marks?token=${token}&id=${idMark}&nameId=id_mark`;
-                await axios.delete(urlMarksDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-            }
-            const urlProductDelete = `${urlEndpoint}/products?token=${token}&id=${idProduct}&nameId=id_product`;
-            await axios.delete(urlProductDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
+
+            const urlProductDelete = `${urlEndpoint}//producto/producto?id_product=${ idProduct }`;
+            await axios.delete(urlProductDelete, { 
+                // headers: { "Authorization": `${apikeyEndpoint}` }
+            });
 
             return {
                 ok: false,
@@ -218,16 +196,11 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
     } catch (error) {
         if (error) {
-            if (nuevoProducto?.tipo === 'otro') {
-                const urlTypesDelete = `${urlEndpoint}/types?token=${token}&id=${idType}&nameId=id_type`;
-                await axios.delete(urlTypesDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-            }
-            if (nuevoProducto?.marca === 'otra') {
-                const urlMarksDelete = `${urlEndpoint}/marks?token=${token}&id=${idMark}&nameId=id_mark`;
-                await axios.delete(urlMarksDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-            }
-            const urlProductDelete = `${urlEndpoint}/products?token=${token}&id=${idProduct}&nameId=id_product`;
-            await axios.delete(urlProductDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
+            
+            const urlProductDelete = `${urlEndpoint}//producto/producto?id_product=${ idProduct }`;
+            await axios.delete(urlProductDelete, { 
+                // headers: { "Authorization": `${apikeyEndpoint}` }
+            });
 
             return {
                 ok: false,
@@ -254,20 +227,21 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
             });
     
             if (data?.status === 404 || data?.status === 400) {
-                if (nuevoProducto?.tipo === 'otro') {
-                    const urlTypesDelete = `${urlEndpoint}/types?token=${token}&id=${idType}&nameId=id_type`;
-                    await axios.delete(urlTypesDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-                }
-                if (nuevoProducto?.marca === 'otra') {
-                    const urlMarksDelete = `${urlEndpoint}/marks?token=${token}&id=${idMark}&nameId=id_mark`;
-                    await axios.delete(urlMarksDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-                }
-                const urlProductDelete = `${urlEndpoint}/products?token=${token}&id=${idProduct}&nameId=id_product`;
-                await axios.delete(urlProductDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-                const urlCommentDelete = `${urlEndpoint}/comments?token=${token}&id=${idComment}&nameId=id_comment`;
-                await axios.delete(urlCommentDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-                const urlImageDelete = `${urlEndpoint}/comments?token=${token}&id=${idImage}&nameId=id_image`;
-                await axios.delete(urlImageDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
+                
+                const urlProductDelete = `${urlEndpoint}//producto/producto?id_product=${ idProduct }`;
+                await axios.delete(urlProductDelete, { 
+                    // headers: { "Authorization": `${apikeyEndpoint}` }
+                });
+
+                const urlCommentDelete = `${urlEndpoint}/comentario/comentario?id_comment=${ idComment }`;
+                await axios.delete(urlCommentDelete, { 
+                    // headers: { "Authorization": `${apikeyEndpoint}` }
+                });
+
+                const urlImageDelete = `${urlEndpoint}/imagen/imagen.php?id_product=${ idProduct }`;
+                await axios.delete(urlImageDelete, { 
+                    // headers: { "Authorization": `${apikeyEndpoint}` }
+                });
 
                 return {
                     ok: false,
@@ -290,20 +264,21 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
     
         } catch (error) {
             if (error) {
-                if (nuevoProducto?.tipo === 'otro') {
-                    const urlTypesDelete = `${urlEndpoint}/types?token=${token}&id=${idType}&nameId=id_type`;
-                    await axios.delete(urlTypesDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-                }
-                if (nuevoProducto?.marca === 'otra') {
-                    const urlMarksDelete = `${urlEndpoint}/marks?token=${token}&id=${idMark}&nameId=id_mark`;
-                    await axios.delete(urlMarksDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-                }
-                const urlProductDelete = `${urlEndpoint}/products?token=${token}&id=${idProduct}&nameId=id_product`;
-                await axios.delete(urlProductDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-                const urlCommentDelete = `${urlEndpoint}/comments?token=${token}&id=${idComment}&nameId=id_comment`;
-                await axios.delete(urlCommentDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
-                const urlImageDelete = `${urlEndpoint}/comments?token=${token}&id=${idImage}&nameId=id_image`;
-                await axios.delete(urlImageDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
+                
+                const urlProductDelete = `${urlEndpoint}//producto/producto?id_product=${ idProduct }`;
+                await axios.delete(urlProductDelete, { 
+                    // headers: { "Authorization": `${apikeyEndpoint}` }
+                });
+
+                const urlCommentDelete = `${urlEndpoint}/comentario/comentario?id_comment=${ idComment }`;
+                await axios.delete(urlCommentDelete, { 
+                    // headers: { "Authorization": `${apikeyEndpoint}` }
+                });
+
+                const urlImageDelete = `${urlEndpoint}/imagen/imagen.php?id_product=${ idProduct }`;
+                await axios.delete(urlImageDelete, { 
+                    // headers: { "Authorization": `${apikeyEndpoint}` }
+                });
 
                 return {
                     ok: false,
@@ -349,7 +324,7 @@ export const savingNewComment = async ({ id_product, uid, nuevoComentario, nueva
     const month = new Date().getMonth() + 1;
     const day = new Date().getDate();
 
-    const urlComments = `${urlEndpoint}/comments?token=${token}&table=users&suffix=user`;
+    const urlComments = `${urlEndpoint}/comentario/comentario`;
 
     const formComments = {
         text_comment: dataComment?.comentario,
@@ -361,7 +336,7 @@ export const savingNewComment = async ({ id_product, uid, nuevoComentario, nueva
 
     try {
         const { data } = await axios.post(urlComments, formComments, {
-            headers: { "Authorization": `${apikeyEndpoint}` }
+            // headers: { "Authorization": `${apikeyEndpoint}` }
         });
         
         if (data?.status === 404 || data?.status === 400) {
@@ -377,8 +352,11 @@ export const savingNewComment = async ({ id_product, uid, nuevoComentario, nueva
         const { ok:estadoRespuesta, errorMessage:mensajeRespuesta } = await updatingProduct({ id_product, token });
 
         if(!estadoRespuesta){
-            const urlCommentsDelete = `${urlEndpoint}/types?token=${token}&id=${idComment}&nameId=id_comment`;
-            await axios.delete(urlCommentsDelete, { headers: { "Authorization": `${apikeyEndpoint}` }});
+
+            const urlCommentDelete = `${urlEndpoint}/comentario/comentario?id_comment=${ idComment }`;
+            await axios.delete(urlCommentDelete, { 
+                // headers: { "Authorization": `${apikeyEndpoint}` }
+            });
 
             return {
                 ok: false,
@@ -409,7 +387,7 @@ export const savingNewComment = async ({ id_product, uid, nuevoComentario, nueva
 
 export const updatingProduct = async({ id_product, token }) => {
 
-    const urlProducts = `${urlEndpoint}/products?token=${token}&table=users&suffix=user&updateProduct=true`;
+    const urlProducts = `${urlEndpoint}/producto/producto`;
 
     const formProducts = {
         id_product: id_product
@@ -418,7 +396,7 @@ export const updatingProduct = async({ id_product, token }) => {
     try{
 
         const { data } = await axios.put(urlProducts, formProducts, {
-            headers: { "Authorization": `${apikeyEndpoint}` }
+            // headers: { "Authorization": `${apikeyEndpoint}` }
         });
         
         if (data?.status === 404 || data?.status === 400) {
