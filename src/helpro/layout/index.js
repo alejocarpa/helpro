@@ -4,3 +4,4 @@ export * from './BotonSubir';
 export * from './BotonAtras';
 export * from './BotonLogin';
 export * from './BotonGuardar';
+export * from './Footer';

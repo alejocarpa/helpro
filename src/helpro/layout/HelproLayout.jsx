@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { NavbarHelpro } from '../components/NavbarHelpro';
 import './HelproLayout.css';
+import { Footer } from './Footer';
 
 
 export const HelproLayout = ({ children }) => {
@@ -17,7 +18,10 @@ export const HelproLayout = ({ children }) => {
 
             <div className="layout-page" onClick={ () => setDezplegarMenu( false ) }>
                 { children }
+                <Footer />
             </div>
+
+            
         </>
     )
 }

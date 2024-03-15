@@ -6,7 +6,7 @@ export const LogoNavbarHelpro = () => {
     const navigate = useNavigate();
 
     const returnHome = () => {
-        navigate( `/home` );
+        navigate( `/helpro` );
     }
 
     return (

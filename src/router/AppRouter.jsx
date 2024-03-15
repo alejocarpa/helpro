@@ -19,7 +19,7 @@ export const AppRouter = () => {
             }
             
 
-            <Route path="/*" element={ <Navigate to="/home" /> } />
+            <Route path="/*" element={ <Navigate to="/helpro" /> } />
         </Routes>
     )
 }

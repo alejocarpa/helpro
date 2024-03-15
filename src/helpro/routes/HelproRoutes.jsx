@@ -20,7 +20,7 @@ export const HelproRoutes = () => {
 
     return (
         <Routes>
-            <Route path="helpro/home" element={ <HomePage /> } />
+            <Route path="helpro" element={ <HomePage /> } />
             <Route path="helpro/item/:idItem" element={ <ItemPage /> } />
             <Route path="helpro/search/:nombreItem/:tipoConsulta" element={ <SearchPage /> } />
             <Route path="helpro/loading/:nombreItem/:tipoConsulta" element={ <CargandoPage /> } />
@@ -36,7 +36,7 @@ export const HelproRoutes = () => {
                 "" 
             }
 
-            <Route path="/*" element={ <Navigate to="helpro/home" /> } />
+            <Route path="/*" element={ <Navigate to="helpro" /> } />
         </Routes>
     )
 }

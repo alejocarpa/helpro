@@ -1,0 +1,66 @@
+@import '../../index.css';
+
+.footer-container {
+    /* border: 1px solid #f00; */
+    width: 100%;
+    display: flex;
+    z-index: 2;
+}
+
+.footer-elements {
+    background-color: var(--color-principal);
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.footer-bloque-iconos {
+    width: 100%;
+    display: flex;
+}
+
+.footer-bloque-espacio {
+    /* border: 1px solid #f00; */
+    width: 35%;
+    border-bottom: 3px solid white;
+}
+
+.footer-iconos {
+    /* border: 1px solid #0f0; */
+    width: 30%;
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+}
+
+.footer-bloque-logo {
+    /* border: 1px solid #f00; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.footer-logo {
+    color: white;
+}
+
+.footer-bloque-soporte {
+    width: 100%;
+    text-align: center;
+    color: white
+}
+
+@media screen and (max-width: 550px) {
+
+    .footer-bloque-espacio {
+        width: 15%;
+    }
+
+    .footer-iconos {
+        width: 70%;
+    }
+}

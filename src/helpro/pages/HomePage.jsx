@@ -4,6 +4,9 @@ import './HomePage.css';
 import { getItemsByCategorys } from "../../store/helpro/thunks";
 import { useEffect, useState } from "react";
 import { Placeholder } from "react-bootstrap";
+import { CarruselCategorias } from "../components/CarruselCategorias";
+import useScreenSize from "../../hooks/useScreenSize";
+import { CarruselProductoCategoria } from "../components/CarruselProductoCategoria";
 
 export const HomePage = () => {
 
@@ -12,6 +15,8 @@ export const HomePage = () => {
     const [dataServicios, setDataServicios] = useState([]);
     const [dataLocalesComerciales, setDataLocalesComerciales] = useState([]);
     const [dataEntidades, setDataEntidades] = useState([]);
+
+    const { width } = useScreenSize();
 
     const obtenerData = async() => {
         /*--------------------------------------------------------
@@ -37,42 +42,92 @@ export const HomePage = () => {
                     <div className="helpro-carousel">
                         <CarouselComponent />
                     </div>
-                    <div className="helpro-categorys">
-                        <CategorysComponent />
-                    </div>
+                    {
+                        width <= 550
+                        ?
+                        <div className="helpro-categorys">
+                            <CarruselCategorias />
+                        </div>
+                        :
+                        <div className="helpro-categorys">
+                            <CategorysComponent />
+                        </div>
+                    }
+                    
                     <div className="helpro-titulo-seccion">
                         Mejores Calificados
                     </div>
-                    <div className="helpro-productos-x-categoria">
-                        <ProductoCategoria 
-                            dataItems={ dataAplicaciones }
-                            tituloCategoria="Aplicaciones"
-                        />
-                    </div>
-                    <div className="helpro-productos-x-categoria">
-                        <ProductoCategoria 
-                            dataItems={ dataServicios }
-                            tituloCategoria="Servicios"
-                        />
-                    </div>
-                    <div className="helpro-productos-x-categoria">
-                        <ProductoCategoria 
-                            dataItems={ dataLocalesComerciales }
-                            tituloCategoria="Locales comerciales"
-                        />
-                    </div>
-                    <div className="helpro-productos-x-categoria">
-                        <ProductoCategoria 
-                            dataItems={ dataProductos }
-                            tituloCategoria="Productos"
-                        />
-                    </div>
-                    <div className="helpro-productos-x-categoria">
-                        <ProductoCategoria 
-                            dataItems={ dataEntidades }
-                            tituloCategoria="Entidades"
-                        />
-                    </div>
+                    {
+                        width <= 550
+                        ?
+                        <>
+                            <div className="helpro-productos-x-categoria">
+                                <CarruselProductoCategoria 
+                                    dataItems={ dataAplicaciones }
+                                    tituloCategoria="Aplicaciones"
+                                />
+                            </div>
+                            <div className="helpro-productos-x-categoria">
+                                <CarruselProductoCategoria 
+                                    dataItems={ dataServicios }
+                                    tituloCategoria="Servicios"
+                                />
+                            </div>
+                            <div className="helpro-productos-x-categoria">
+                                <CarruselProductoCategoria 
+                                    dataItems={ dataLocalesComerciales }
+                                    tituloCategoria="Locales comerciales"
+                                />
+                            </div>
+                            <div className="helpro-productos-x-categoria">
+                                <CarruselProductoCategoria 
+                                    dataItems={ dataProductos }
+                                    tituloCategoria="Productos"
+                                />
+                            </div>
+                            <div className="helpro-productos-x-categoria">
+                                <CarruselProductoCategoria 
+                                    dataItems={ dataEntidades }
+                                    tituloCategoria="Entidades"
+                                />
+                            </div>
+                        </>
+                        :
+                        <>
+                            <div className="helpro-productos-x-categoria">
+                                <ProductoCategoria 
+                                    dataItems={ dataAplicaciones }
+                                    tituloCategoria="Aplicaciones"
+                                />
+                            </div>
+                            <div className="helpro-productos-x-categoria">
+                                <ProductoCategoria 
+                                    dataItems={ dataServicios }
+                                    tituloCategoria="Servicios"
+                                />
+                            </div>
+                            <div className="helpro-productos-x-categoria">
+                                <ProductoCategoria 
+                                    dataItems={ dataLocalesComerciales }
+                                    tituloCategoria="Locales comerciales"
+                                />
+                            </div>
+                            <div className="helpro-productos-x-categoria">
+                                <ProductoCategoria 
+                                    dataItems={ dataProductos }
+                                    tituloCategoria="Productos"
+                                />
+                            </div>
+                            <div className="helpro-productos-x-categoria">
+                                <ProductoCategoria 
+                                    dataItems={ dataEntidades }
+                                    tituloCategoria="Entidades"
+                                />
+                            </div>
+                        </>
+                    }
+                    
+                    
                 </div>
             </HelproLayout>
         </>

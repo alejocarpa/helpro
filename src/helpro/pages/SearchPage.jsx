@@ -26,8 +26,11 @@ export const SearchPage = () => {
         }else if(tipoConsulta === '0'){
             obtenerDataByName();
         }
-    }, [nombreItem])
-    
+    }, [nombreItem]);
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    }, []);    
     
     return (
         <>

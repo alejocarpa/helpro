@@ -54,55 +54,56 @@ export const MenuLateral = ({ dezplegarMenu }) => {
                         <BotonLogin /> 
                     }
                 </div>
-
-                {
-                    status === 'authenticated' &&
-
-                    <div className="menu-lateral-cuerpo">
-                        <div 
-                            className="menu-lateral-seccion"
-                            onClick = { () => navegarSubmenu('home') }
-                        >
-                            <div className="menu-lateral-icono">
-                                <FaHome />
-                            </div>
-                            <div className="menu-lateral-nombre">
-                                Home
-                            </div>
+                
+                <div className="menu-lateral-cuerpo">
+                    <div 
+                        className="menu-lateral-seccion"
+                        onClick = { () => navegarSubmenu('home') }
+                    >
+                        <div className="menu-lateral-icono">
+                            <FaHome />
                         </div>
-
-                        <div 
-                            className="menu-lateral-seccion"
-                            onClick = { () => navegarSubmenu('configuracion') }
-                        >
-                            <div className="menu-lateral-icono">
-                                <FaTools />
-                            </div>
-                            <div className="menu-lateral-nombre">
-                                Configuración
-                            </div>
-                        </div>
-                        
-                        <div className="menu-lateral-seccion" onClick={ logoutUser }>
-                            <div className="menu-lateral-icono">
-                                <ImExit />
-                            </div>
-                            <div className="menu-lateral-nombre">
-                                Cerrar sesión
-                            </div>
-                        </div>
-
-                        <div className="menu-lateral-seccion">
-                            <div className="menu-lateral-icono">
-                                <BiHelpCircle />
-                            </div>
-                            <div className="menu-lateral-nombre">
-                                Ayuda
-                            </div>
+                        <div className="menu-lateral-nombre">
+                            Home
                         </div>
                     </div>
-                }
-                
+
+                    {
+                        status === 'authenticated' &&
+                            
+                            <>
+                                <div 
+                                    className="menu-lateral-seccion"
+                                    onClick = { () => navegarSubmenu('configuracion') }
+                                >
+                                    <div className="menu-lateral-icono">
+                                        <FaTools />
+                                    </div>
+                                    <div className="menu-lateral-nombre">
+                                        Configuración
+                                    </div>
+                                </div>
+                                
+                                <div className="menu-lateral-seccion" onClick={ logoutUser }>
+                                    <div className="menu-lateral-icono">
+                                        <ImExit />
+                                    </div>
+                                    <div className="menu-lateral-nombre">
+                                        Cerrar sesión
+                                    </div>
+                                </div>
+
+                                <div className="menu-lateral-seccion">
+                                    <div className="menu-lateral-icono">
+                                        <BiHelpCircle />
+                                    </div>
+                                    <div className="menu-lateral-nombre">
+                                        Ayuda
+                                    </div>
+                                </div>
+                            </>
+                    }
+                </div>
             </div>
         </div>
     )

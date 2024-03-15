@@ -133,21 +133,23 @@ export const DetalleItem = ({
                             </div>
                             <div className="detalle-item-imagen-diminuta">
                                 {
-                                    fotos.map((foto, id) => {
-                                        const fotoURL = `${urlEndpointImages}/${foto.link_image}`;
-                                        return <div
-                                            key={id}
-                                            className="detalle-item-diminuta-img"
-                                            style={{ marginLeft: '15px' }}
-                                            onClick={() => cambiarImagen(fotoURL)}
-                                        >
-                                            <img
-                                                className="detalle-item-imagen-img-diminuta"
-                                                src={fotoURL}
-                                                alt={foto.id_image}
-                                            />
-                                        </div>
-                                    })
+                                    fotos.length > 0 &&
+
+                                        fotos.map((foto, id) => {
+                                            const fotoURL = `${urlEndpointImages}${foto?.link_image}`;
+                                            return <div
+                                                key={id}
+                                                className="detalle-item-diminuta-img"
+                                                style={{ marginLeft: '15px' }}
+                                                onClick={() => cambiarImagen(fotoURL)}
+                                            >
+                                                <img
+                                                    className="detalle-item-imagen-img-diminuta"
+                                                    src={fotoURL}
+                                                    alt={foto.id_image}
+                                                />
+                                            </div>
+                                        })
                                 }
                             </div>
                         </div>
