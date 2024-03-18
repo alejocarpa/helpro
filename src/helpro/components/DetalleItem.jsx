@@ -7,10 +7,10 @@ import { BsStarFill } from "react-icons/bs";
 import { urlEndpointImages } from '../../helpers';
 import { BotonGuardar, BotonLogin } from '../layout';
 import { useDispatch, useSelector } from 'react-redux';
-import { CalificacionComponent } from './';
+import { CalificacionComponent, EditarComentario, ModalImagenes, VisualizarComentario } from './';
 import { useForm } from '../../hooks/useForm';
 import { agregandoNuevoComentario } from '../../store/helpro/helproSlice';
-import { startSavingNewComment } from '../../store/helpro/thunks';
+import { getComentsById, startSavingNewComment, startUpdatingComment } from '../../store/helpro/thunks';
 import Swal from 'sweetalert2';
 
 export const DetalleItem = ({ 
@@ -32,20 +32,36 @@ export const DetalleItem = ({
     porcentaje5,
     filtrarComentarios,
     obtenerComentarios,
-    setFiltro
+    setFiltro,
+    idItem,
+    calcularPorcentajeComentarios
 }) => {
     
     const [item1] = item;
     const [foto1] = fotos;
     const [totalComments1] = totalComments;
     const urlImageAmpliada = `${urlEndpointImages}/${foto1?.link_image}`;
+
     const [imagenAmpliada, setImagenAmpliada] = useState(urlImageAmpliada);
     const [filtroComentario, setFiltroComentario] = useState([]);
+    const [modal, setModal] = useState(false);
+    const [commentUser, setCommentUser] = useState([]);
+    const [editarComentario, setEditarComentario] = useState(false);
+
     const { status, uid, displayName, displaySurname, token } = useSelector( state => state.auth );
     const { nuevoComentario, nuevaCalificacion } = useSelector( state => state.helpro );
     const { comentario, onInputChange, setFormState } = useForm( { comentario: nuevoComentario[0]?.comentario } );
     const dispatch = useDispatch();
-    
+
+    const desplegarModal = () => {
+
+        setModal( !modal );
+    }
+
+    const obtenerComentarioDeUsuario = async() => {
+        setCommentUser( await getComentsById( idItem, '', '', '', uid ) );
+    }
+        
     const mostrarTodosComentarios = () => {
         obtenerComentarios( limIni, limFin );
         setFiltro(0);
@@ -57,6 +73,10 @@ export const DetalleItem = ({
 
     const cambiarImagen = (imagenURL) => {
         setImagenAmpliada(imagenURL);
+    }
+
+    const cambiarCalificacion = () => {
+        setEditarComentario( !editarComentario );
     }
 
     let ubicacionComent = true;
@@ -83,6 +103,43 @@ export const DetalleItem = ({
                     timer: 2500
                 });
                 setFormState({ comentario: '' });
+                obtenerComentarioDeUsuario();
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: mensajeRespuesta,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+            }
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Se debe ingresar un comentario y una calificacion',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
+
+    }
+
+    const updateComment = async( id_comment ) => {
+        
+        if( nuevoComentario[0]?.comentario !== "" && nuevaCalificacion?.calificacion !== null ){
+            
+            const { mensajeRespuesta, estadoRespuesta } = await dispatch( startUpdatingComment({ id_product, nuevoComentario, nuevaCalificacion, token, id_comment }) );
+
+            if( estadoRespuesta ){
+                Swal.fire({
+                    icon: 'success',
+                    title: mensajeRespuesta,
+                    showConfirmButton: false,
+                    timer: 2500
+                });
+                setFormState({ comentario: '' });
+                obtenerComentarioDeUsuario();
+                setEditarComentario(false);
+                calcularPorcentajeComentarios( id_product )
             }else{
                 Swal.fire({
                     icon: 'error',
@@ -117,9 +174,22 @@ export const DetalleItem = ({
     useEffect(() => {
         dispatch( agregandoNuevoComentario({ comentario, uid, displayName, displaySurname }) );
     }, [comentario]);
+
+    useEffect(() => {
+        obtenerComentarioDeUsuario()
+    }, [uid]);
+    
     
     return (
         <>
+            <div style={{ display: modal ? 'block' : 'none' }}>
+                <ModalImagenes 
+                    fotos={ fotos } 
+                    item1={ item1 } 
+                    desplegarModal={ desplegarModal } 
+                    imagenAmpliadaClikeada={ imagenAmpliada } 
+                />
+            </div>
             <div className="detalle-item-container">
                 <div className="detalle-item-elements">
                     <div className="detalle-item-secciones animate__animated animate__backInLeft">
@@ -129,6 +199,7 @@ export const DetalleItem = ({
                                     className="detalle-item-imagen-img-ampliada"
                                     src={imagenAmpliada}
                                     alt={item1?.name_product}
+                                    onClick={ desplegarModal }
                                 />
                             </div>
                             <div className="detalle-item-imagen-diminuta">
@@ -247,48 +318,72 @@ export const DetalleItem = ({
                         </div>
                     </div>
                     <div className="detalle-item-bloque-textarea">
-                        <div className="detalle-item-space-textarea">
-                            <textarea 
-                                onKeyUp={ resizeTextarea }
-                                name="comentario"
-                                value={ comentario }
-                                onChange={ onInputChange }
-                                className="detalle-item-textarea"
-                                placeholder={
-                                    status === 'authenticated'
-                                    ?
-                                    "Deja tu comentario..."
-                                    :
-                                    "Debes iniciar sesión para dejar un comentario...."
-                                }
-                                readOnly={
-                                    status === 'authenticated'
-                                    ?
-                                    false
-                                    :
-                                    true
-                                }
-                            ></textarea>
-                        </div>
-                        <div className="detalle-item-space-boton">
-                            <div className="detalle-item-boton" onClick={ saveNewComment }>
-                                { status === 'authenticated' ? <BotonGuardar /> : <BotonLogin /> }
-                            </div>
-                        </div>
-                    </div>
-                    {
-                        status === 'authenticated'
-                        ?
-                        <>
-                            <div className="detalle-item-space-calificacion">
-                                <div className="detalle-item-calificacion-user">
-                                    <CalificacionComponent nuevaCalificacion={ nuevaCalificacion } />
+                        {
+                            commentUser.length > 0
+                            ?
+                                editarComentario
+                                ?
+                                <EditarComentario 
+                                    onInputChange={ onInputChange } 
+                                    comentario={ comentario } 
+                                    resizeTextarea={ resizeTextarea } 
+                                    updateComment={ updateComment }
+                                    commentUser={ commentUser }
+                                    nuevaCalificacion={ nuevaCalificacion }
+                                />
+                                :
+                                <VisualizarComentario commentUser={ commentUser } cambiarCalificacion={ cambiarCalificacion } />
+                            :
+                            <>
+                                <div className="detalle-item-bloque-area-comentario">
+                                    <div className="detalle-item-space-textarea">
+                                        <textarea 
+                                            onKeyUp={ resizeTextarea }
+                                            name="comentario"
+                                            value={ comentario }
+                                            onChange={ onInputChange }
+                                            className="detalle-item-textarea"
+                                            placeholder={
+                                                status === 'authenticated'
+                                                ?
+                                                "Deja tu comentario..."
+                                                :
+                                                "Debes iniciar sesión para dejar un comentario...."
+                                            }
+                                            readOnly={
+                                                status === 'authenticated'
+                                                ?
+                                                false
+                                                :
+                                                true
+                                            }
+                                        ></textarea>
+                                    </div>
+                                    <div className="detalle-item-space-boton">
+                                        <div className="detalle-item-boton" onClick={ saveNewComment }>
+                                            { status === 'authenticated' ? <BotonGuardar /> : <BotonLogin /> }
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </>
-                        :
-                        ""
-                    }
+                                {
+                                    status === 'authenticated'
+                                    ?
+                                    <>
+                                        <div className="detalle-item-space-calificacion">
+                                            <div className="detalle-item-calificacion-user">
+                                                <CalificacionComponent nuevaCalificacion={ nuevaCalificacion } />
+                                            </div>
+                                        </div>
+                                    </>
+                                    :
+                                    ""
+                                }
+                            </>
+                        }
+                        
+                        
+                    </div>
+                    
                     <div className="detalle-item-coments">
                         <div className="detalle-item-coments-titulo">
                             Comentarios
@@ -297,10 +392,12 @@ export const DetalleItem = ({
                             filtroComentario.map((coment, id) => {
                                 ubicacionComent = !ubicacionComent;
                                 
-                                const arrayDate = coment.date_created_comment.split('-');
+                                const arrayDate = coment.date_updated_comment.split('-');
+                                const arrayDay = arrayDate[2].split(' ');
+
                                 const year = arrayDate[0];
                                 const month = arrayDate[1];
-                                const day = arrayDate[2];
+                                const day = arrayDay[0];
                                 
                                 const event = new Date(year, month-1, day);
                                 const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };

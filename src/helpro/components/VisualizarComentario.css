@@ -1,0 +1,63 @@
+.visualizar-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.visualizar-elements {
+    /* border: 1px solid #f00; */
+    width: 100%;
+    padding-left: 90px;
+    padding-right: 90px;
+}
+
+.visualizar-comentario-left{
+    /* border: 1px solid #f00; */
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: start;
+}
+
+.visualizar-comentario-bloque{
+    /* border: 1px solid #f00; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+
+.visualizar-comentario-text{
+    position: relative;
+    padding: 5px 30px 30px 30px;
+    border: 1px solid var(--color-borde);
+    border-radius: 15px 15px 15px 0px;
+    box-shadow: 0px 0px 10px 1px var(--color-borde-difuminado);
+    background-color: #FFFFFF;
+}
+
+.visualizar-comentario-editar {
+    /* border: 1px solid #f00; */
+    display:inline;
+    position:absolute;
+    top: 10px;
+    right: 15px;
+    color:rgb(0, 102, 255);
+    cursor: pointer;
+}
+
+.visualizar-comentario-nombre-user{
+    /* border: 1px solid #f00; */
+    width: 100%;
+    font-weight: 600;
+    margin-bottom: 3px;
+    padding-top: 25px;
+}
+
+@media screen and (max-width: 550px) {
+
+    .visualizar-elements {
+        padding-left: 10px;
+        padding-right: 20px;
+    }
+}

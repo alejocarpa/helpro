@@ -423,6 +423,91 @@ export const updatingProduct = async({ id_product, token }) => {
 
 }
 
+export const startUpdatingComment = ({ id_product, nuevoComentario, nuevaCalificacion, token, id_comment }) => {
+
+    return async (dispatch) => {
+        dispatch(validarGuardandoProducto());
+
+        const { ok:estadoRespuesta, errorMessage:mensajeRespuesta } = await updatingComment({ id_product, nuevoComentario, nuevaCalificacion, token, id_comment });
+
+        if (!estadoRespuesta){
+            dispatch(respuestaGuardandoProducto({ mensajeRespuesta, estadoRespuesta }));
+
+            return { mensajeRespuesta, estadoRespuesta };
+        }
+
+        dispatch(respuestaGuardandoProducto({ mensajeRespuesta, estadoRespuesta }));
+        dispatch(limpiarNuevoProducto());
+        return { mensajeRespuesta, estadoRespuesta };
+
+    }
+}
+
+export const updatingComment = async ({ id_product, nuevoComentario, nuevaCalificacion, token, id_comment }) => {
+
+    const [dataComment] = nuevoComentario;
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth() + 1;
+    const day = new Date().getDate();
+
+    const urlComments = `${urlEndpoint}/comentario/comentario`;
+    
+    const formComments = {
+        text_comment: dataComment?.comentario,
+        score_comment: nuevaCalificacion?.calificacion,
+        id_comment: id_comment 
+    }
+
+    try {
+        const { data } = await axios.put(urlComments, formComments, {
+            // headers: { "Authorization": `${apikeyEndpoint}` }
+        });
+        
+        if (data?.status === 404 || data?.status === 400) {
+            return {
+                ok: false,
+                data: [],
+                errorMessage: data?.results
+            }
+        }
+
+        const idComment = data?.results?.lastId;
+
+        const { ok:estadoRespuesta, errorMessage:mensajeRespuesta } = await updatingProduct({ id_product, token });
+
+        if(!estadoRespuesta){
+
+            const urlCommentDelete = `${urlEndpoint}/comentario/comentario?id_comment=${ idComment }`;
+            await axios.delete(urlCommentDelete, { 
+                // headers: { "Authorization": `${apikeyEndpoint}` }
+            });
+
+            return {
+                ok: false,
+                data: [],
+                errorMessage: mensajeRespuesta
+            }
+        }
+
+        return {
+            ok: true,
+            data: "Se actualizo el comentario",
+            errorMessage: "Se actualizo el comentario"
+        }
+
+    } catch (error) {
+        const errorResponse = error.message;
+
+        if (errorResponse) {
+            return {
+                ok: false,
+                data: [],
+                errorMessage: errorResponse
+            }
+        }
+    }
+}
+
 export const getItemsByCategorys = async ( category = '', startAt = 0, endAt = 5 ) => {
 
     //const url = `${urlEndpoint}/products?select=*&linkTo=id_category_product&equalTo=${category}&startAt=${startAt}&endAt=${endAt}&orderBy=score_product&orderMode=DESC`;
@@ -504,7 +589,7 @@ export const getFotosById = async ( id = '' ) => {
 
 }
 
-export const getComentsById = async ( id = '', offset = 0, limit = 10, score = '' ) => {
+export const getComentsById = async ( id = '', offset = 0, limit = 10, score = '', user = '' ) => {
     
     if(score > 0){
         score = score;
@@ -513,11 +598,11 @@ export const getComentsById = async ( id = '', offset = 0, limit = 10, score = '
     }
 
     //const url = `${urlEndpoint}/relations?select=score_comment,text_comment,date_updated_comment,date_created_comment,name_user,surname_user&linkTo=id_product_comment${selectScore}&equalTo=${id}${filtroScore}&orderBy=date_updated_comment&orderMode=DESC&startAt=${limit}&endAt=${offset}&rel=comments,users&type=comment,user`;
-    const url = `${urlEndpoint}/comentario/comentario?producto=${ id }&puntuacion=${ score }&limit=${ limit }&offset=${ offset }`;
+    const url = `${urlEndpoint}/comentario/comentario?producto=${ id }&puntuacion=${ score }&usuario=${ user }&limit=${ limit }&offset=${ offset }`;
     
     try{
         const { data } = await axios.get(url, { 
-            //headers: {"Authorization": `${ apikeyEndpoint }`} 
+            //headers: {"Authorization": `${ apikeyEndpoint }`}
         });
 
         if(data.status === 200){
@@ -561,7 +646,13 @@ export const getGradePercentage = async ( score = 0, id = '', totalComments ) =>
             //headers: {"Authorization": `${ apikeyEndpoint }`} 
         });
 
-        return (data.total*100)/totalComments;
+        let totalNumeroCalificacion = 0;
+        if (data?.status === 200) {
+
+            totalNumeroCalificacion = data.total
+        }
+        
+        return (totalNumeroCalificacion*100)/totalComments;
     }catch(error){
         
         return 0;

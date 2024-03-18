@@ -69,7 +69,7 @@ export const ItemPage = () => {
             
         }
     }
-
+    
     const filtrarComentarios = async( estrellas ) => {
 
         setFiltro( estrellas );
@@ -136,6 +136,8 @@ export const ItemPage = () => {
                         filtrarComentarios={ filtrarComentarios }
                         obtenerComentarios={ obtenerComentarios }
                         setFiltro={ setFiltro }
+                        idItem={ idItem }
+                        calcularPorcentajeComentarios={ calcularPorcentajeComentarios }
                     />
                 </div>
             </div>

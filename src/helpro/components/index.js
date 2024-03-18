@@ -23,3 +23,6 @@ export * from './FormularioNuevo3';
 export * from './FormularioNuevo4';
 export * from './PrevisualizacionComponent';
 export * from './CardProductoLoading';
+export * from './ModalImagenes';
+export * from './VisualizarComentario';
+export * from './EditarComentario';

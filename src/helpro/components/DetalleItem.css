@@ -288,6 +288,12 @@
     /* border: 1px solid #f00; */
     margin-top: 20px;
     display: flex;
+    flex-direction: column;
+}
+
+.detalle-item-bloque-area-comentario {
+    width: 100%;
+    display: flex;
 }
 
 .detalle-item-space-textarea{
@@ -385,6 +391,10 @@
         padding-top: 5px;
     }
 
+    .detalle-item-bloque-area-comentario {
+        flex-direction: column;
+    }
+
     .detalle-item-calificacion-total-bloque {
         /* border: 1px solid #f00; */
         padding-left: 20px;
@@ -393,7 +403,6 @@
 
     .detalle-item-bloque-textarea {
         /* border: 1px solid #f00; */
-        display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
