@@ -26,7 +26,7 @@ export const loginWithEmailPassword = async ({ email, password }) => {
 
     try{
         const { data } = await axios.get(url, { 
-                //headers: {"Authorization": `${ apikeyEndpoint }`} 
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT } 
         });
 
         let errorMessage = '';
@@ -96,7 +96,7 @@ export const registerUserWithEmailPassword = async({ email, password, name, surn
 
     try{
         const { data } = await axios.post(url, form, { 
-                headers: {"Authorization": `${ apikeyEndpoint }`} 
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
         });
 
         let errorMessage = '';
@@ -153,7 +153,7 @@ export const loginWithToken = async ({ tokenUser }) => {
     try{
         const { data } = await axios.get(url, { 
                 headers: {
-                    //"Authorization": `${ apikeyEndpoint }`
+                    Authorization: import.meta.env.VITE_API_KEY_ENDPOINT ,
                     "token": tokenUser
                 }
         });

@@ -48,7 +48,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
         try {
             const { data } = await axios.post(urlTypes, formTypes, {
-                // headers: { "Authorization": `${apikeyEndpoint}` }
+                headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
             });
 
             if (data?.status === 404 || data?.status === 400) {
@@ -90,7 +90,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
         try {
             const { data } = await axios.post(urlMarks, formMarks, {
-                // headers: { "Authorization": `${apikeyEndpoint}` }
+                headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
             });
 
             if (data?.status === 404 || data?.status === 400) {
@@ -137,7 +137,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
     try {
         const { data } = await axios.post(urlProducts, formProducts, {
-            // headers: { "Authorization": `${apikeyEndpoint}` }
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
         });
 
         if (data?.status === 404 || data?.status === 400 || data?.results?.error) {
@@ -175,14 +175,14 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
 
     try {
         const { data } = await axios.post(urlComments, formComments, {
-            // headers: { "Authorization": `${apikeyEndpoint}` }
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
         });
 
         if (data?.status === 404 || data?.status === 400) {
 
             const urlProductDelete = `${urlEndpoint}//producto/producto?id_product=${ idProduct }`;
             await axios.delete(urlProductDelete, { 
-                // headers: { "Authorization": `${apikeyEndpoint}` }
+                headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
             });
 
             return {
@@ -199,7 +199,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
             
             const urlProductDelete = `${urlEndpoint}//producto/producto?id_product=${ idProduct }`;
             await axios.delete(urlProductDelete, { 
-                // headers: { "Authorization": `${apikeyEndpoint}` }
+                headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
             });
 
             return {
@@ -223,24 +223,24 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
     
         try {
             const { data } = await axios.post(urlImages, formImages, {
-                // headers: { "Authorization": `${apikeyEndpoint}` }
+                headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
             });
     
             if (data?.status === 404 || data?.status === 400) {
                 
                 const urlProductDelete = `${urlEndpoint}//producto/producto?id_product=${ idProduct }`;
                 await axios.delete(urlProductDelete, { 
-                    // headers: { "Authorization": `${apikeyEndpoint}` }
+                    headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
                 });
 
                 const urlCommentDelete = `${urlEndpoint}/comentario/comentario?id_comment=${ idComment }`;
                 await axios.delete(urlCommentDelete, { 
-                    // headers: { "Authorization": `${apikeyEndpoint}` }
+                    headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
                 });
 
                 const urlImageDelete = `${urlEndpoint}/imagen/imagen.php?id_product=${ idProduct }`;
                 await axios.delete(urlImageDelete, { 
-                    // headers: { "Authorization": `${apikeyEndpoint}` }
+                    headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
                 });
 
                 return {
@@ -259,7 +259,7 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
             formData.append('file', totalImagenes[i]);
 
             await axios.post(urlImagesUpload, formData, {
-                // headers: { "Authorization": `${apikeyEndpoint}` }
+                headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
             });
     
         } catch (error) {
@@ -267,17 +267,17 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
                 
                 const urlProductDelete = `${urlEndpoint}//producto/producto?id_product=${ idProduct }`;
                 await axios.delete(urlProductDelete, { 
-                    // headers: { "Authorization": `${apikeyEndpoint}` }
+                    headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
                 });
 
                 const urlCommentDelete = `${urlEndpoint}/comentario/comentario?id_comment=${ idComment }`;
                 await axios.delete(urlCommentDelete, { 
-                    // headers: { "Authorization": `${apikeyEndpoint}` }
+                    headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
                 });
 
                 const urlImageDelete = `${urlEndpoint}/imagen/imagen.php?id_product=${ idProduct }`;
                 await axios.delete(urlImageDelete, { 
-                    // headers: { "Authorization": `${apikeyEndpoint}` }
+                    headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
                 });
 
                 return {
@@ -336,7 +336,7 @@ export const savingNewComment = async ({ id_product, uid, nuevoComentario, nueva
 
     try {
         const { data } = await axios.post(urlComments, formComments, {
-            // headers: { "Authorization": `${apikeyEndpoint}` }
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
         });
         
         if (data?.status === 404 || data?.status === 400) {
@@ -355,7 +355,7 @@ export const savingNewComment = async ({ id_product, uid, nuevoComentario, nueva
 
             const urlCommentDelete = `${urlEndpoint}/comentario/comentario?id_comment=${ idComment }`;
             await axios.delete(urlCommentDelete, { 
-                // headers: { "Authorization": `${apikeyEndpoint}` }
+                headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
             });
 
             return {
@@ -396,7 +396,7 @@ export const updatingProduct = async({ id_product, token }) => {
     try{
 
         const { data } = await axios.put(urlProducts, formProducts, {
-            // headers: { "Authorization": `${apikeyEndpoint}` }
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
         });
         
         if (data?.status === 404 || data?.status === 400) {
@@ -460,7 +460,7 @@ export const updatingComment = async ({ id_product, nuevoComentario, nuevaCalifi
 
     try {
         const { data } = await axios.put(urlComments, formComments, {
-            // headers: { "Authorization": `${apikeyEndpoint}` }
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
         });
         
         if (data?.status === 404 || data?.status === 400) {
@@ -479,7 +479,7 @@ export const updatingComment = async ({ id_product, nuevoComentario, nuevaCalifi
 
             const urlCommentDelete = `${urlEndpoint}/comentario/comentario?id_comment=${ idComment }`;
             await axios.delete(urlCommentDelete, { 
-                // headers: { "Authorization": `${apikeyEndpoint}` }
+                headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
             });
 
             return {
@@ -509,16 +509,16 @@ export const updatingComment = async ({ id_product, nuevoComentario, nuevaCalifi
 }
 
 export const getItemsByCategorys = async ( category = '', startAt = 0, endAt = 5 ) => {
-
+    
     //const url = `${urlEndpoint}/products?select=*&linkTo=id_category_product&equalTo=${category}&startAt=${startAt}&endAt=${endAt}&orderBy=score_product&orderMode=DESC`;
     const url = `${urlEndpoint}/producto/producto?categoria=${ category }&limit=${ endAt }&offset=${ startAt }`;
 
     try{
 
         const { data } = await axios.get(url, { 
-            //headers: {"Authorization": `${ apikeyEndpoint }`} 
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
         });
-        
+
         return data.results;
     }catch(error){
         
@@ -534,7 +534,7 @@ export const getItemsByName = async ( name = '', startAt = 0, endAt = 10 ) => {
     
     try{
         const { data } = await axios.get(url, { 
-            //headers: {"Authorization": `${ apikeyEndpoint }`} 
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT } 
         });
         if(data.status === 200){
             return data.results;
@@ -554,7 +554,7 @@ export const getItemById = async ( id = '' ) => {
 
     try{
         const { data } = await axios.get(url, { 
-            //headers: {"Authorization": `${ apikeyEndpoint }`} 
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT } 
         });
 
         if(data.status === 200){
@@ -575,7 +575,7 @@ export const getFotosById = async ( id = '' ) => {
 
     try{
         const { data } = await axios.get(url, { 
-            //headers: {"Authorization": `${ apikeyEndpoint }`} 
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
         });
 
         if(data.status === 200){
@@ -602,7 +602,7 @@ export const getComentsById = async ( id = '', offset = 0, limit = 10, score = '
     
     try{
         const { data } = await axios.get(url, { 
-            //headers: {"Authorization": `${ apikeyEndpoint }`}
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
         });
 
         if(data.status === 200){
@@ -624,7 +624,7 @@ export const getTotalComments = async ( id = '' ) => {
     try{
 
         const { data } = await axios.get(url, { 
-            //headers: {"Authorization": `${ apikeyEndpoint }`} 
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT } 
         });
 
         return [ data.total ];
@@ -643,7 +643,7 @@ export const getGradePercentage = async ( score = 0, id = '', totalComments ) =>
     try{
 
         const { data } = await axios.get(url, { 
-            //headers: {"Authorization": `${ apikeyEndpoint }`} 
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
         });
 
         let totalNumeroCalificacion = 0;
@@ -666,7 +666,7 @@ export const getMasters = async( master, where ) => {
 
     try{
         const { data } = await axios.get(url, { 
-            //headers: {"Authorization": `${ apikeyEndpoint }`} 
+            headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT } 
         });
         
         if(data.status === 200){
