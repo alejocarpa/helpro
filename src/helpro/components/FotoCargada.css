@@ -87,7 +87,7 @@
     transform: scale(1.08);
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 990px) {
 
     .formulario-nuevo2-contenedor-imagenes{
         width: 50%;

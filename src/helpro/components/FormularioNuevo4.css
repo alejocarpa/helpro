@@ -4,6 +4,7 @@
     /* border: 1px solid #f00; */
     width: 98%;
     height: 98%;
+    margin-bottom: 50px;
 }
 
 .formulario-nuevo4-elements{
@@ -80,11 +81,7 @@
     float: right;
 }
 
-@media screen and (max-width: 550px) {
-
-    .formulario-nuevo4-elements {
-        padding-bottom: 100px;
-    }
+@media screen and (max-width: 990px) {
 
     .formulario-nuevo4-bloque-comentario {
         padding-left: 20px;

@@ -1,6 +1,7 @@
 @import '../../index.css';
 
 .cardproduct-container{
+    /* border: 1px solid #f00; */
     width: 100%;
 }
 
@@ -10,6 +11,18 @@
     width: 100%;
     background-color: #FFFFFF;
     cursor: pointer;
+}
+
+.cardproduct-elements-maximo{
+    border: 5px rgba(204,192,61,0.6) outset;
+    border-radius: 10px;
+    width: 100%;
+    background-color: rgba(204,192,61,0.2);
+    cursor: pointer;
+
+    -webkit-box-shadow: 2px 3px 21px 3px rgba(204,192,61,1);
+    -moz-box-shadow: 2px 3px 21px 3px rgba(204,192,61,1);
+    box-shadow: 2px 3px 21px 3px rgba(204,192,61,1);
 }
 
 .cardproduct-imagen{

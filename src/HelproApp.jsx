@@ -18,7 +18,7 @@ export const HelproApp = () => {
     }
 
     const { pathname } = useLocation();
-
+    
     useEffect(() => {
         dispatch( startLoginWithToken({ tokenUser }) );
     }, [tokenUser]);
@@ -50,7 +50,7 @@ export const HelproApp = () => {
             <AppRouter />
 
             {
-                pathname !== '/auth/login' && pathname !== '/auth/register' && pathname !== '/auth/recover_password' ? <BotonAgregar /> : ""
+                pathname !== '/auth/login' && pathname !== '/auth/register' && pathname !== '/auth/recover_password' && pathname !== '/helpro/nuevo' ? <BotonAgregar /> : ""
             }
         </div>
     )

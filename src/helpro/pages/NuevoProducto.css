@@ -3,7 +3,6 @@
 .nuevo-producto-container{
     /* border: 1px solid #f00; */
     width: 100%;
-    height: 95vh;
     background: url("../images/fondo.jpg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -16,7 +15,6 @@
 .nuevo-producto-elements{
     /* border: 1px solid #f0f; */
     width: 60%;
-    height: 100%;
     display: flex;
     justify-content: start;
     flex-direction: column;
@@ -35,30 +33,16 @@
 .nuevo-producto-guia{
     /* border: 1px solid #f00; */
     width: 100%;
-    /* height: 30%; */
 }
 
 .nuevo-producto-formulario{
     width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
-@media screen and (max-height: 800px) {
-
-    .nuevo-producto-container{
-        height: 120vh;
-    }
-
-    .nuevo-producto-bloque{
-        height: 100%;
-    }
-}
-
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 990px) {
 
     .nuevo-producto-elements{
         /* border: 1px solid #f0f; */

@@ -31,6 +31,19 @@ export const NuevoProducto = () => {
     const [formularioActivo4, setFormularioActivo4] = useState(false);
     const [clickBotonAtras, setClickBotonAtras] = useState(false);
 
+    const [validacionNombre, setValidacionNombre] = useState(false);
+    const [validacionCategoria, setValidacionCategoria] = useState(false);
+    const [validacionTipo, setValidacionTipo] = useState(false);
+    const [validacionMarca, setValidacionMarca] = useState(false);
+    const [validacionPais, setValidacionPais] = useState(false);
+    const [validacionCiudad, setValidacionCiudad] = useState(false);
+    const [validacionOtroTipo, setValidacionOtroTipo] = useState(false);
+    const [validacionOtraMarca, setValidacionOtraMarca] = useState(false);
+    const [desplegarMarca, setDesplegarMarca] = useState(false);
+    const [desplegarUbicacion, setDesplegarUbicacion] = useState(false);
+    const [desplegarOtroTipo, setDesplegarOtroTipo] = useState(false);
+    const [desplegarOtraMarca, setDesplegarOtraMarca] = useState(false);
+
     const [completoFormulario1, setCompletoFormulario1] = useState(false);
     const [completoFormulario2, setCompletoFormulario2] = useState(false);
     const [completoFormulario3, setCompletoFormulario3] = useState(false);
@@ -86,6 +99,39 @@ export const NuevoProducto = () => {
                                 completoFormulario2 = { completoFormulario2 }
                                 completoFormulario3 = { completoFormulario3 }
                                 completoFormulario4 = { completoFormulario4 }
+                                validacionNombre={ validacionNombre }
+                                validacionCategoria={ validacionCategoria }
+                                validacionTipo={ validacionTipo }
+                                validacionMarca={ validacionMarca }
+                                validacionPais={ validacionPais }
+                                validacionCiudad={ validacionCiudad }
+                                validacionOtroTipo={ validacionOtroTipo }
+                                validacionOtraMarca={ validacionOtraMarca }
+                                setValidacionNombre={ setValidacionNombre }
+                                setValidacionCategoria={ setValidacionCategoria }
+                                setValidacionTipo={ setValidacionTipo }
+                                setValidacionMarca={ setValidacionMarca }
+                                setValidacionPais={ setValidacionPais }
+                                setValidacionCiudad={ setValidacionCiudad }
+                                setValidacionOtroTipo={ setValidacionOtroTipo }
+                                setValidacionOtraMarca={ setValidacionOtraMarca }
+                                desplegarMarca={ desplegarMarca }
+                                desplegarUbicacion={ desplegarUbicacion }
+                                desplegarOtroTipo={ desplegarOtroTipo }
+                                desplegarOtraMarca={ desplegarOtraMarca }
+                                setDesplegarMarca={ setDesplegarMarca }
+                                setDesplegarUbicacion={ setDesplegarUbicacion }
+                                setDesplegarOtroTipo={ setDesplegarOtroTipo }
+                                setDesplegarOtraMarca={ setDesplegarOtraMarca }
+                                nombre={ nombre }
+                                categoria={ categoria }
+                                tipo={ tipo }
+                                marca={ marca }
+                                country={ country }
+                                city={ city }
+                                otroTipo={ otroTipo }
+                                otraMarca={ otraMarca }
+                                setCompletoFormulario1={ setCompletoFormulario1 }
                             />
                         </div>
                         <div className="nuevo-producto-bloque">
@@ -109,6 +155,30 @@ export const NuevoProducto = () => {
                                     formState={formState}
                                     setFormState={setFormState}
                                     onInputChange={onInputChange}
+                                    validacionNombre={ validacionNombre }
+                                    validacionCategoria={ validacionCategoria }
+                                    validacionTipo={ validacionTipo }
+                                    validacionMarca={ validacionMarca }
+                                    validacionPais={ validacionPais }
+                                    validacionCiudad={ validacionCiudad }
+                                    validacionOtroTipo={ validacionOtroTipo }
+                                    validacionOtraMarca={ validacionOtraMarca }
+                                    setValidacionNombre={ setValidacionNombre }
+                                    setValidacionCategoria={ setValidacionCategoria }
+                                    setValidacionTipo={ setValidacionTipo }
+                                    setValidacionMarca={ setValidacionMarca }
+                                    setValidacionPais={ setValidacionPais }
+                                    setValidacionCiudad={ setValidacionCiudad }
+                                    setValidacionOtroTipo={ setValidacionOtroTipo }
+                                    setValidacionOtraMarca={ setValidacionOtraMarca }
+                                    desplegarMarca={ desplegarMarca }
+                                    desplegarUbicacion={ desplegarUbicacion }
+                                    desplegarOtroTipo={ desplegarOtroTipo }
+                                    desplegarOtraMarca={ desplegarOtraMarca }
+                                    setDesplegarMarca={ setDesplegarMarca }
+                                    setDesplegarUbicacion={ setDesplegarUbicacion }
+                                    setDesplegarOtroTipo={ setDesplegarOtroTipo }
+                                    setDesplegarOtraMarca={ setDesplegarOtraMarca }
                                 />
                             </div>
 

@@ -21,22 +21,32 @@ export const FormularioNuevo1 = (
         otraMarca,
         formState,
         setFormState,
-        onInputChange
+        onInputChange,
+        validacionNombre,
+        validacionCategoria,
+        validacionTipo,
+        validacionMarca,
+        validacionPais,
+        validacionCiudad,
+        validacionOtroTipo,
+        validacionOtraMarca,
+        setValidacionNombre,
+        setValidacionCategoria,
+        setValidacionTipo,
+        setValidacionMarca,
+        setValidacionPais,
+        setValidacionCiudad,
+        setValidacionOtroTipo,
+        setValidacionOtraMarca,
+        desplegarMarca,
+        desplegarUbicacion,
+        desplegarOtroTipo,
+        desplegarOtraMarca,
+        setDesplegarMarca,
+        setDesplegarUbicacion,
+        setDesplegarOtroTipo,
+        setDesplegarOtraMarca
     }) => {
-
-    const [desplegarMarca, setDesplegarMarca] = useState(false);
-    const [desplegarUbicacion, setDesplegarUbicacion] = useState(false);
-    const [desplegarOtroTipo, setDesplegarOtroTipo] = useState(false);
-    const [desplegarOtraMarca, setDesplegarOtraMarca] = useState(false);
-
-    const [validacionNombre, setValidacionNombre] = useState(false);
-    const [validacionCategoria, setValidacionCategoria] = useState(false);
-    const [validacionTipo, setValidacionTipo] = useState(false);
-    const [validacionMarca, setValidacionMarca] = useState(false);
-    const [validacionPais, setValidacionPais] = useState(false);
-    const [validacionCiudad, setValidacionCiudad] = useState(false);
-    const [validacionOtroTipo, setValidacionOtroTipo] = useState(false);
-    const [validacionOtraMarca, setValidacionOtraMarca] = useState(false);
 
     const botonSiguiente = () => {
 

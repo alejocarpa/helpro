@@ -58,7 +58,7 @@ export const HomePage = () => {
                         Mejores Calificados
                     </div>
                     {
-                        width <= 550
+                        width <= 990
                         ?
                         <>
                             <div className="helpro-productos-x-categoria">

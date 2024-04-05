@@ -9,7 +9,39 @@ export const BarraEtapas = ({
     completoFormulario1, 
     completoFormulario2, 
     completoFormulario3, 
-    completoFormulario4
+    completoFormulario4,
+    validacionNombre,
+    validacionCategoria,
+    validacionTipo,
+    validacionMarca,
+    validacionPais,
+    validacionCiudad,
+    validacionOtroTipo,
+    validacionOtraMarca,
+    setValidacionNombre,
+    setValidacionCategoria,
+    setValidacionTipo,
+    setValidacionMarca,
+    setValidacionPais,
+    setValidacionCiudad,
+    setValidacionOtroTipo,
+    setValidacionOtraMarca,
+    desplegarMarca,
+    desplegarUbicacion,
+    desplegarOtroTipo,
+    desplegarOtraMarca,
+    setDesplegarMarca,
+    setDesplegarUbicacion,
+    setDesplegarOtroTipo,
+    setDesplegarOtraMarca,
+    nombre,
+    categoria,
+    tipo,
+    marca,
+    country,
+    city,
+    otroTipo,
+    otraMarca
 }) => {
 
     const formularioActivo1 = () => {
@@ -44,7 +76,76 @@ export const BarraEtapas = ({
         clickBotonAtras(true);
     }
 
-    const funcionVacia = () => {}
+    const validarFormulario1 = () => {
+        if (nombre === "") {
+            setValidacionNombre(true);
+            return;
+        } else {
+            setValidacionNombre(false);
+        }
+
+        if (categoria === "") {
+            setValidacionCategoria(true);
+            return;
+        } else {
+            setValidacionCategoria(false);
+        }
+
+        if (tipo === "") {
+            setValidacionTipo(true);
+            return;
+        } else {
+            setValidacionTipo(false);
+        }
+
+        if( desplegarMarca ){
+            if (marca === "") {
+                setValidacionMarca(true);
+                return;
+            } else {
+                setValidacionMarca(false);
+            }
+        }
+
+        if( desplegarUbicacion ){
+            if (country === "") {
+                setValidacionPais(true);
+                return;
+            } else {
+                setValidacionPais(false);
+            }
+
+            if (city === "") {
+                setValidacionCiudad(true);
+                return;
+            } else {
+                setValidacionCiudad(false);
+            }
+        }
+
+        if( desplegarOtroTipo ){
+            if (otroTipo === "") {
+                setValidacionOtroTipo(true);
+                return;
+            } else {
+                setValidacionOtroTipo(false);
+            }
+        }
+
+        if( desplegarOtraMarca ){
+            if (otraMarca === "") {
+                setValidacionOtraMarca(true);
+                return;
+            } else {
+                setValidacionOtraMarca(false);
+            }
+        }
+    }
+
+    const funcionVacia = () => {
+        console.log("hola2")
+        validarFormulario1();
+    }
 
     return (
         <div className="barra-etapas-container">

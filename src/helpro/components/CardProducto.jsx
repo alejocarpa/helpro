@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { urlEndpointImages } from '../../helpers';
 
 export const CardProducto = ({ item }) => {
-
+    
     const navigate = useNavigate();
 
     const openItem = () => {
@@ -16,7 +16,7 @@ export const CardProducto = ({ item }) => {
     return (
         <>
             <div className="cardproduct-container">
-                <div className="cardproduct-elements" onClick={ openItem }>
+                <div className={ item?.score_product == 5 ? "cardproduct-elements-maximo" : "cardproduct-elements" } onClick={ openItem }>
                     <div className="cardproduct-imagen">
                         <img className="cardproduct-imagen-img" src={ srcImage } alt={ item.name_product } />
                     </div>

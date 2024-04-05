@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { urlEndpointImages } from '../../helpers';
 import './ModalImagenes.css';
+import { CarruselFotos } from './CarruselFotos';
 
-export const ModalImagenes = ({ fotos = [], item1 = {}, desplegarModal, imagenAmpliadaClikeada }) => {
+export const ModalImagenes = ({ fotos = [], item1 = {}, desplegarModal, imagenAmpliadaClikeada, indexImagen }) => {
     
     const [foto1] = fotos;
 
@@ -30,11 +31,7 @@ export const ModalImagenes = ({ fotos = [], item1 = {}, desplegarModal, imagenAm
                     </div>
                 </div>
                 <div className="modal-imagenes-imagen-ampliada">
-                    <img
-                        className="modal-imagenes-imagen-img-ampliada"
-                        src={ imagenAmpliada }
-                        alt={ imagenAmpliada }
-                    />
+                    <CarruselFotos fotos={ fotos } indexImagen={ indexImagen } />
                 </div>
                 <div className="detalle-item-imagen-diminuta">
                     {

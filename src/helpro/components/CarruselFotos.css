@@ -1,0 +1,9 @@
+.carrusel-fotos-img {
+    /* border: 1px solid #f00; */
+    width: 100%;
+    height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit:contain;
+}

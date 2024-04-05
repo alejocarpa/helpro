@@ -16,7 +16,7 @@
     display: flex;
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 990px) {
 
     .editar-comentario-bloque-area-comentario {
         flex-direction: column;

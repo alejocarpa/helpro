@@ -52,6 +52,11 @@ export const NavbarHelpro = ({ clickMenuHamburguesa, dezplegarMenu, setDezplegar
     return (
         <>
             <div className="navbar-container" onClick={ dezplegarMenu ? () => setDezplegarMenu( false ) : () => {} }>
+                <div className="logo-responsive">
+                    <div className="navbar-logo-responsive">
+                        <LogoNavbarHelpro />
+                    </div>
+                </div>
                 <div className="navbar-elements">
                     <div className="navbar-logo">
                         <LogoNavbarHelpro />
@@ -62,7 +67,7 @@ export const NavbarHelpro = ({ clickMenuHamburguesa, dezplegarMenu, setDezplegar
                     </div>
 
                     {
-                        width <= 550
+                        width <= 990
                         ?
                         <div className="navbar-menu-hamburguesa">
                             <HiMenu onClick={ clickMenuHamburguesa } style={{ cursor: 'pointer' }} />

@@ -47,6 +47,7 @@ export const DetalleItem = ({
     const [modal, setModal] = useState(false);
     const [commentUser, setCommentUser] = useState([]);
     const [editarComentario, setEditarComentario] = useState(false);
+    const [indexImagen, setIndexImagen] = useState(0);
 
     const { status, uid, displayName, displaySurname, token } = useSelector( state => state.auth );
     const { nuevoComentario, nuevaCalificacion } = useSelector( state => state.helpro );
@@ -71,8 +72,9 @@ export const DetalleItem = ({
         setProductoAbajo(proAba);
     }
 
-    const cambiarImagen = (imagenURL) => {
+    const cambiarImagen = ( imagenURL, id ) => {
         setImagenAmpliada(imagenURL);
+        setIndexImagen( id );
     }
 
     const cambiarCalificacion = () => {
@@ -187,7 +189,8 @@ export const DetalleItem = ({
                     fotos={ fotos } 
                     item1={ item1 } 
                     desplegarModal={ desplegarModal } 
-                    imagenAmpliadaClikeada={ imagenAmpliada } 
+                    imagenAmpliadaClikeada={ imagenAmpliada }
+                    indexImagen={ indexImagen }
                 />
             </div>
             <div className="detalle-item-container">
@@ -212,7 +215,7 @@ export const DetalleItem = ({
                                                 key={id}
                                                 className="detalle-item-diminuta-img"
                                                 style={{ marginLeft: '15px' }}
-                                                onClick={() => cambiarImagen(fotoURL)}
+                                                onClick={() => cambiarImagen(fotoURL, id)}
                                             >
                                                 <img
                                                     className="detalle-item-imagen-img-diminuta"
@@ -360,9 +363,18 @@ export const DetalleItem = ({
                                         ></textarea>
                                     </div>
                                     <div className="detalle-item-space-boton">
-                                        <div className="detalle-item-boton" onClick={ saveNewComment }>
-                                            { status === 'authenticated' ? <BotonGuardar /> : <BotonLogin /> }
-                                        </div>
+                                        {
+                                            status === 'authenticated'
+                                            ?
+                                            <div className="detalle-item-boton" onClick={ saveNewComment }>
+                                                <BotonGuardar />
+                                            </div>
+                                            : 
+                                            <div className="detalle-item-boton">
+                                                <BotonLogin />
+                                            </div>
+                                        }
+                                        
                                     </div>
                                 </div>
                                 {
