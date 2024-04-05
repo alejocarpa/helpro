@@ -71,7 +71,7 @@ export const startCreatingUserWithEmailPassword = ({ email, password, name, surn
 
 export const registerUserWithEmailPassword = async({ email, password, name, surname, country }) => {
 
-    const url = `${urlEndpoint}/users?register=true&suffix=user`;
+    const url = `${urlEndpoint}/usuario/usuario`;
 
     const year = new Date().getFullYear();
     const month = new Date().getMonth()+1;
@@ -98,11 +98,21 @@ export const registerUserWithEmailPassword = async({ email, password, name, surn
         const { data } = await axios.post(url, form, { 
             headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
         });
-
+        
         let errorMessage = '';
         let ok = true;
-        if( data?.status === 404 ){
-            errorMessage = data?.results;
+        if( data?.status === 404 || data?.results?.error ){
+
+            let mensajeError = '';
+            if( data?.results?.error ){
+
+                mensajeError = 'Ya existe el usuario';
+            }else{
+
+                mensajeError = data?.results;
+            }
+
+            errorMessage = mensajeError;
             ok = false;
         }
 
@@ -143,7 +153,7 @@ export const startLoginWithToken = ({ tokenUser }) => {
 }
 
 export const loginWithToken = async ({ tokenUser }) => {
-    const url = `${urlEndpoint}/auth/auth.php?validar=1`;
+    const url = `${urlEndpoint}/auth/auth?validar=1`;
     
     const form = {
         token_user: tokenUser

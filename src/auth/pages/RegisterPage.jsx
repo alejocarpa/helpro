@@ -79,7 +79,7 @@ export const RegisterPage = () => {
     }
 
     useEffect(() => {
-        errorMessage === "The email already exists" ? setMensajeError("El correo electronico ya existe") : ""
+        errorMessage && errorMessage != "Not found" ? setMensajeError( errorMessage ) : ""
     }, [errorMessage]);
 
     useEffect(() => {
@@ -179,7 +179,7 @@ export const RegisterPage = () => {
                     />
                 </Form.Group>
                 { validacionRepassword ? <div className="register-page-validacion">Las contraseñas no coinciden</div> : "" }
-                { errorMessage ? <div className="mt-1 login-page-error-message">{ mensajeError }</div> : "" }
+                { mensajeError ? <div className="mt-1 login-page-error-message">{ mensajeError }</div> : "" }
                 <Button className="mt-3" type="submit" variant="success" style={{ width: '100%' }}>
                     { status === 'checking' ? <Spinner size="sm" animation="border" variant="light" /> : "Crear" }
                 </Button>
