@@ -1,6 +1,7 @@
 @import '../../index.css';
 
 .ficha-producto-container{
+    /* border: 1px solid #f00; */
     width: 100%;
     display: flex;
     justify-content: center;

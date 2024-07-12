@@ -11,6 +11,10 @@
     width: 100%;
     background-color: #FFFFFF;
     cursor: pointer;
+
+    -webkit-box-shadow: 1px 1px 33px 2px rgba(56,30,56,0.18);
+    -moz-box-shadow: 1px 1px 33px 2px rgba(56,30,56,0.18);
+    box-shadow: 1px 1px 33px 2px rgba(56,30,56,0.18);
 }
 
 .cardproduct-elements-maximo{
