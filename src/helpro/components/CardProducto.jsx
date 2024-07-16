@@ -3,7 +3,7 @@ import { MostrarCalificacion } from './';
 import { useNavigate } from 'react-router-dom';
 import { urlEndpointImages } from '../../helpers';
 
-import { FaMapMarkerAlt, FaRegBookmark } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import { MdLabelImportantOutline } from "react-icons/md";
 import { CiShop } from "react-icons/ci";
 
