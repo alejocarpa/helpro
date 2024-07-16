@@ -9,3 +9,4 @@ export * from './SelectCountries';
 export * from './SelectCities';
 export * from './SelectType';
 export * from './SelectMarks';
+export * from './SelectCampus';

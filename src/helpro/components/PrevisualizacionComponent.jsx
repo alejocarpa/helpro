@@ -14,7 +14,7 @@ export const PrevisualizacionComponent = ({ nuevoProducto, fotosNuevas, nuevaCal
     useEffect(() => {
         setImagenAmpliada(fotosNuevas[0]?.fotoURL);
     }, [fotosNuevas[0]?.fotoURL])
-
+    
     return (
         <div className="previsualizacion-container">
             <div className="previsualizacion-elements">
@@ -59,8 +59,8 @@ export const PrevisualizacionComponent = ({ nuevoProducto, fotosNuevas, nuevaCal
                                     nuevoProducto?.categoria === '3'
                                     ?
                                     <>
-                                        <ListGroup.Item><b>Ubicación:</b> {nuevoProducto?.nombrecountry}</ListGroup.Item>
-                                        <ListGroup.Item><b>Ciudad:</b> {nuevoProducto?.nombrecity}</ListGroup.Item>
+                                        <ListGroup.Item><b>Ubicación:</b> {nuevoProducto?.nombrecity}, {nuevoProducto?.nombrecountry}</ListGroup.Item>
+                                        <ListGroup.Item><b>Sede:</b> {nuevoProducto?.nombrecampus}</ListGroup.Item>
                                     </>
                                     :
                                     ""

@@ -2,8 +2,7 @@ import { FloatingLabel, Form } from 'react-bootstrap';
 import { BotonSiguiente } from '../layout';
 import './FormularioNuevo1.css';
 import { useEffect, useState } from 'react';
-import { SelectCategories, SelectCities, SelectCountries, SelectMarks, SelectType } from '../../helpers';
-import { useDispatch } from 'react-redux';
+import { SelectCategories, SelectCities, SelectCountries, SelectMarks, SelectType, SelectCampus } from '../../helpers';
 
 export const FormularioNuevo1 = (
     {
@@ -28,6 +27,7 @@ export const FormularioNuevo1 = (
         validacionMarca,
         validacionPais,
         validacionCiudad,
+        validacionSede,
         validacionOtroTipo,
         validacionOtraMarca,
         setValidacionNombre,
@@ -36,6 +36,7 @@ export const FormularioNuevo1 = (
         setValidacionMarca,
         setValidacionPais,
         setValidacionCiudad,
+        setValidacionSede,
         setValidacionOtroTipo,
         setValidacionOtraMarca,
         desplegarMarca,
@@ -45,7 +46,8 @@ export const FormularioNuevo1 = (
         setDesplegarMarca,
         setDesplegarUbicacion,
         setDesplegarOtroTipo,
-        setDesplegarOtraMarca
+        setDesplegarOtraMarca,
+        campus
     }) => {
 
     const botonSiguiente = () => {
@@ -99,6 +101,14 @@ export const FormularioNuevo1 = (
                 return;
             } else {
                 setValidacionCiudad(false);
+            }
+
+            if (campus === "") {
+                setValidacionSede(true);
+                completoFormulario1(false);
+                return;
+            } else {
+                setValidacionSede(false);
             }
         }
 
@@ -299,6 +309,14 @@ export const FormularioNuevo1 = (
                                         <SelectCities country={country} city={city} onInputChange={onInputChange} />
                                     </FloatingLabel>
                                     {validacionCiudad ? <div className="formulario-nuevo1-validacion">Debes elegir una ciudad</div> : ""}
+
+                                    <FloatingLabel 
+                                        label="sede" 
+                                        className={ validacionSede ? "mt-3 formulario-nuevo1-input-vacio" : "mt-3 formulario-nuevo1-input" }
+                                    >
+                                        <SelectCampus campus={ campus } onInputChange={ onInputChange } />
+                                    </FloatingLabel>
+                                    {validacionSede ? <div className="formulario-nuevo1-validacion">Debes elegir una sede</div> : ""}
                                 </>
                                 :
                                 ""

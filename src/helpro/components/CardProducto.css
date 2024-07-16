@@ -64,12 +64,20 @@
 }
 
 .cardproduct-titulo{
-    font-size: 60px;
+    font-size: 25px;
     font-weight: 500;
     margin-bottom: 5px;
 }
 
+.cardproduct-ubicacion {
+    /* border: 1px solid #f00; */
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    color: #8e8e8e;
+}
+
 .cardproduct-calificacion{
     width: 100%;
-    font-size: 60px;
+    font-size: 25px;
 }

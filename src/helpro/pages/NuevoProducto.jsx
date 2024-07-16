@@ -37,6 +37,7 @@ export const NuevoProducto = () => {
     const [validacionMarca, setValidacionMarca] = useState(false);
     const [validacionPais, setValidacionPais] = useState(false);
     const [validacionCiudad, setValidacionCiudad] = useState(false);
+    const [validacionSede, setValidacionSede] = useState(false);
     const [validacionOtroTipo, setValidacionOtroTipo] = useState(false);
     const [validacionOtraMarca, setValidacionOtraMarca] = useState(false);
     const [desplegarMarca, setDesplegarMarca] = useState(false);
@@ -49,7 +50,21 @@ export const NuevoProducto = () => {
     const [completoFormulario3, setCompletoFormulario3] = useState(false);
     const [completoFormulario4, setCompletoFormulario4] = useState(false);
 
-    const { nombre, categoria, tipo, marca, comentario, country, city, otroTipo, otraMarca, onInputChange, formState, setFormState } = useForm( nuevoProducto );
+    const { 
+        nombre, 
+        categoria, 
+        tipo, 
+        marca, 
+        comentario, 
+        country, 
+        city, 
+        otroTipo, 
+        otraMarca, 
+        onInputChange, 
+        formState, 
+        setFormState,
+        campus
+    } = useForm( nuevoProducto );
 
     const publicarNuevoProducto = async() => {
         if( completoFormulario1 && completoFormulario2 && completoFormulario3 ){
@@ -75,9 +90,9 @@ export const NuevoProducto = () => {
     }
 
     useEffect(() => {
-        dispatch( agregandoNuevoProducto({ nombre, categoria, tipo, marca, comentario, country, city, otroTipo, otraMarca, ...formState }));
+        dispatch( agregandoNuevoProducto({ nombre, categoria, tipo, marca, comentario, country, city, otroTipo, otraMarca, campus, ...formState }));
         dispatch( agregandoNuevoComentario({ ...formState, uid, displayName, displaySurname }) );
-    }, [nombre, categoria, tipo, marca, comentario, country, city, otroTipo, otraMarca]);
+    }, [nombre, categoria, tipo, marca, comentario, country, city, otroTipo, otraMarca, campus]);
     
     useEffect(() => {
         window.scroll(0, 0);
@@ -161,6 +176,7 @@ export const NuevoProducto = () => {
                                     validacionMarca={ validacionMarca }
                                     validacionPais={ validacionPais }
                                     validacionCiudad={ validacionCiudad }
+                                    validacionSede={ validacionSede }
                                     validacionOtroTipo={ validacionOtroTipo }
                                     validacionOtraMarca={ validacionOtraMarca }
                                     setValidacionNombre={ setValidacionNombre }
@@ -169,6 +185,7 @@ export const NuevoProducto = () => {
                                     setValidacionMarca={ setValidacionMarca }
                                     setValidacionPais={ setValidacionPais }
                                     setValidacionCiudad={ setValidacionCiudad }
+                                    setValidacionSede={ setValidacionSede }
                                     setValidacionOtroTipo={ setValidacionOtroTipo }
                                     setValidacionOtraMarca={ setValidacionOtraMarca }
                                     desplegarMarca={ desplegarMarca }
@@ -179,6 +196,7 @@ export const NuevoProducto = () => {
                                     setDesplegarUbicacion={ setDesplegarUbicacion }
                                     setDesplegarOtroTipo={ setDesplegarOtroTipo }
                                     setDesplegarOtraMarca={ setDesplegarOtraMarca }
+                                    campus={ campus }
                                 />
                             </div>
 

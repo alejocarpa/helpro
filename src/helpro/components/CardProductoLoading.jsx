@@ -4,15 +4,15 @@ import './CardProductoLoading.css';
 export const CardProductoLoading = () => {
     return (
         <>
-            <div className="cardproduct-container">
-                <div className="cardproduct-elements">
-                    <div className="cardproduct-imagen">
+            <div className="cardproduct-container-loading">
+                <div className="cardproduct-elements-loading">
+                    <div className="cardproduct-imagen-loading">
                         <Placeholder animation="glow">
                             <Placeholder xs={12} />
                         </Placeholder>
                     </div>
-                    <div className="cardproduct-detalle">
-                        <div className="cardproduct-titulo">
+                    <div className="cardproduct-detalle-loading">
+                        <div className="cardproduct-titulo-loading">
                             <Placeholder animation="glow">
                                 <Placeholder xs={6} />
                                 <Placeholder xs={8} />

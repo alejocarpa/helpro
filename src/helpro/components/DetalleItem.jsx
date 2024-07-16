@@ -38,6 +38,7 @@ export const DetalleItem = ({
 }) => {
     
     const [item1] = item;
+    
     const [foto1] = fotos;
     const [totalComments1] = totalComments;
     const urlImageAmpliada = `${urlEndpointImages}/${foto1?.link_image}`;
@@ -238,8 +239,8 @@ export const DetalleItem = ({
                                         item1?.id_category_product == 3
                                         ?
                                         <>
-                                            <ListGroup.Item><b>Ubicación:</b> {item1?.name_country}</ListGroup.Item>
-                                            <ListGroup.Item><b>Ciudad:</b> {item1?.name_city}</ListGroup.Item>
+                                            <ListGroup.Item><b>Ubicación:</b> {item1?.name_city}, {item1?.name_country}</ListGroup.Item>
+                                            <ListGroup.Item><b>Sede:</b> { item1?.name_campus }</ListGroup.Item>
                                         </>
                                         :
                                         ""

@@ -132,7 +132,8 @@ export const savingNewProduct = async ({ nuevoProducto, nuevoComentario, nuevaCa
         id_city_product: nuevoProducto.city,
         id_user_product: nuevoComentario[0].idUser,
         date_created_product: `${year}-${month}-${day}`,
-        state_product: true
+        state_product: true,
+        id_campus_product: nuevoProducto.campus
     }
 
     try {
