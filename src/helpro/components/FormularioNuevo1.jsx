@@ -145,7 +145,7 @@ export const FormularioNuevo1 = (
             setDesplegarMarca(false);
         }
 
-        if (categoria === '3') {
+        if ( categoria === '3' || categoria === '5' ) {
             setDesplegarUbicacion(true);
         }else{
             setDesplegarUbicacion(false);

@@ -29,14 +29,16 @@ export const CardProducto = ({ item }) => {
                             { item.name_product }
                         </div>
                         {
-                            item.id_category_product == 3
-                            &&
+                            item.id_category_product == 3 || item.id_category_product == 5
+                            ?
                             <>
                                 <span className='cardproduct-ubicacion'>
                                     <FaMapMarkerAlt />&nbsp;{ `${ item.name_city }, ${ item.name_country }` }
                                 </span>
                                 <span className='cardproduct-ubicacion'><CiShop />&nbsp;Sede { item.name_campus }</span>
                             </>
+                            :
+                            ""
                         }
                         {
                             item.id_category_product == 1

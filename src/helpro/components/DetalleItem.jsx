@@ -236,7 +236,7 @@ export const DetalleItem = ({
                                 <ListGroup variant="flush">
                                     <ListGroup.Item><b>Categoria:</b> {item1?.name_category}</ListGroup.Item>
                                     {
-                                        item1?.id_category_product == 3
+                                        item1?.id_category_product == 3 || item1?.id_category_product == 5
                                         ?
                                         <>
                                             <ListGroup.Item><b>Ubicación:</b> {item1?.name_city}, {item1?.name_country}</ListGroup.Item>

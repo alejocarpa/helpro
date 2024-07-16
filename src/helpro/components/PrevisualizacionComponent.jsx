@@ -56,7 +56,7 @@ export const PrevisualizacionComponent = ({ nuevoProducto, fotosNuevas, nuevaCal
                             <ListGroup variant="flush">
                                 <ListGroup.Item><b>Categoria:</b> {nuevoProducto?.nombrecategoria}</ListGroup.Item>
                                 {
-                                    nuevoProducto?.categoria === '3'
+                                    nuevoProducto?.categoria === '3' || nuevoProducto?.categoria === '5'
                                     ?
                                     <>
                                         <ListGroup.Item><b>Ubicación:</b> {nuevoProducto?.nombrecity}, {nuevoProducto?.nombrecountry}</ListGroup.Item>
