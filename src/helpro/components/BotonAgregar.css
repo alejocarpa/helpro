@@ -12,6 +12,7 @@
     right: 15px;
     width: var(--tamano-boton-agregar);
     height: var(--tamano-boton-agregar);
+    z-index: 2;
 }
 
 .boton-agregar-elements{
