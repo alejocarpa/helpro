@@ -519,7 +519,14 @@ export const getItemsByCategorys = async ( category = '', startAt = 0, endAt = 5
         const { data } = await axios.get(url, { 
             headers: { Authorization: import.meta.env.VITE_API_KEY_ENDPOINT }
         });
+        if( data.status === 200 ){
+            
+            return data.results;
+        }else if( data.status === 400 || data.status === 404 ){
 
+            return [];
+        }
+        
         return data.results;
     }catch(error){
         
