@@ -65,6 +65,10 @@ export const startCreatingUserWithEmailPassword = ({ email, password, name, surn
 
         dispatch(startLoginWithEmailPassword({ email, password }));
 
+        return {
+            ok: ok
+        }
+
     }
 
 }

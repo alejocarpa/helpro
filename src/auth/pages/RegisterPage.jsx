@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { startCreatingUserWithEmailPassword } from "../../store/auth";
 import { SelectCountries } from "../../helpers";
 import './RegisterPage.css';
+import Swal from "sweetalert2";
 
 const initialState = {
     name: '',
@@ -30,7 +31,7 @@ export const RegisterPage = () => {
     const [validacionPassword, setValidacionPassword] = useState(false);
     const [validacionRepassword, setValidacionRepassword] = useState(false);
 
-    const onSubmit = ( event ) => {
+    const onSubmit = async( event ) => {
         event.preventDefault();
 
         if (name === "") {
@@ -75,7 +76,24 @@ export const RegisterPage = () => {
             setValidacionRepassword(false);
         }
 
-        dispatch( startCreatingUserWithEmailPassword({ email, password, name, surname, country }) );
+        const { ok } = await dispatch( startCreatingUserWithEmailPassword({ email, password, name, surname, country }) );
+        
+        if( ok ){
+            Swal.fire({
+                icon: 'success',
+                title: 'Tu usuario ha sido creado exitosamente',
+                showConfirmButton: false,
+                timer: 2500
+            });
+            navigate(`home`);
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Hubo un error al momento de crear el usuario',
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
     }
 
     useEffect(() => {
