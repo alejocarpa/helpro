@@ -157,6 +157,7 @@ export const startLoginWithToken = ({ tokenUser }) => {
 }
 
 export const loginWithToken = async ({ tokenUser }) => {
+    
     const url = `${urlEndpoint}/auth/auth?validar=1`;
     
     const form = {
