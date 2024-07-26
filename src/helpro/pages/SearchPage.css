@@ -4,12 +4,14 @@
     min-height: 89.9vh;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .search-ficha-producto{
     /* border: 1px solid #ff0; */
     width: 100%;
-    padding-top: 15px;
+    padding-top: 35px;
     padding-bottom: 15px;
     display: flex;
 }

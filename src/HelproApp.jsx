@@ -8,7 +8,7 @@ import { startLoginWithToken } from "./store/auth";
 
 
 export const HelproApp = () => {
-    
+    console.log("hola")
     const dispatch = useDispatch();
     const tokenUser = JSON.parse( localStorage.getItem('token') );
     const tokenAnterior = JSON.parse( localStorage.getItem('tokenAnterior') );

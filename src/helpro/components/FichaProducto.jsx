@@ -17,7 +17,7 @@ export const FichaProducto = ({ item }) => {
     return (
         <>
             <div className="ficha-producto-container">
-                <div className="ficha-producto-elements" onClick={ openItem }>
+                <div className={ item?.score_product == 5 ? "ficha-producto-elements-maximo" : "ficha-producto-elements" } onClick={ openItem }>
                     <div className="ficha-producto-imagen">
                         <img
                             className="ficha-producto-imagen-img"
